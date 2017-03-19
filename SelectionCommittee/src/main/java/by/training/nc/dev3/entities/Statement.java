@@ -5,28 +5,27 @@
  */
 package by.training.nc.dev3.entities;
 
-import by.training.nc.dev3.interfaces.IdIncrement;
+import by.training.nc.dev3.abstracts.IdIncrement;
+import by.training.nc.dev3.abstracts.Point;
 
 /**
  *
  * @author Valera Yalov4uk
  */
-public class Statement implements IdIncrement{
+public class Statement extends IdIncrement implements Comparable {
 
     private int id;
     private Enrollee enrollee;
     private Faculty faculty;
-    private boolean statement;
-    private static int i = 0;
 
     public Statement() {
+        i++;
     }
 
-    public Statement(Enrollee enrollee, Faculty faculty, boolean isStatement) {
+    public Statement(Enrollee enrollee, Faculty faculty) {
         this.id = i++;
         this.enrollee = enrollee;
         this.faculty = faculty;
-        this.statement = isStatement;
     }
 
     public int getId() {
@@ -53,16 +52,20 @@ public class Statement implements IdIncrement{
         this.faculty = faculty;
     }
 
-    public boolean isIsStatement() {
-        return statement;
-    }
-
-    public void setIsStatement(boolean isStatement) {
-        this.statement = isStatement;
-    }
-
     @Override
     public String toString() {
-        return "Statement{" + "id=" + id + ", enrollee=" + enrollee + ", faculty=" + faculty + ", statement=" + statement + '}';
+        return "Statement{" + "id=" + id + ", enrollee=" + enrollee
+                + ", faculty=" + faculty + '}';
+    }
+
+    public int compareTo(Object o) {
+        int result = 0;
+        for (Point point : this.enrollee.getPoints()) {
+            result -= point.getValue();
+        }
+        for (Point point : ((Statement)o).enrollee.getPoints()) {
+            result += point.getValue();
+        }
+        return result;
     }
 }

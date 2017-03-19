@@ -5,38 +5,42 @@
  */
 package by.training.nc.dev3.entities;
 
+import by.training.nc.dev3.abstracts.IdIncrement;
 import by.training.nc.dev3.enums.FacultyName;
-import by.training.nc.dev3.enums.Subject;
+import by.training.nc.dev3.enums.PointName;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Valera Yalov4uk
  */
-public class Faculty {
+public class Faculty extends IdIncrement {
 
     private int id;
     private FacultyName name;
     private int maxSize;
-    private List<Subject> requiredSubject;
-    private List<Enrollee> pastEntrants;
-    private static int i = 0;
+    private List<PointName> requiredPoints;
+    private List<Enrollee> registeredEntrants;
 
     public Faculty() {
+        i++;
     }
 
-    public Faculty(String name, int maxSize, List<Subject> requiredSubject) {
+    public Faculty(String name, int maxSize, List<PointName> requiredPoints) {
         this.id = i++;
         this.name = FacultyName.valueOf(name);
         this.maxSize = maxSize;
-        this.requiredSubject = requiredSubject;
+        this.requiredPoints = requiredPoints;
+        registeredEntrants = new ArrayList();
     }
 
-    public Faculty(FacultyName name, int maxSize, List<Subject> requiredSubject) {
+    public Faculty(FacultyName name, int maxSize, List<PointName> requiredPoints) {
         this.id = i++;
         this.name = name;
         this.maxSize = maxSize;
-        this.requiredSubject = requiredSubject;
+        this.requiredPoints = requiredPoints;
+        registeredEntrants = new ArrayList();
     }
 
     public int getId() {
@@ -63,24 +67,30 @@ public class Faculty {
         this.maxSize = maxSize;
     }
 
-    public List<Subject> getRequiredSubject() {
-        return requiredSubject;
+    public List<PointName> getRequiredPoints() {
+        return requiredPoints;
     }
 
-    public void setRequiredSubject(List<Subject> requiredSubject) {
-        this.requiredSubject = requiredSubject;
+    public void setRequiredPoints(List<PointName> requiredPoints) {
+        this.requiredPoints = requiredPoints;
     }
 
-    public List<Enrollee> getPastEntrants() {
-        return pastEntrants;
+    public List<Enrollee> getRegisteredEntrants() {
+        return registeredEntrants;
     }
 
-    public void setPastEntrants(List<Enrollee> pastEntrants) {
-        this.pastEntrants = pastEntrants;
+    public void setRegisteredEntrants(List<Enrollee> registeredEntrants) {
+        this.registeredEntrants = registeredEntrants;
+    }
+
+    public void setRegisteredEntrant(Enrollee enrollee) {
+        this.registeredEntrants.add(enrollee);
     }
 
     @Override
     public String toString() {
-        return "Faculty{" + "id=" + id + ", name=" + name + ", maxSize=" + maxSize + ", requiredSubject=" + requiredSubject + ", pastEntrants=" + pastEntrants + '}';
+        return "Faculty{" + "id=" + id + ", name=" + name + ", maxSize="
+                + maxSize + ", requiredPoints=" + requiredPoints
+                + ", registeredEntrants=" + registeredEntrants + '}';
     }
 }

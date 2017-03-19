@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package by.training.nc.dev3.interfaces;
+package by.training.nc.dev3.abstracts;
 
 /**
  *
  * @author Valera Yalov4uk
  */
-public interface IdIncrement {
-    static int i = 0;
+public abstract class IdIncrement {
+
+    protected static int i = 0;
 }

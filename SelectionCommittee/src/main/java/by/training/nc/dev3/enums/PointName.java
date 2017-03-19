@@ -9,10 +9,11 @@ package by.training.nc.dev3.enums;
  *
  * @author Valera Yalov4uk
  */
-public enum Subject {
+public enum PointName {
+    certificate,
     mathematics,
-    physics,
     language,
     history,
-    chemistry
+    chemistry,
+    physics
 }

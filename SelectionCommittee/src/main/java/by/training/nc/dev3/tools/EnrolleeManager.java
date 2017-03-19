@@ -5,9 +5,12 @@
  */
 package by.training.nc.dev3.tools;
 
+import by.training.nc.dev3.abstracts.Point;
+import by.training.nc.dev3.entities.Certificate;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
-import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.entities.Subject;
+import by.training.nc.dev3.enums.PointName;
 
 /**
  *
@@ -16,9 +19,18 @@ import by.training.nc.dev3.entities.Statement;
 public class EnrolleeManager {
 
     private Enrollee enrollee;
-    
-    public Statement Register(Faculty faculty){
-        return new Statement(enrollee, faculty, false);
+
+    public void register(Faculty faculty) {
+        for (PointName requiredPointName : faculty.getRequiredPoints()) {
+            Integer value = MenuManager.enterPointValue(enrollee,
+                    requiredPointName);
+            Point point = requiredPointName.equals(PointName.certificate)
+                    ? new Certificate()
+                    : new Subject(requiredPointName);
+            point.setValue(value);
+            enrollee.addPoint(point);
+        }
+        faculty.setRegisteredEntrant(enrollee);
     }
 
     public EnrolleeManager() {

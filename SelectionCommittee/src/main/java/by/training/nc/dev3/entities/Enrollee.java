@@ -5,8 +5,10 @@
  */
 package by.training.nc.dev3.entities;
 
-import by.training.nc.dev3.enums.Subject;
-import java.util.Map;
+import by.training.nc.dev3.abstracts.Human;
+import by.training.nc.dev3.abstracts.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,37 +16,33 @@ import java.util.Map;
  */
 public class Enrollee extends Human {
 
-    private int certificate;
-    private Map<Subject, Integer> subjects;
+    private List<Point> points;
 
     public Enrollee() {
         super();
+        points = new ArrayList<Point>();
     }
 
     public Enrollee(String name) {
         super(name);
+        points = new ArrayList<Point>();
     }
 
-    public Enrollee(String name, int certificate, Map<Subject, Integer> subjects) {
+    public Enrollee(String name, List<Point> points) {
         super(name);
-        this.certificate = certificate;
-        this.subjects = subjects;
+        this.points = points;
     }
 
-    public int getCertificate() {
-        return certificate;
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public void setCertificate(int certificate) {
-        this.certificate = certificate;
+    public void setPoints(List<Point> points) {
+        this.points = points;
     }
 
-    public Map<Subject, Integer> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Map<Subject, Integer> subjects) {
-        this.subjects = subjects;
+    public void addPoint(Point point) {
+        this.points.add(point);
     }
 
     public int getId() {
@@ -65,6 +63,6 @@ public class Enrollee extends Human {
 
     @Override
     public String toString() {
-        return "Enrollee{" + "id=" + id + ", name=" + name + "certificate=" + certificate + ", subjects=" + subjects + '}';
+        return "Enrollee{" + "id=" + id + ", name=" + name + ", points=" + points + '}';
     }
 }

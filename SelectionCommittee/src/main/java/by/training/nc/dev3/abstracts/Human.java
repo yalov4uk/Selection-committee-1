@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package by.training.nc.dev3.entities;
-
-import by.training.nc.dev3.interfaces.IdIncrement;
+package by.training.nc.dev3.abstracts;
 
 /**
  *
  * @author Valera Yalov4uk
  */
-public abstract class Human implements IdIncrement {
+public abstract class Human extends IdIncrement {
 
     protected int id;
     protected String name;
-    private static int i = 0;
 
     public Human() {
+        i++;
     }
 
     public Human(String name) {
