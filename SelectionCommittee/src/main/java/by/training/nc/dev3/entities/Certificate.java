@@ -22,14 +22,14 @@ public class Certificate extends Point {
     public String toString() {
         return "Certificate{" + "id=" + id + ", name=" + name + ", value=" + value + '}';
     }
-    
+
     @Override
     public int hashCode() {
         return super.hashCode();
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        return ((Point)this).equals((Point)obj);
+        return ((Point) this).equals((Point) obj);
     }
 }

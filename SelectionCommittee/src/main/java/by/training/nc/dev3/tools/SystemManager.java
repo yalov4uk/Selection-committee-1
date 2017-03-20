@@ -41,7 +41,7 @@ public class SystemManager implements Calculatable {
     private static Map<FacultyName, List<Statement>> sortMap(Map<FacultyName, List<Statement>> simpleMap) {
         Map<FacultyName, List<Statement>> sortedMap = initilizeMap();
         for (List<Statement> list : simpleMap.values()) {
-            if (list.size() > 0) {
+            if (!list.isEmpty()) {
                 Collections.sort(list);
                 sortedMap.put(list.get(0).getFaculty().getName(), list);
             }

@@ -54,7 +54,7 @@ public class Admin extends Human {
         if ((this.password == null) ? (other.password != null) : !this.password.equals(other.password)) {
             return false;
         }
-        if (!((Human)this).equals((Human)obj)){
+        if (!((Human) this).equals((Human) obj)) {
             return false;
         }
         return true;

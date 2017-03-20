@@ -11,6 +11,7 @@ import by.training.nc.dev3.tools.AdminManager;
 import java.util.ArrayList;
 import java.util.List;
 import by.training.nc.dev3.tools.EnrolleeManager;
+import by.training.nc.dev3.tools.MenuManager;
 import by.training.nc.dev3.tools.SystemManager;
 import java.util.Map;
 
@@ -56,24 +57,21 @@ public class Main {
         Admin admin1 = new Admin();
         Admin admin2 = new Admin();
 
-        AdminManager adminManager1 = new AdminManager(admin1);
-        AdminManager adminManager2 = new AdminManager(admin2);
+        AdminManager adminManager = new AdminManager(admin1);
 
         List<Statement> statements = new ArrayList();
-        statements.add(adminManager1.registerStatement(faculty1, "temp1"));
-        statements.add(adminManager1.registerStatement(faculty1, "temp2"));
-        statements.add(adminManager2.registerStatement(faculty2, "temp3"));
-        statements.add(adminManager2.registerStatement(faculty2, "temp4"));
-        statements.add(adminManager2.registerStatement(faculty2, "temp5"));
+        statements.add(adminManager.registerStatement(faculty1, "temp1"));
+        statements.add(adminManager.registerStatement(faculty1, "temp2"));
+
+        adminManager.setAdmin(admin2);
+        statements.add(adminManager.registerStatement(faculty2, "temp3"));
+        statements.add(adminManager.registerStatement(faculty2, "temp4"));
+        statements.add(adminManager.registerStatement(faculty2, "temp5"));
 
         SystemManager systemManager = new SystemManager();
         Map<FacultyName, List<Statement>> simpleMap = systemManager.
                 calculate(statements);
-        
-        for (Map.Entry<FacultyName, List<Statement>> item : simpleMap.entrySet()) {
-
-            System.out.println("Key: " + item.getKey() + " Value: " + item.getValue());
-        }
+        MenuManager.writeResultEntrants(simpleMap);
 
         System.out.println("Object counter = " + ObjectCounter.getObjectCount());
     }

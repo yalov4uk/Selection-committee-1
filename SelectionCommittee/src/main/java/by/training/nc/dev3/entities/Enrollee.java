@@ -88,7 +88,7 @@ public class Enrollee extends Human {
         if (this.points != other.points && (this.points == null || !this.points.equals(other.points))) {
             return false;
         }
-        if (!((Human)this).equals((Human)obj)){
+        if (!((Human) this).equals((Human) obj)) {
             return false;
         }
         return true;

@@ -6,8 +6,12 @@
 package by.training.nc.dev3.tools;
 
 import by.training.nc.dev3.entities.Enrollee;
+import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
 import by.training.nc.dev3.exceptions.InvalidInput;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -34,6 +38,21 @@ public class MenuManager {
             } catch (InvalidInput ii) {
                 System.out.println(ii.getMessage() + ". You entered: "
                         + ii.getErrorString());
+            }
+        }
+    }
+
+    public static void writeResultEntrants(Map<FacultyName, List<Statement>> statements) {
+        for (List<Statement> list : statements.values()) {
+            if (!list.isEmpty()) {
+                System.out.println("Faculty "
+                        + list.get(0).getFaculty().getName() + ":");
+                for (int j = 0; j < list.size(); j++) {
+                    String response = j < list.get(0).getFaculty().getMaxSize()
+                            ? " accepted" : " rejected";
+                    System.out.println("    " + list.get(j).getEnrollee() + response);
+
+                }
             }
         }
     }

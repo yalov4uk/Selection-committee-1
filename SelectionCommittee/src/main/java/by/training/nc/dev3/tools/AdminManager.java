@@ -9,6 +9,7 @@ import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import java.util.ListIterator;
 
 /**
  *
@@ -19,11 +20,13 @@ public class AdminManager {
     private Admin admin;
 
     public Statement registerStatement(Faculty faculty, String name) {
-        for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
-            if (enrollee.getName().equals(name)) {
-                Statement statement = new Statement(enrollee, faculty);
-                deleteRegisteredEnrollee(statement.getEnrollee(),
-                        statement.getFaculty());
+        ListIterator<Enrollee> listIter = faculty.getRegisteredEntrants().
+                listIterator();
+        while (listIter.hasNext()) {
+            Enrollee curEnrollee = listIter.next();
+            if (curEnrollee.getName().equals(name)) {
+                Statement statement = new Statement(curEnrollee, faculty);
+                listIter.remove();
                 return statement;
             }
         }
@@ -33,21 +36,24 @@ public class AdminManager {
     public Statement registerStatement(Faculty faculty, int id) {
         for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
             Statement statement = new Statement(enrollee, faculty);
-            deleteRegisteredEnrollee(statement.getEnrollee(),
-                    statement.getFaculty());
+            faculty.getRegisteredEntrants().remove(enrollee);
             return statement;
         }
         return null;
-    }
-
-    private void deleteRegisteredEnrollee(Enrollee enrollee, Faculty faculty) {
-        faculty.getRegisteredEntrants().remove(enrollee);
     }
 
     public AdminManager() {
     }
 
     public AdminManager(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
         this.admin = admin;
     }
 }
