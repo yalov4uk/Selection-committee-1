@@ -66,7 +66,8 @@ public class Main {
         statements.add(adminManager2.registerStatement(faculty2, "temp4"));
         statements.add(adminManager2.registerStatement(faculty2, "temp5"));
 
-        Map<FacultyName, List<Statement>> simpleMap = SystemManager.
+        SystemManager systemManager = new SystemManager();
+        Map<FacultyName, List<Statement>> simpleMap = systemManager.
                 calculate(statements);
         
         for (Map.Entry<FacultyName, List<Statement>> item : simpleMap.entrySet()) {

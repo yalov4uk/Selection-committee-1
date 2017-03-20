@@ -8,6 +8,7 @@ package by.training.nc.dev3.tools;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
+import by.training.nc.dev3.iterfaces.Calculatable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,9 +19,9 @@ import java.util.Map;
  *
  * @author Valera Yalov4uk
  */
-public class SystemManager {
+public class SystemManager implements Calculatable {
 
-    public static Map<FacultyName, List<Statement>> calculate(
+    public Map<FacultyName, List<Statement>> calculate(
             List<Statement> statements) {
         Map<FacultyName, List<Statement>> simpleMap = initilizeMap();
         for (Statement statement : statements) {
