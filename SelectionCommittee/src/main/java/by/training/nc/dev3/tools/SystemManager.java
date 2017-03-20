@@ -5,6 +5,7 @@
  */
 package by.training.nc.dev3.tools;
 
+import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import java.util.ArrayList;
@@ -19,16 +20,13 @@ import java.util.Map;
  */
 public class SystemManager {
 
-    public static void calculate(List<Statement> statements) {
+    public static Map<FacultyName, List<Statement>> calculate(
+            List<Statement> statements) {
         Map<FacultyName, List<Statement>> simpleMap = initilizeMap();
         for (Statement statement : statements) {
             simpleMap.get(statement.getFaculty().getName()).add(statement);
         }
-        simpleMap = sortMap(simpleMap);
-        for (Map.Entry<FacultyName, List<Statement>> item : simpleMap.entrySet()) {
-
-            System.out.println("Ключ: " + item.getKey() + " Значение: " + item.getValue());
-        }
+        return sortMap(simpleMap);
     }
 
     private static Map<FacultyName, List<Statement>> initilizeMap() {

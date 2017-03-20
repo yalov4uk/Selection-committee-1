@@ -3,6 +3,7 @@ package by.training.nc.dev3;
 import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
+import by.training.nc.dev3.entities.ObjectCounter;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import by.training.nc.dev3.tools.EnrolleeManager;
 import by.training.nc.dev3.tools.SystemManager;
+import java.util.Map;
 
 /**
  *
@@ -64,8 +66,14 @@ public class Main {
         statements.add(adminManager2.registerStatement(faculty2, "temp4"));
         statements.add(adminManager2.registerStatement(faculty2, "temp5"));
 
-        SystemManager.calculate(statements);
+        Map<FacultyName, List<Statement>> simpleMap = SystemManager.
+                calculate(statements);
+        
+        for (Map.Entry<FacultyName, List<Statement>> item : simpleMap.entrySet()) {
 
-        System.out.println("The end");
+            System.out.println("Key: " + item.getKey() + " Value: " + item.getValue());
+        }
+
+        System.out.println("Object counter = " + ObjectCounter.getObjectCount());
     }
 }
