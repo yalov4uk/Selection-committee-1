@@ -51,7 +51,35 @@ public abstract class Point extends IdIncrement {
     }
 
     @Override
-    public String toString() {
-        return "Point{" + "id=" + id + ", name=" + name + ", value=" + value + '}';
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.id;
+        hash = 73 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 73 * hash + this.value;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Point other = (Point) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.value != other.value) {
+            return false;
+        }
+        if (this.name != other.name) {
+            return false;
+        }
+        return true;
     }
 }

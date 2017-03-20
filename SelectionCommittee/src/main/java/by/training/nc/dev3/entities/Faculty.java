@@ -93,4 +93,45 @@ public class Faculty extends IdIncrement {
                 + maxSize + ", requiredPoints=" + requiredPoints
                 + ", registeredEntrants=" + registeredEntrants + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + this.id;
+        hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 11 * hash + this.maxSize;
+        hash = 11 * hash + (this.requiredPoints != null ? this.requiredPoints.hashCode() : 0);
+        hash = 11 * hash + (this.registeredEntrants != null ? this.registeredEntrants.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Faculty other = (Faculty) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.maxSize != other.maxSize) {
+            return false;
+        }
+        if (this.name != other.name) {
+            return false;
+        }
+        if (this.requiredPoints != other.requiredPoints && (this.requiredPoints == null || !this.requiredPoints.equals(other.requiredPoints))) {
+            return false;
+        }
+        if (this.registeredEntrants != other.registeredEntrants && (this.registeredEntrants == null || !this.registeredEntrants.equals(other.registeredEntrants))) {
+            return false;
+        }
+        return true;
+    }
 }

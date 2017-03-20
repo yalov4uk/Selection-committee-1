@@ -65,4 +65,32 @@ public class Enrollee extends Human {
     public String toString() {
         return "Enrollee{" + "id=" + id + ", name=" + name + ", points=" + points + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + (this.points != null ? this.points.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Enrollee other = (Enrollee) obj;
+        if (this.points != other.points && (this.points == null || !this.points.equals(other.points))) {
+            return false;
+        }
+        if (!((Human)this).equals((Human)obj)){
+            return false;
+        }
+        return true;
+    }
 }

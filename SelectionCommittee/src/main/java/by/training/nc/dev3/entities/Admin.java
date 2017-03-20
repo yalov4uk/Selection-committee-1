@@ -27,4 +27,36 @@ public class Admin extends Human {
         this.login = "admin";
         this.password = "admin";
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + (this.login != null ? this.login.hashCode() : 0);
+        hash = 71 * hash + (this.password != null ? this.password.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Admin other = (Admin) obj;
+        if ((this.login == null) ? (other.login != null) : !this.login.equals(other.login)) {
+            return false;
+        }
+        if ((this.password == null) ? (other.password != null) : !this.password.equals(other.password)) {
+            return false;
+        }
+        if (!((Human)this).equals((Human)obj)){
+            return false;
+        }
+        return true;
+    }
 }

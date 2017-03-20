@@ -68,4 +68,37 @@ public class Statement extends IdIncrement implements Comparable {
         }
         return result;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + (this.enrollee != null ? this.enrollee.hashCode() : 0);
+        hash = 53 * hash + (this.faculty != null ? this.faculty.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Statement other = (Statement) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.enrollee != other.enrollee && (this.enrollee == null || !this.enrollee.equals(other.enrollee))) {
+            return false;
+        }
+        if (this.faculty != other.faculty && (this.faculty == null || !this.faculty.equals(other.faculty))) {
+            return false;
+        }
+        return true;
+    }
 }
