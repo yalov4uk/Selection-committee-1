@@ -63,7 +63,7 @@ public class Statement extends IdIncrement implements Comparable {
         for (Point point : this.enrollee.getPoints()) {
             result -= point.getValue();
         }
-        for (Point point : ((Statement)o).enrollee.getPoints()) {
+        for (Point point : ((Statement) o).enrollee.getPoints()) {
             result += point.getValue();
         }
         return result;

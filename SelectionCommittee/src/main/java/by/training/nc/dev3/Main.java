@@ -16,7 +16,7 @@ import by.training.nc.dev3.tools.SystemManager;
  *
  *
  */
-public class App {
+public class Main {
 
     public static void main(String[] args) {
         Enrollee enrollee1 = new Enrollee("temp1");
@@ -38,16 +38,16 @@ public class App {
 
         EnrolleeManager enrolleeManager = new EnrolleeManager(enrollee1);
         enrolleeManager.register(faculty1);
-        
+
         enrolleeManager.setEnrollee(enrollee2);
         enrolleeManager.register(faculty1);
-        
+
         enrolleeManager.setEnrollee(enrollee3);
         enrolleeManager.register(faculty2);
-        
+
         enrolleeManager.setEnrollee(enrollee4);
         enrolleeManager.register(faculty2);
-        
+
         enrolleeManager.setEnrollee(enrollee5);
         enrolleeManager.register(faculty2);
 
