@@ -18,11 +18,11 @@ public abstract class Point extends IdIncrement {
     protected int value;
 
     public Point() {
-        i++;
+        this.id = getNextI();
     }
 
     public Point(PointName name) {
-        this.id = i++;
+        this.id = getNextI();
         this.name = name;
     }
 

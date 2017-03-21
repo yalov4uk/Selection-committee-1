@@ -25,19 +25,11 @@ public class Faculty extends IdIncrement {
     private List<Enrollee> registeredEntrants;
 
     public Faculty() {
-        i++;
-    }
-
-    public Faculty(String name, int maxSize, List<PointName> requiredPoints) {
-        this.id = i++;
-        this.name = FacultyName.valueOf(name);
-        this.maxSize = maxSize;
-        this.requiredPoints = requiredPoints;
-        registeredEntrants = new ArrayList();
+        this.id = getNextI();
     }
 
     public Faculty(FacultyName name, int maxSize, List<PointName> requiredPoints) {
-        this.id = i++;
+        this.id = getNextI();
         this.name = name;
         this.maxSize = maxSize;
         this.requiredPoints = requiredPoints;

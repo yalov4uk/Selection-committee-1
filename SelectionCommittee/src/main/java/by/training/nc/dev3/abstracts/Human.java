@@ -15,11 +15,11 @@ public abstract class Human extends IdIncrement {
     protected String name;
 
     public Human() {
-        i++;
+        this.id = getNextI();
     }
 
     public Human(String name) {
-        this.id = i++;
+        this.id = getNextI();
         this.name = name;
     }
 

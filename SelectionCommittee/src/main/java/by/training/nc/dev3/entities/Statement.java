@@ -20,11 +20,11 @@ public class Statement extends IdIncrement implements Comparable {
     private Faculty faculty;
 
     public Statement() {
-        i++;
+        this.id = getNextI();
     }
 
     public Statement(Enrollee enrollee, Faculty faculty) {
-        this.id = i++;
+        this.id = getNextI();
         this.enrollee = enrollee;
         this.faculty = faculty;
     }
