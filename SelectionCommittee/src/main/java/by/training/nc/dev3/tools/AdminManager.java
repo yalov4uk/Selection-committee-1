@@ -5,6 +5,7 @@
  */
 package by.training.nc.dev3.tools;
 
+import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
@@ -15,9 +16,9 @@ import java.util.ListIterator;
  *
  * @author Valera Yalov4uk
  */
-public class AdminManager {
+public class AdminManager<T extends Human> {
 
-    private Admin admin;
+    private T admin;
 
     public Statement registerStatement(Faculty faculty, String name) {
         ListIterator<Enrollee> listIter = faculty.getRegisteredEntrants().
@@ -45,15 +46,15 @@ public class AdminManager {
     public AdminManager() {
     }
 
-    public AdminManager(Admin admin) {
+    public AdminManager(T admin) {
         this.admin = admin;
     }
 
-    public Admin getAdmin() {
+    public T getAdmin() {
         return admin;
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(T admin) {
         this.admin = admin;
     }
 }
