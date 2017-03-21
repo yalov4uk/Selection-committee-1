@@ -29,7 +29,7 @@ public class SystemManager implements Calculatable {
         return sortMap(simpleMap);
     }
 
-    private static Map<FacultyName, List<Statement>> initilizeMap() {
+    private Map<FacultyName, List<Statement>> initilizeMap() {
         Map<FacultyName, List<Statement>> simpleMap = new HashMap();
         for (FacultyName facultyName : FacultyName.values()) {
             simpleMap.put(facultyName, new ArrayList());
@@ -37,7 +37,7 @@ public class SystemManager implements Calculatable {
         return simpleMap;
     }
 
-    private static Map<FacultyName, List<Statement>> sortMap(Map<FacultyName, List<Statement>> simpleMap) {
+    private Map<FacultyName, List<Statement>> sortMap(Map<FacultyName, List<Statement>> simpleMap) {
         for (List<Statement> list : simpleMap.values()) {
             //Collections.sort(list);  //comparable
             list.sort(new StatementComparator());  //comparator

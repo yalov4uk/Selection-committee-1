@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Valera Yalov4uk
  */
-public class Faculty extends IdIncrement {
+public class Faculty extends IdIncrement, Serializable {
 
     private int id;
     private FacultyName name;

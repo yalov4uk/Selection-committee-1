@@ -25,8 +25,8 @@ public class MenuManager {
     public static Integer enterPointValue(Enrollee enrollee,
             PointName requiredPointName) {
         while (true) {
-            System.out.println(enrollee.getName() + 
-                    " enter your points on the " + requiredPointName);
+            System.out.println(enrollee.getName()
+                    + " enter your points on the " + requiredPointName);
             try {
                 Integer value = in.nextInt();
                 if (value > 100 || value < 0) {
