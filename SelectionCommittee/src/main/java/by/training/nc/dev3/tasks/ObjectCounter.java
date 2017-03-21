@@ -13,7 +13,7 @@ import by.training.nc.dev3.abstracts.IdIncrement;
  */
 public class ObjectCounter extends IdIncrement {
 
-    public static int getObjectCount() {
+    public int getObjectCount() {
         return i;
     }
 }

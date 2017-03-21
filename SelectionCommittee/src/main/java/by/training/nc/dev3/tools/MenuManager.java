@@ -20,29 +20,32 @@ import java.util.Scanner;
  */
 public class MenuManager {
 
-    private static Scanner in = new Scanner(System.in);
+    private Scanner in = new Scanner(System.in);
 
-    public static Integer enterPointValue(Enrollee enrollee,
-            PointName requiredPointName) {
+    public Integer enterValue(String message, int min, int max) {
         while (true) {
-            System.out.println(enrollee.getName()
-                    + " enter your points on the " + requiredPointName);
+            System.out.println(message);
             try {
-                Integer value = in.nextInt();
-                if (value > 100 || value < 0) {
-                    throw new InvalidInput("Points must be in range 0..100",
-                            value.toString());
+                String response = in.nextLine();
+                if (response.equals("exit")) {
+                    return -1;
+                }
+                Integer value = Integer.parseInt(response);
+                if (value < min || value > max) {
+                    throw new InvalidInput("Value must be in range " + min
+                            + ".." + max, value.toString());
                 } else {
                     return value;
                 }
             } catch (InvalidInput ii) {
                 System.out.println(ii.getMessage() + ". You entered: "
                         + ii.getErrorString());
+            } catch (Exception ex) {
             }
         }
     }
 
-    public static void writeResultEntrants(Map<FacultyName, List<Statement>> statements) {
+    public void writeResultEntrants(Map<FacultyName, List<Statement>> statements) {
         for (List<Statement> list : statements.values()) {
             if (!list.isEmpty()) {
                 System.out.println("Faculty "
@@ -50,8 +53,8 @@ public class MenuManager {
                 for (int j = 0; j < list.size(); j++) {
                     String response = j < list.get(0).getFaculty().getMaxSize()
                             ? " accepted" : " rejected";
-                    System.out.println("    " + list.get(j).getEnrollee() + response);
-
+                    System.out.println("    " + list.get(j).getEnrollee()
+                            + response);
                 }
             }
         }

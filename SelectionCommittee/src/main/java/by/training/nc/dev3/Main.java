@@ -73,12 +73,13 @@ public class Main {
         SystemManager systemManager = new SystemManager();
         Map<FacultyName, List<Statement>> simpleMap = systemManager.
                 calculate(statements);
-        MenuManager.writeResultEntrants(simpleMap);
-        
-        SerializeManager.serialize(statements);
-        statements = SerializeManager.deserilize();
+        new MenuManager().writeResultEntrants(simpleMap);
 
-        System.out.println("Object counter = " + ObjectCounter.getObjectCount());
+        SerializeManager serializeManager = new SerializeManager<List<Statement>>();
+        serializeManager.serialize(statements);
+        statements = (List<Statement>) serializeManager.deserilize();
+
+        System.out.println("Object counter = " + new ObjectCounter().getObjectCount());
         System.out.println("Today: " + new GregorianCalendar().getTime());
     }
 }

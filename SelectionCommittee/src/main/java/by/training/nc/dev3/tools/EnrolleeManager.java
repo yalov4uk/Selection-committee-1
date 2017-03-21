@@ -21,9 +21,13 @@ public class EnrolleeManager {
     private Enrollee enrollee;
 
     public void register(Faculty faculty) {
+        int maxPoints = 100;
+        int minPoints = 0;
         for (PointName requiredPointName : faculty.getRequiredPoints()) {
-            Integer value = MenuManager.enterPointValue(enrollee,
-                    requiredPointName);
+            String message = enrollee.getName() + " enter your points on the " + 
+                    requiredPointName;
+            Integer value = new MenuManager().enterValue(message, 
+                    minPoints, maxPoints);
             Point point = requiredPointName.equals(PointName.certificate)
                     ? new Certificate()
                     : new Subject(requiredPointName);

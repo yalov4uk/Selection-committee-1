@@ -16,12 +16,12 @@ import java.util.List;
  *
  * @author Valera Yalov4uk
  */
-public class SerializeManager {
+public class SerializeManager<T> {
 
-    private static String filepath
+    private String filepath
             = "src/main/java/by/training/nc/dev3/files/statements.txt";
 
-    public static void serialize(List<Statement> statements) {
+    public void serialize(T statements) {
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(filepath))) {
             oos.writeObject(statements);
@@ -30,10 +30,10 @@ public class SerializeManager {
         }
     }
 
-    public static List<Statement> deserilize() {
+    public T deserilize() {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(filepath))) {
-            return (List<Statement>) ois.readObject();
+            return (T) ois.readObject();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
