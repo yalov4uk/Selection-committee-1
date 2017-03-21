@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package by.training.nc.dev3.entities;
+package by.training.nc.dev3.tasks;
 
 import by.training.nc.dev3.abstracts.IdIncrement;
 
@@ -14,6 +14,6 @@ import by.training.nc.dev3.abstracts.IdIncrement;
 public class ObjectCounter extends IdIncrement {
 
     public static int getObjectCount() {
-        return i + 1;
+        return i;
     }
 }

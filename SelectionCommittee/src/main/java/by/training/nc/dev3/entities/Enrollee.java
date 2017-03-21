@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Valera Yalov4uk
  */
-public class Enrollee extends Human {
+public class Enrollee extends Human implements Comparable {
 
     private List<Point> points;
 
@@ -92,5 +92,16 @@ public class Enrollee extends Human {
             return false;
         }
         return true;
+    }
+
+    public int compareTo(Object o) {
+        int result = 0;
+        for (Point point : this.getPoints()) {
+            result -= point.getValue();
+        }
+        for (Point point : ((Enrollee) o).getPoints()) {
+            result += point.getValue();
+        }
+        return result;
     }
 }

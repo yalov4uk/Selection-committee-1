@@ -5,12 +5,11 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.iterfaces.Calculatable;
+import by.training.nc.dev3.tasks.StatementComparator;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,13 +38,10 @@ public class SystemManager implements Calculatable {
     }
 
     private static Map<FacultyName, List<Statement>> sortMap(Map<FacultyName, List<Statement>> simpleMap) {
-        Map<FacultyName, List<Statement>> sortedMap = initilizeMap();
         for (List<Statement> list : simpleMap.values()) {
-            if (!list.isEmpty()) {
-                Collections.sort(list);
-                sortedMap.put(list.get(0).getFaculty().getName(), list);
-            }
+            //Collections.sort(list);  //comparable
+            list.sort(new StatementComparator());  //comparator
         }
-        return sortedMap;
+        return simpleMap;
     }
 }

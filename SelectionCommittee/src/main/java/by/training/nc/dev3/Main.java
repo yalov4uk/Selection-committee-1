@@ -3,7 +3,7 @@ package by.training.nc.dev3;
 import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
-import by.training.nc.dev3.entities.ObjectCounter;
+import by.training.nc.dev3.tasks.ObjectCounter;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
@@ -13,6 +13,8 @@ import java.util.List;
 import by.training.nc.dev3.tools.EnrolleeManager;
 import by.training.nc.dev3.tools.MenuManager;
 import by.training.nc.dev3.tools.SystemManager;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 /**
@@ -74,5 +76,6 @@ public class Main {
         MenuManager.writeResultEntrants(simpleMap);
 
         System.out.println("Object counter = " + ObjectCounter.getObjectCount());
+        System.out.println("Today: " + new GregorianCalendar().getTime());
     }
 }
