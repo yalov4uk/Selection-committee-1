@@ -7,6 +7,7 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.IdIncrement;
 import by.training.nc.dev3.abstracts.Point;
+import java.io.Serializable;
 
 /**
  *

@@ -7,6 +7,7 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.abstracts.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

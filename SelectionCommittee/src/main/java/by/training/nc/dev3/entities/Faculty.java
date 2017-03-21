@@ -8,6 +8,7 @@ package by.training.nc.dev3.entities;
 import by.training.nc.dev3.abstracts.IdIncrement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  *
  * @author Valera Yalov4uk
  */
-public class Faculty extends IdIncrement, Serializable {
+public class Faculty extends IdIncrement {
 
     private int id;
     private FacultyName name;

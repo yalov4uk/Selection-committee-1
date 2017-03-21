@@ -30,6 +30,6 @@ public class Certificate extends Point {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Point) this).equals((Point) obj);
+        return super.equals(obj);
     }
 }

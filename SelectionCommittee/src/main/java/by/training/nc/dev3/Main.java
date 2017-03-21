@@ -10,6 +10,7 @@ import by.training.nc.dev3.tasks.ObjectCounter;
 import by.training.nc.dev3.tools.AdminManager;
 import by.training.nc.dev3.tools.EnrolleeManager;
 import by.training.nc.dev3.tools.MenuManager;
+import by.training.nc.dev3.tools.SerializeManager;
 import by.training.nc.dev3.tools.SystemManager;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -73,6 +74,9 @@ public class Main {
         Map<FacultyName, List<Statement>> simpleMap = systemManager.
                 calculate(statements);
         MenuManager.writeResultEntrants(simpleMap);
+        
+        SerializeManager.serialize(statements);
+        statements = SerializeManager.deserilize();
 
         System.out.println("Object counter = " + ObjectCounter.getObjectCount());
         System.out.println("Today: " + new GregorianCalendar().getTime());

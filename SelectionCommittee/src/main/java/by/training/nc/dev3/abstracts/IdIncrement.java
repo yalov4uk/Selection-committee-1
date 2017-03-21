@@ -5,11 +5,13 @@
  */
 package by.training.nc.dev3.abstracts;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Valera Yalov4uk
  */
-public abstract class IdIncrement {
+public abstract class IdIncrement implements Serializable {
 
     protected static int i = 0;
 }
