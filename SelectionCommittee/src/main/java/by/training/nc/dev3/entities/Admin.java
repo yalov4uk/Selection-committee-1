@@ -15,7 +15,7 @@ public class Admin extends Human {
 
     private String login;
     private String password;
-    
+
     private static int count = 0;
 
     public Admin() {

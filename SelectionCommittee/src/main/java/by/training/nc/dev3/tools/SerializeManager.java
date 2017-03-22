@@ -21,10 +21,10 @@ public class SerializeManager<T> {
     private String filepath
             = "src/main/java/by/training/nc/dev3/files/statements.txt";
 
-    public void serialize(T statements) {
+    public void serialize(T db) {
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(filepath))) {
-            oos.writeObject(statements);
+            oos.writeObject(db);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

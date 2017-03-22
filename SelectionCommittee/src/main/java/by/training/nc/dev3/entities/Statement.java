@@ -17,7 +17,7 @@ public class Statement extends Entity implements Comparable {
 
     private Enrollee enrollee;
     private Faculty faculty;
-    
+
     private static int count = 0;
 
     public Statement() {

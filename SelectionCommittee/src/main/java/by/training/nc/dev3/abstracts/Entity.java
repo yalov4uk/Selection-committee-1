@@ -15,7 +15,7 @@ import java.util.Random;
 public abstract class Entity implements Serializable {
 
     protected int id;
-    
+
     public Entity() {
         Random rnd = new Random(System.currentTimeMillis());
         this.id = rnd.nextInt(10000);

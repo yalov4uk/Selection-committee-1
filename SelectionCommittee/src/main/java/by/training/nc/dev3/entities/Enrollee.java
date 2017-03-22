@@ -18,7 +18,7 @@ import java.util.List;
 public class Enrollee extends Human implements Comparable {
 
     private List<Point> points;
-    
+
     private static int count = 0;
 
     public Enrollee() {

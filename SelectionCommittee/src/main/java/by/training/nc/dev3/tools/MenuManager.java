@@ -60,15 +60,15 @@ public class MenuManager {
         }
     }
 
-    public <T> void writeForAdmin(List<T> list, String message) {
+    public <T> void outputList(List<T> list, String message) {
         System.out.println(message);
         for (T elem : list) {
             System.out.println(elem);
         }
     }
-    
-    public String enterName() {
-        System.out.println("Enter your name");
+
+    public String inputString(String message) {
+        System.out.println(message);
         return in.nextLine();
     }
 

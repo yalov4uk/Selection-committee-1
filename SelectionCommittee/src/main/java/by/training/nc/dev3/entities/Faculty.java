@@ -22,7 +22,7 @@ public class Faculty extends Entity {
     private int maxSize;
     private List<PointName> requiredPoints;
     private List<Enrollee> registeredEntrants;
-    
+
     private static int count = 0;
 
     public Faculty() {

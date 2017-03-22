@@ -16,6 +16,7 @@ import by.training.nc.dev3.tools.MenuManager;
 import by.training.nc.dev3.tools.SerializeManager;
 import by.training.nc.dev3.tools.SystemManager;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ import java.util.List;
 public class Server {
 
     private DataBase db;
-    
+
     private AdminManager adminManager;
     private EnrolleeManager enrolleeManager;
     private MenuManager menuManager;
@@ -33,20 +34,23 @@ public class Server {
     private SystemManager systemManager;
 
     public void main() {
-        String message = "admin - 0, enrollee - 1, exit - exit";
+        String message = "admin - 0, enrollee - 1, calendar - 2, exit - exit";
         while (true) {
-            switch ((int) menuManager.enterValue(message, 0, 1)) {
+            switch ((int) menuManager.enterValue(message, 0, 2)) {
                 case 0:
-                    Admin admin = new Admin(menuManager.enterName());                
+                    Admin admin = new Admin(menuManager.inputString("Enter you name"));
                     adminManager.setAdmin(admin);
                     db.getAdmins().add(admin);
                     youAdmin();
                     break;
                 case 1:
-                    Enrollee enrollee = new Enrollee(menuManager.enterName());
+                    Enrollee enrollee = new Enrollee(menuManager.inputString("Enter you name"));
                     enrolleeManager.setEnrollee(enrollee);
                     db.getEntrants().add(enrollee);
                     youEnrollee();
+                    break;
+                case 2:
+                    System.out.println("Today: " + new GregorianCalendar().getTime());
                     break;
                 default:
                     System.exit(0);
@@ -55,24 +59,56 @@ public class Server {
     }
 
     private void youAdmin() {
-        String message = "show all - 0, register enrollee by id - 1, back - exit";
+        String message = "show all - 0, register enrollee by id - 1, "
+                + "calculate and show - 2, save - 3, load - 4, back - exit";
         while (true) {
-            switch ((int) menuManager.enterValue(message, 0, 1)) {
+            switch ((int) menuManager.enterValue(message, 0, 4)) {
                 case 0:
-                    /*menuManager.writeForAdmin(db.getEntrants(), "Entrants:");
-                    menuManager.writeForAdmin(db.getAdmins(), "Admins:");
-                    menuManager.writeForAdmin(db.getPoints(), "Points:");
-                    menuManager.writeForAdmin(db.getFaculties(), "Faculties:");*/
-                    menuManager.writeForAdmin(db.getStatements(), "Statements:"); //Statements include all previous information
+                    menuManager.outputList(db.getEntrants(), "Entrants:");
+                    menuManager.outputList(db.getAdmins(), "Admins:");
+                    menuManager.outputList(db.getPoints(), "Points:");
+                    menuManager.outputList(db.getFaculties(), "Faculties:");
+                    menuManager.outputList(db.getStatements(), "Statements:");
                     break;
                 case 1:
                     Statement statement = adminManager.registerStatement(
                             db.getFaculties(), menuManager.enterValue(
-                                    "Enter enrolle id", 0, 10000000));
-                    if (statement == null){
+                            "Enter enrolle id", 0, 10000000));
+                    if (statement == null) {
                         System.out.println("No student with this id");
-                    } else{
+                    } else {
                         db.getStatements().add(statement);
+                        System.out.println("Success");
+                    }
+                    break;
+                case 2:
+                    menuManager.writeResultEntrants(systemManager.calculate(db.getStatements()));
+                    break;
+                case 3:
+                    serializeManager.serialize(db);
+                    break;
+                case 4:
+                    db = (DataBase) serializeManager.deserilize();
+                    break;
+                default:
+                    main();
+            }
+        }
+    }
+
+    private void youEnrollee() {
+        String message = "Show faculties - 0, register to faculty - 1, back - exit";
+        while (true) {
+            switch ((int) menuManager.enterValue(message, 0, 1)) {
+                case 0:
+                    menuManager.outputList(db.getFaculties(), "Faculties:");
+                    break;
+                case 1:
+                    String facultyName = menuManager.inputString("Enter faculty name");
+                    for (Faculty faculty : db.getFaculties()) {
+                        if (faculty.getName().toString().equalsIgnoreCase(facultyName)) {
+                            enrolleeManager.register(faculty);
+                        }
                     }
                     break;
                 default:
@@ -80,30 +116,26 @@ public class Server {
             }
         }
     }
-    
-    private void youEnrollee(){
-        
-    }
 
     public Server() {
         db = new DataBase();
         serverInit();
-        
+
     }
 
     public Server(DataBase db) {
         this.db = db;
         serverInit();
     }
-    
-    private void serverInit(){
+
+    private void serverInit() {
         adminManager = new AdminManager();
         enrolleeManager = new EnrolleeManager();
         menuManager = new MenuManager();
         serializeManager = new SerializeManager();
         systemManager = new SystemManager();
     }
-    
+
     public AdminManager getAdminManager() {
         return adminManager;
     }

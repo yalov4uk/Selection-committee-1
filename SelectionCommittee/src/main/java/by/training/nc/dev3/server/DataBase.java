@@ -10,11 +10,14 @@ import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.initializers.FacultyInitializer;
+import by.training.nc.dev3.initializers.PointInitializer;
 import by.training.nc.dev3.tools.AdminManager;
 import by.training.nc.dev3.tools.EnrolleeManager;
 import by.training.nc.dev3.tools.MenuManager;
 import by.training.nc.dev3.tools.SerializeManager;
 import by.training.nc.dev3.tools.SystemManager;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,22 +25,22 @@ import java.util.List;
  *
  * @author Valera Yalov4uk
  */
-public class DataBase {
-    
+public class DataBase implements Serializable {
+
     private List<Enrollee> entrants;
     private List<Admin> admins;
     private List<Point> points;
     private List<Faculty> faculties;
     private List<Statement> statements;
-    
+
     public DataBase() {
         entrants = new ArrayList();
         admins = new ArrayList();
-        points = new ArrayList();
-        faculties = new ArrayList();
+        points = PointInitializer.initialize();
+        faculties = FacultyInitializer.initialize();
         statements = new ArrayList();
     }
-    
+
     public List<Enrollee> getEntrants() {
         return entrants;
     }

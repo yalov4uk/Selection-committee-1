@@ -15,7 +15,7 @@ import by.training.nc.dev3.enums.PointName;
 public class Certificate extends Point {
 
     private static int count = 0;
-    
+
     public Certificate() {
         super(PointName.certificate);
         count++;
