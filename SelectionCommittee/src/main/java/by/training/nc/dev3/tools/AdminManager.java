@@ -10,6 +10,7 @@ import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -34,11 +35,13 @@ public class AdminManager<T extends Human> {
         return null;
     }
 
-    public Statement registerStatement(Faculty faculty, int id) {
-        for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
-            Statement statement = new Statement(enrollee, faculty);
-            faculty.getRegisteredEntrants().remove(enrollee);
-            return statement;
+    public Statement registerStatement(List<Faculty> list, int id) {
+        for (Faculty faculty : list) {
+            for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
+                Statement statement = new Statement(enrollee, faculty);
+                faculty.getRegisteredEntrants().remove(enrollee);
+                return statement;
+            }
         }
         return null;
     }

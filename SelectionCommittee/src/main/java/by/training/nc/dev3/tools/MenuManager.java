@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 public class MenuManager {
 
-    private Scanner in = new Scanner(System.in);
+    private Scanner in;
 
     public Integer enterValue(String message, int min, int max) {
         while (true) {
@@ -58,5 +58,21 @@ public class MenuManager {
                 }
             }
         }
+    }
+
+    public <T> void writeForAdmin(List<T> list, String message) {
+        System.out.println(message);
+        for (T elem : list) {
+            System.out.println(elem);
+        }
+    }
+    
+    public String enterName() {
+        System.out.println("Enter your name");
+        return in.nextLine();
+    }
+
+    public MenuManager() {
+        in = new Scanner(System.in);
     }
 }
