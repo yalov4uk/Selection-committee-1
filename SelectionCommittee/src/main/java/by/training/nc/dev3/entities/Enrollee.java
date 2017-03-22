@@ -64,7 +64,7 @@ public class Enrollee extends Human implements Comparable {
 
     @Override
     public String toString() {
-        return "Enrollee{" + "id=" + id + ", name=" + name + ", points=" + points + '}';
+        return "Enrollee{" + super.toString() + ", points=" + points + '}';
     }
 
     @Override

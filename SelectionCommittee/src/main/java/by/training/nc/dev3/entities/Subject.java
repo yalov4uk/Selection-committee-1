@@ -24,7 +24,7 @@ public class Subject extends Point {
 
     @Override
     public String toString() {
-        return "Subject{" + "id=" + id + ", name=" + name + ", value=" + value + '}';
+        return "Subject{" + super.toString() + '}';
     }
 
     @Override

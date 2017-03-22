@@ -59,4 +59,9 @@ public class Admin extends Human {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" + super.toString() + "login=" + login + ", password=" + password + '}';
+    }
 }

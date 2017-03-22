@@ -13,9 +13,13 @@ import java.io.Serializable;
  */
 public abstract class IdIncrement implements Serializable {
 
-    protected static int i = 0;
-    
-    protected int getNextI(){
+    private static int i = 0;
+
+    protected int getNextI() {
         return i++;
+    }
+
+    public int getObjectCount() {
+        return i;
     }
 }

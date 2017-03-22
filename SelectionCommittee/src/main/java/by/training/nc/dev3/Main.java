@@ -6,7 +6,6 @@ import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
-import by.training.nc.dev3.tasks.ObjectCounter;
 import by.training.nc.dev3.tools.AdminManager;
 import by.training.nc.dev3.tools.EnrolleeManager;
 import by.training.nc.dev3.tools.MenuManager;
@@ -79,7 +78,7 @@ public class Main {
         serializeManager.serialize(statements);
         statements = (List<Statement>) serializeManager.deserilize();
 
-        System.out.println("Object counter = " + new ObjectCounter().getObjectCount());
+        System.out.println("Object counter = " + enrollee1.getObjectCount());
         System.out.println("Today: " + new GregorianCalendar().getTime());
     }
 }

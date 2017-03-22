@@ -20,7 +20,7 @@ public class Certificate extends Point {
 
     @Override
     public String toString() {
-        return "Certificate{" + "id=" + id + ", name=" + name + ", value=" + value + '}';
+        return "Certificate{" + super.toString() + '}';
     }
 
     @Override

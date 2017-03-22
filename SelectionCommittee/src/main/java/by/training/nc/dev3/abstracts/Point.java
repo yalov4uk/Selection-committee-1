@@ -82,4 +82,9 @@ public abstract class Point extends IdIncrement {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", name=" + name + ", value=" + value;
+    }
 }

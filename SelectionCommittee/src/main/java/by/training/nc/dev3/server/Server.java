@@ -10,7 +10,6 @@ import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.tasks.ObjectCounter;
 import by.training.nc.dev3.tools.AdminManager;
 import by.training.nc.dev3.tools.EnrolleeManager;
 import by.training.nc.dev3.tools.MenuManager;
@@ -36,7 +35,6 @@ public class Server {
     private MenuManager menuManager;
     private SerializeManager serializeManager;
     private SystemManager systemManager;
-    private ObjectCounter objectCounter;
 
     public void main() {
         String message = "admin - 0, enrollee - 1";
@@ -54,8 +52,8 @@ public class Server {
             }
         }
     }
-    
-    private void youAdmin(){
+
+    private void youAdmin() {
         String message = "show all - 0, register enrollee by id/name";
         while (true) {
             switch ((int) menuManager.enterValue(message, 0, 1)) {
