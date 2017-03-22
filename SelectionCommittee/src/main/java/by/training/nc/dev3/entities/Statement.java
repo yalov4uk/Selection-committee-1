@@ -7,13 +7,14 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Entity;
 import by.training.nc.dev3.abstracts.Point;
-import java.io.Serializable;
 
 /**
  *
  * @author Valera Yalov4uk
  */
-public class Statement extends Entity implements Comparable {
+public class Statement extends Entity implements Comparable<Object> {
+
+    private static final long serialVersionUID = 1L;
 
     private Enrollee enrollee;
     private Faculty faculty;
@@ -30,14 +31,6 @@ public class Statement extends Entity implements Comparable {
         this.enrollee = enrollee;
         this.faculty = faculty;
         count++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Enrollee getEnrollee() {
@@ -62,6 +55,7 @@ public class Statement extends Entity implements Comparable {
                 + ", faculty=" + faculty + ", count=" + count + '}';
     }
 
+    @Override
     public int compareTo(Object o) {
         int result = 0;
         for (Point point : this.enrollee.getPoints()) {

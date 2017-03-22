@@ -13,6 +13,8 @@ import by.training.nc.dev3.enums.PointName;
  */
 public abstract class Point extends Entity {
 
+    private static final long serialVersionUID = 1L;
+
     protected PointName name;
     protected int value;
 
@@ -23,14 +25,6 @@ public abstract class Point extends Entity {
     public Point(PointName name) {
         super();
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public PointName getName() {

@@ -5,10 +5,8 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
-import by.training.nc.dev3.enums.PointName;
 import by.training.nc.dev3.exceptions.InvalidInput;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +18,7 @@ import java.util.Scanner;
  */
 public class MenuManager {
 
-    private Scanner in;
+    private final Scanner in;
 
     public Integer enterValue(String message, int min, int max) {
         while (true) {
@@ -40,12 +38,13 @@ public class MenuManager {
             } catch (InvalidInput ii) {
                 System.out.println(ii.getMessage() + ". You entered: "
                         + ii.getErrorString());
-            } catch (Exception ex) {
+            } catch (NumberFormatException ex) {
+                System.out.println(ex.getMessage());
             }
         }
     }
 
-    public void writeResultEntrants(Map<FacultyName, List<Statement>> statements) {
+    public void outputResultEntrants(Map<FacultyName, List<Statement>> statements) {
         for (List<Statement> list : statements.values()) {
             if (!list.isEmpty()) {
                 System.out.println("Faculty "
@@ -62,9 +61,9 @@ public class MenuManager {
 
     public <T> void outputList(List<T> list, String message) {
         System.out.println(message);
-        for (T elem : list) {
-            System.out.println(elem);
-        }
+        list.forEach((elem) -> {
+            System.out.println("    " + elem);
+        });
     }
 
     public String inputString(String message) {

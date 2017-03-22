@@ -5,20 +5,19 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.entities.Statement;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
 
 /**
  *
  * @author Valera Yalov4uk
+ * @param <T>
  */
 public class SerializeManager<T> {
 
-    private String filepath
+    private final String filepath
             = "src/main/java/by/training/nc/dev3/files/statements.txt";
 
     public void serialize(T db) {

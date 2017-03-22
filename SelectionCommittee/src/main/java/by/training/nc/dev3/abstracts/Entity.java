@@ -14,6 +14,8 @@ import java.util.Random;
  */
 public abstract class Entity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     protected int id;
 
     public Entity() {

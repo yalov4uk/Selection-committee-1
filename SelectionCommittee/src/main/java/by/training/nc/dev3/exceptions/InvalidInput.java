@@ -11,7 +11,9 @@ package by.training.nc.dev3.exceptions;
  */
 public class InvalidInput extends Exception {
 
-    String errorString;
+    private static final long serialVersionUID = 1L;
+
+    private String errorString;
 
     /**
      * Creates a new instance of <code>NewException</code> without detail
@@ -25,6 +27,7 @@ public class InvalidInput extends Exception {
      * detail message.
      *
      * @param msg the detail message.
+     * @param errorString
      */
     public InvalidInput(String msg, String errorString) {
         super(msg);

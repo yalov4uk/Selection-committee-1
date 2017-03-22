@@ -11,6 +11,8 @@ package by.training.nc.dev3.abstracts;
  */
 public abstract class Human extends Entity {
 
+    private static final long serialVersionUID = 1L;
+
     protected String name;
 
     public Human() {
@@ -45,7 +47,8 @@ public abstract class Human extends Entity {
         if (this.id != other.id) {
             return false;
         }
-        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+        if ((this.name == null) ? (other.name != null)
+                : !this.name.equals(other.name)) {
             return false;
         }
         return true;
@@ -54,5 +57,13 @@ public abstract class Human extends Entity {
     @Override
     public String toString() {
         return "id=" + id + ", name=" + name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

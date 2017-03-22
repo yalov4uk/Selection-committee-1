@@ -6,7 +6,6 @@
 package by.training.nc.dev3.tools;
 
 import by.training.nc.dev3.abstracts.Human;
-import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
@@ -16,6 +15,7 @@ import java.util.ListIterator;
 /**
  *
  * @author Valera Yalov4uk
+ * @param <T>
  */
 public class AdminManager<T extends Human> {
 

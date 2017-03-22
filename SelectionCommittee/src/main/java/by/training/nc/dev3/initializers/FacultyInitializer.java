@@ -18,32 +18,32 @@ import java.util.List;
 public class FacultyInitializer {
 
     public static List<Faculty> initialize() {
-        List<PointName> p1 = new ArrayList();
+        List<PointName> p1 = new ArrayList<>();
         p1.add(PointName.certificate);
 
-        List<PointName> p2 = new ArrayList();
+        List<PointName> p2 = new ArrayList<>();
         p2.add(PointName.certificate);
         p2.add(PointName.chemistry);
 
-        List<PointName> p3 = new ArrayList();
+        List<PointName> p3 = new ArrayList<>();
         p3.add(PointName.certificate);
         p3.add(PointName.chemistry);
         p3.add(PointName.history);
 
-        List<PointName> p4 = new ArrayList();
+        List<PointName> p4 = new ArrayList<>();
         p4.add(PointName.certificate);
         p4.add(PointName.language);
         p4.add(PointName.mathematics);
         p4.add(PointName.physics);
 
-        List<PointName> p5 = new ArrayList();
+        List<PointName> p5 = new ArrayList<>();
         p5.add(PointName.certificate);
         p5.add(PointName.history);
         p5.add(PointName.language);
         p5.add(PointName.mathematics);
         p5.add(PointName.physics);
 
-        List<Faculty> list = new ArrayList();
+        List<Faculty> list = new ArrayList<>();
         list.add(new Faculty(FacultyName.FITU, 5, p1));
         list.add(new Faculty(FacultyName.FKP, 4, p2));
         list.add(new Faculty(FacultyName.FRE, 2, p3));

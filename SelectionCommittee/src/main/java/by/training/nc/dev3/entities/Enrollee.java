@@ -7,7 +7,6 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.abstracts.Point;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +16,21 @@ import java.util.List;
  */
 public class Enrollee extends Human implements Comparable {
 
+    private static final long serialVersionUID = 1L;
+
     private List<Point> points;
 
     private static int count = 0;
 
     public Enrollee() {
         super();
-        points = new ArrayList<Point>();
+        points = new ArrayList<>();
         count++;
     }
 
     public Enrollee(String name) {
         super(name);
-        points = new ArrayList<Point>();
+        points = new ArrayList<>();
         count++;
     }
 
@@ -39,10 +40,18 @@ public class Enrollee extends Human implements Comparable {
         count++;
     }
 
+    /**
+     *
+     * @return points
+     */
     public List<Point> getPoints() {
         return points;
     }
 
+    /**
+     *
+     * @param points
+     */
     public void setPoints(List<Point> points) {
         this.points = points;
     }
@@ -51,25 +60,10 @@ public class Enrollee extends Human implements Comparable {
         this.points.add(point);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
-        return "Enrollee{" + super.toString() + ", points=" + points + ", count=" + count + '}';
+        return "Enrollee{" + super.toString() + ", points=" + points
+                + ", count=" + count + '}';
     }
 
     @Override
@@ -91,15 +85,17 @@ public class Enrollee extends Human implements Comparable {
             return false;
         }
         final Enrollee other = (Enrollee) obj;
-        if (this.points != other.points && (this.points == null || !this.points.equals(other.points))) {
+        if (this.points != other.points && (this.points == null
+                || !this.points.equals(other.points))) {
             return false;
         }
-        if (!((Human) this).equals((Human) obj)) {
+        if (!super.equals(obj)) {
             return false;
         }
         return true;
     }
 
+    @Override
     public int compareTo(Object o) {
         int result = 0;
         for (Point point : this.getPoints()) {

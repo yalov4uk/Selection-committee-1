@@ -13,60 +13,32 @@ import by.training.nc.dev3.abstracts.Human;
  */
 public class Admin extends Human {
 
-    private String login;
-    private String password;
-
     private static int count = 0;
+    private static final long serialVersionUID = 1L;
 
     public Admin() {
         super();
-        this.login = "admin";
-        this.password = "admin";
         count++;
     }
 
     public Admin(String name) {
         super(name);
-        this.login = "admin";
-        this.password = "admin";
         count++;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + (this.login != null ? this.login.hashCode() : 0);
-        hash = 71 * hash + (this.password != null ? this.password.hashCode() : 0);
-        return hash;
+        return super.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Admin other = (Admin) obj;
-        if ((this.login == null) ? (other.login != null) : !this.login.equals(other.login)) {
-            return false;
-        }
-        if ((this.password == null) ? (other.password != null) : !this.password.equals(other.password)) {
-            return false;
-        }
-        if (!((Human) this).equals((Human) obj)) {
-            return false;
-        }
-        return true;
+        return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return "Admin{" + super.toString() + "login=" + login + ", password=" + password + ", count=" + count + '}';
+        return "Admin{" + super.toString() + ", count=" + count + '}';
     }
 
     public static int getCount() {

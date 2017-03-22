@@ -15,6 +15,7 @@ import by.training.nc.dev3.enums.PointName;
 public class Certificate extends Point {
 
     private static int count = 0;
+    private static final long serialVersionUID = 1L;
 
     public Certificate() {
         super(PointName.certificate);

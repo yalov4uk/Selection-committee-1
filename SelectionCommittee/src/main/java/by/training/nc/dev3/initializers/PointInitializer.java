@@ -21,7 +21,7 @@ import java.util.List;
 public class PointInitializer {
 
     public static List<Point> initialize() {
-        List<Point> list = new ArrayList();
+        List<Point> list = new ArrayList<>();
         list.add(new Certificate());
         list.add(new Subject(PointName.chemistry));
         list.add(new Subject(PointName.history));

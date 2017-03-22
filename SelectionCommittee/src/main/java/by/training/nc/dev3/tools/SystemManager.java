@@ -20,28 +20,29 @@ import java.util.Map;
  */
 public class SystemManager implements Calculatable {
 
+    @Override
     public Map<FacultyName, List<Statement>> calculate(
             List<Statement> statements) {
         Map<FacultyName, List<Statement>> simpleMap = initilizeMap();
-        for (Statement statement : statements) {
+        statements.forEach((statement) -> {
             simpleMap.get(statement.getFaculty().getName()).add(statement);
-        }
+        });
         return sortMap(simpleMap);
     }
 
     private Map<FacultyName, List<Statement>> initilizeMap() {
-        Map<FacultyName, List<Statement>> simpleMap = new HashMap();
+        Map<FacultyName, List<Statement>> simpleMap = new HashMap<>();
         for (FacultyName facultyName : FacultyName.values()) {
-            simpleMap.put(facultyName, new ArrayList());
+            simpleMap.put(facultyName, new ArrayList<>());
         }
         return simpleMap;
     }
 
     private Map<FacultyName, List<Statement>> sortMap(Map<FacultyName, List<Statement>> simpleMap) {
-        for (List<Statement> list : simpleMap.values()) {
+        simpleMap.values().forEach((list) -> {
             //Collections.sort(list);  //comparable
             list.sort(new StatementComparator());  //comparator
-        }
+        });
         return simpleMap;
     }
 }
