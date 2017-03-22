@@ -6,10 +6,10 @@
 package by.training.nc.dev3.tasks;
 
 import by.training.nc.dev3.entities.Statement;
+
 import java.util.Comparator;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class StatementComparator implements Comparator<Statement> {

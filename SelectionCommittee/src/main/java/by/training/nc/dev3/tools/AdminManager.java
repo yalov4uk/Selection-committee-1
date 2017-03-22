@@ -9,17 +9,24 @@ import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+
 import java.util.List;
 import java.util.ListIterator;
 
 /**
- *
- * @author Valera Yalov4uk
  * @param <T>
+ * @author Valera Yalov4uk
  */
 public class AdminManager<T extends Human> {
 
     private T admin;
+
+    public AdminManager() {
+    }
+
+    public AdminManager(T admin) {
+        this.admin = admin;
+    }
 
     public Statement registerStatement(Faculty faculty, String name) {
         ListIterator<Enrollee> listIter = faculty.getRegisteredEntrants().
@@ -44,13 +51,6 @@ public class AdminManager<T extends Human> {
             }
         }
         return null;
-    }
-
-    public AdminManager() {
-    }
-
-    public AdminManager(T admin) {
-        this.admin = admin;
     }
 
     public T getAdmin() {

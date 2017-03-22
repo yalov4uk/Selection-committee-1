@@ -9,15 +9,11 @@ import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.tools.AdminManager;
-import by.training.nc.dev3.tools.EnrolleeManager;
-import by.training.nc.dev3.tools.MenuManager;
-import by.training.nc.dev3.tools.SerializeManager;
-import by.training.nc.dev3.tools.SystemManager;
+import by.training.nc.dev3.tools.*;
+
 import java.util.GregorianCalendar;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class Server {
@@ -29,6 +25,17 @@ public class Server {
     private MenuManager menuManager;
     private SerializeManager<DataBase> serializeManager;
     private SystemManager systemManager;
+
+    public Server() {
+        db = new DataBase();
+        serverInit();
+
+    }
+
+    public Server(DataBase db) {
+        this.db = db;
+        serverInit();
+    }
 
     public void main() {
         String message = "admin - 0, enrollee - 1, calendar - 2, exit - exit";
@@ -121,7 +128,7 @@ public class Server {
     private void registerEnrollee() {
         Statement statement = adminManager.registerStatement(
                 db.getFaculties(), menuManager.enterValue(
-                "Enter enrolle id", 0, 10000000));
+                        "Enter enrolle id", 0, 10000000));
         if (statement == null) {
             System.out.println("No student with this id");
         } else {
@@ -140,17 +147,6 @@ public class Server {
         }
     }
 
-    public Server() {
-        db = new DataBase();
-        serverInit();
-
-    }
-
-    public Server(DataBase db) {
-        this.db = db;
-        serverInit();
-    }
-
     private void serverInit() {
         adminManager = new AdminManager<>();
         enrolleeManager = new EnrolleeManager();
@@ -160,7 +156,6 @@ public class Server {
     }
 
     /**
-     *
      * @return
      */
     public AdminManager<Admin> getAdminManager() {
@@ -168,7 +163,6 @@ public class Server {
     }
 
     /**
-     *
      * @param adminManager
      */
     public void setAdminManager(AdminManager<Admin> adminManager) {

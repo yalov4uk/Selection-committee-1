@@ -8,7 +8,6 @@ package by.training.nc.dev3.abstracts;
 import by.training.nc.dev3.enums.PointName;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public abstract class Point extends Entity {

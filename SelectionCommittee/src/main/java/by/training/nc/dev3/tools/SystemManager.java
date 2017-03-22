@@ -9,13 +9,13 @@ import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.iterfaces.Calculatable;
 import by.training.nc.dev3.tasks.StatementComparator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class SystemManager implements Calculatable {

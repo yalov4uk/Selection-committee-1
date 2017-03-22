@@ -6,14 +6,13 @@
 package by.training.nc.dev3.enums;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public enum PointName {
-    certificate,
-    mathematics,
-    language,
-    history,
-    chemistry,
-    physics
+    CERTIFICATE,
+    MATHEMATICS,
+    LANGUAGE,
+    HISTORY,
+    CHEMISTRY,
+    PHYSICS
 }

@@ -6,7 +6,6 @@
 package by.training.nc.dev3.abstracts;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public abstract class Human extends Entity {

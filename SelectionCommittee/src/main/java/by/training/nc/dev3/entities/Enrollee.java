@@ -7,20 +7,18 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.abstracts.Point;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class Enrollee extends Human implements Comparable {
 
     private static final long serialVersionUID = 1L;
-
-    private List<Point> points;
-
     private static int count = 0;
+    private List<Point> points;
 
     public Enrollee() {
         super();
@@ -40,8 +38,11 @@ public class Enrollee extends Human implements Comparable {
         count++;
     }
 
+    public static int getCount() {
+        return count;
+    }
+
     /**
-     *
      * @return points
      */
     public List<Point> getPoints() {
@@ -49,7 +50,6 @@ public class Enrollee extends Human implements Comparable {
     }
 
     /**
-     *
      * @param points
      */
     public void setPoints(List<Point> points) {
@@ -105,9 +105,5 @@ public class Enrollee extends Human implements Comparable {
             result += point.getValue();
         }
         return result;
-    }
-
-    public static int getCount() {
-        return count;
     }
 }

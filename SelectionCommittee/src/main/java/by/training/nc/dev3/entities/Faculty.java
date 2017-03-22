@@ -8,23 +8,21 @@ package by.training.nc.dev3.entities;
 import by.training.nc.dev3.abstracts.Entity;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class Faculty extends Entity {
 
     private static final long serialVersionUID = 1L;
-
+    private static int count = 0;
     private FacultyName name;
     private int maxSize;
     private List<PointName> requiredPoints;
     private List<Enrollee> registeredEntrants;
-
-    private static int count = 0;
 
     public Faculty() {
         super();
@@ -34,7 +32,7 @@ public class Faculty extends Entity {
     }
 
     public Faculty(FacultyName name, int maxSize,
-            List<PointName> requiredPoints) {
+                   List<PointName> requiredPoints) {
         super();
         this.name = name;
         this.maxSize = maxSize;
@@ -60,7 +58,6 @@ public class Faculty extends Entity {
     }
 
     /**
-     *
      * @return
      */
     public List<PointName> getRequiredPoints() {
@@ -68,7 +65,6 @@ public class Faculty extends Entity {
     }
 
     /**
-     *
      * @param requiredPoints
      */
     public void setRequiredPoints(List<PointName> requiredPoints) {
@@ -76,7 +72,6 @@ public class Faculty extends Entity {
     }
 
     /**
-     *
      * @return
      */
     public List<Enrollee> getRegisteredEntrants() {
@@ -84,7 +79,6 @@ public class Faculty extends Entity {
     }
 
     /**
-     *
      * @param registeredEntrants
      */
     public void setRegisteredEntrants(List<Enrollee> registeredEntrants) {
@@ -92,7 +86,6 @@ public class Faculty extends Entity {
     }
 
     /**
-     *
      * @param enrollee
      */
     public void setRegisteredEntrant(Enrollee enrollee) {

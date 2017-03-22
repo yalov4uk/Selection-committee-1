@@ -6,7 +6,6 @@
 package by.training.nc.dev3.enums;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public enum FacultyName {

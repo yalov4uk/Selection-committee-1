@@ -8,17 +8,21 @@ package by.training.nc.dev3.tools;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.exceptions.InvalidInput;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class MenuManager {
 
     private final Scanner in;
+
+    public MenuManager() {
+        in = new Scanner(System.in);
+    }
 
     public Integer enterValue(String message, int min, int max) {
         while (true) {
@@ -69,9 +73,5 @@ public class MenuManager {
     public String inputString(String message) {
         System.out.println(message);
         return in.nextLine();
-    }
-
-    public MenuManager() {
-        in = new Scanner(System.in);
     }
 }

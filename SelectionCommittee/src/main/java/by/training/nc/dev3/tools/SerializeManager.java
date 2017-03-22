@@ -11,14 +11,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- *
- * @author Valera Yalov4uk
  * @param <T>
+ * @author Valera Yalov4uk
  */
 public class SerializeManager<T> {
 
     private final String filepath
-            = "src/main/java/by/training/nc/dev3/files/statements.txt";
+            = "src/main/resources/files/serializedDb.txt";
 
     public void serialize(T db) {
         try (ObjectOutputStream oos = new ObjectOutputStream(

@@ -9,17 +9,14 @@ import by.training.nc.dev3.abstracts.Entity;
 import by.training.nc.dev3.abstracts.Point;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class Statement extends Entity implements Comparable<Object> {
 
     private static final long serialVersionUID = 1L;
-
+    private static int count = 0;
     private Enrollee enrollee;
     private Faculty faculty;
-
-    private static int count = 0;
 
     public Statement() {
         super();
@@ -31,6 +28,10 @@ public class Statement extends Entity implements Comparable<Object> {
         this.enrollee = enrollee;
         this.faculty = faculty;
         count++;
+    }
+
+    public static int getCount() {
+        return count;
     }
 
     public Enrollee getEnrollee() {
@@ -98,9 +99,5 @@ public class Statement extends Entity implements Comparable<Object> {
             return false;
         }
         return true;
-    }
-
-    public static int getCount() {
-        return count;
     }
 }

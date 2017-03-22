@@ -13,12 +13,18 @@ import by.training.nc.dev3.entities.Subject;
 import by.training.nc.dev3.enums.PointName;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class EnrolleeManager {
 
     private Enrollee enrollee;
+
+    public EnrolleeManager() {
+    }
+
+    public EnrolleeManager(Enrollee enrollee) {
+        this.enrollee = enrollee;
+    }
 
     public void register(Faculty faculty) {
         int maxPoints = 100;
@@ -28,20 +34,13 @@ public class EnrolleeManager {
                     + requiredPointName;
             Integer value = new MenuManager().enterValue(message,
                     minPoints, maxPoints);
-            Point point = requiredPointName.equals(PointName.certificate)
+            Point point = requiredPointName.equals(PointName.CERTIFICATE)
                     ? new Certificate()
                     : new Subject(requiredPointName);
             point.setValue(value);
             enrollee.addPoint(point);
         }
         faculty.setRegisteredEntrant(enrollee);
-    }
-
-    public EnrolleeManager() {
-    }
-
-    public EnrolleeManager(Enrollee enrollee) {
-        this.enrollee = enrollee;
     }
 
     public Enrollee getEnrollee() {

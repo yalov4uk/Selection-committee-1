@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Random;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public abstract class Entity implements Serializable {

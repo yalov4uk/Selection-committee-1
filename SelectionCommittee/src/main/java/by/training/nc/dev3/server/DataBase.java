@@ -12,12 +12,12 @@ import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.initializers.FacultyInitializer;
 import by.training.nc.dev3.initializers.PointInitializer;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class DataBase implements Serializable {
@@ -39,7 +39,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     public List<Enrollee> getEntrants() {
@@ -47,7 +46,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @param entrants
      */
     public void setEntrants(List<Enrollee> entrants) {
@@ -55,7 +53,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     public List<Admin> getAdmins() {
@@ -63,7 +60,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @param admins
      */
     public void setAdmins(List<Admin> admins) {
@@ -71,7 +67,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     public List<Point> getPoints() {
@@ -79,7 +74,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @param points
      */
     public void setPoints(List<Point> points) {
@@ -87,7 +81,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     public List<Faculty> getFaculties() {
@@ -95,7 +88,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @param faculties
      */
     public void setFaculties(List<Faculty> faculties) {
@@ -103,7 +95,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     public List<Statement> getStatements() {
@@ -111,7 +102,6 @@ public class DataBase implements Serializable {
     }
 
     /**
-     *
      * @param statements
      */
     public void setStatements(List<Statement> statements) {

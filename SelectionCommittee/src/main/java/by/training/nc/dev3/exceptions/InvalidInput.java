@@ -6,7 +6,6 @@
 package by.training.nc.dev3.exceptions;
 
 /**
- *
  * @author Valera Yalov4uk
  */
 public class InvalidInput extends Exception {
@@ -26,7 +25,7 @@ public class InvalidInput extends Exception {
      * Constructs an instance of <code>NewException</code> with the specified
      * detail message.
      *
-     * @param msg the detail message.
+     * @param msg         the detail message.
      * @param errorString
      */
     public InvalidInput(String msg, String errorString) {
