@@ -11,18 +11,17 @@ import by.training.nc.dev3.enums.PointName;
  *
  * @author Valera Yalov4uk
  */
-public abstract class Point extends IdIncrement {
+public abstract class Point extends Entity {
 
-    protected int id;
     protected PointName name;
     protected int value;
 
     public Point() {
-        this.id = getNextI();
+        super();
     }
 
     public Point(PointName name) {
-        this.id = getNextI();
+        super();
         this.name = name;
     }
 

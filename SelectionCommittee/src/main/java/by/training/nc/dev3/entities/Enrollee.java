@@ -18,20 +18,25 @@ import java.util.List;
 public class Enrollee extends Human implements Comparable {
 
     private List<Point> points;
+    
+    private static int count = 0;
 
     public Enrollee() {
         super();
         points = new ArrayList<Point>();
+        count++;
     }
 
     public Enrollee(String name) {
         super(name);
         points = new ArrayList<Point>();
+        count++;
     }
 
     public Enrollee(String name, List<Point> points) {
         super(name);
         this.points = points;
+        count++;
     }
 
     public List<Point> getPoints() {
@@ -64,7 +69,7 @@ public class Enrollee extends Human implements Comparable {
 
     @Override
     public String toString() {
-        return "Enrollee{" + super.toString() + ", points=" + points + '}';
+        return "Enrollee{" + super.toString() + ", points=" + points + ", count=" + count + '}';
     }
 
     @Override
@@ -104,5 +109,9 @@ public class Enrollee extends Human implements Comparable {
             result += point.getValue();
         }
         return result;
+    }
+
+    public static int getCount() {
+        return count;
     }
 }

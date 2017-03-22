@@ -78,7 +78,7 @@ public class Main {
         serializeManager.serialize(statements);
         statements = (List<Statement>) serializeManager.deserilize();
 
-        System.out.println("Object counter = " + enrollee1.getObjectCount());
+        System.out.println("Object counter = " + enrollee1.getCount());
         System.out.println("Today: " + new GregorianCalendar().getTime());
     }
 }

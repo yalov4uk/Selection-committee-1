@@ -5,7 +5,7 @@
  */
 package by.training.nc.dev3.entities;
 
-import by.training.nc.dev3.abstracts.IdIncrement;
+import by.training.nc.dev3.abstracts.Entity;
 import by.training.nc.dev3.abstracts.Point;
 import java.io.Serializable;
 
@@ -13,20 +13,23 @@ import java.io.Serializable;
  *
  * @author Valera Yalov4uk
  */
-public class Statement extends IdIncrement implements Comparable {
+public class Statement extends Entity implements Comparable {
 
-    private int id;
     private Enrollee enrollee;
     private Faculty faculty;
+    
+    private static int count = 0;
 
     public Statement() {
-        this.id = getNextI();
+        super();
+        count++;
     }
 
     public Statement(Enrollee enrollee, Faculty faculty) {
-        this.id = getNextI();
+        super();
         this.enrollee = enrollee;
         this.faculty = faculty;
+        count++;
     }
 
     public int getId() {
@@ -56,7 +59,7 @@ public class Statement extends IdIncrement implements Comparable {
     @Override
     public String toString() {
         return "Statement{" + "id=" + id + ", enrollee=" + enrollee
-                + ", faculty=" + faculty + '}';
+                + ", faculty=" + faculty + ", count=" + count + '}';
     }
 
     public int compareTo(Object o) {
@@ -101,5 +104,9 @@ public class Statement extends IdIncrement implements Comparable {
             return false;
         }
         return true;
+    }
+
+    public static int getCount() {
+        return count;
     }
 }

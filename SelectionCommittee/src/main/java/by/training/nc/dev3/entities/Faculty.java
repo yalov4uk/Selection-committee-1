@@ -5,7 +5,7 @@
  */
 package by.training.nc.dev3.entities;
 
-import by.training.nc.dev3.abstracts.IdIncrement;
+import by.training.nc.dev3.abstracts.Entity;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.enums.PointName;
 import java.io.Serializable;
@@ -16,24 +16,29 @@ import java.util.List;
  *
  * @author Valera Yalov4uk
  */
-public class Faculty extends IdIncrement {
+public class Faculty extends Entity {
 
-    private int id;
     private FacultyName name;
     private int maxSize;
     private List<PointName> requiredPoints;
     private List<Enrollee> registeredEntrants;
+    
+    private static int count = 0;
 
     public Faculty() {
-        this.id = getNextI();
+        super();
+        requiredPoints = new ArrayList();
+        registeredEntrants = new ArrayList();
+        count++;
     }
 
     public Faculty(FacultyName name, int maxSize, List<PointName> requiredPoints) {
-        this.id = getNextI();
+        super();
         this.name = name;
         this.maxSize = maxSize;
         this.requiredPoints = requiredPoints;
         registeredEntrants = new ArrayList();
+        count++;
     }
 
     public int getId() {
@@ -84,7 +89,7 @@ public class Faculty extends IdIncrement {
     public String toString() {
         return "Faculty{" + "id=" + id + ", name=" + name + ", maxSize="
                 + maxSize + ", requiredPoints=" + requiredPoints
-                + ", registeredEntrants=" + registeredEntrants + '}';
+                + ", registeredEntrants=" + registeredEntrants + ", count=" + count + '}';
     }
 
     @Override

@@ -9,17 +9,16 @@ package by.training.nc.dev3.abstracts;
  *
  * @author Valera Yalov4uk
  */
-public abstract class Human extends IdIncrement {
+public abstract class Human extends Entity {
 
-    protected int id;
     protected String name;
 
     public Human() {
-        this.id = getNextI();
+        super();
     }
 
     public Human(String name) {
-        this.id = getNextI();
+        super();
         this.name = name;
     }
 

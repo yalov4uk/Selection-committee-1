@@ -14,13 +14,16 @@ import by.training.nc.dev3.enums.PointName;
  */
 public class Certificate extends Point {
 
+    private static int count = 0;
+    
     public Certificate() {
         super(PointName.certificate);
+        count++;
     }
 
     @Override
     public String toString() {
-        return "Certificate{" + super.toString() + '}';
+        return "Certificate{" + super.toString() + ", count=" + count + '}';
     }
 
     @Override
@@ -31,5 +34,9 @@ public class Certificate extends Point {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public static int getCount() {
+        return count;
     }
 }

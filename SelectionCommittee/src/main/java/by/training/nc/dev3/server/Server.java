@@ -57,7 +57,7 @@ public class Server {
     private void youAdmin() {
         String message = "show all - 0, register enrollee by id - 1, back - exit";
         while (true) {
-            switch ((int) db.getMenuManager().enterValue(message, 0, 1)) {
+            switch ((int) menuManager.enterValue(message, 0, 1)) {
                 case 0:
                     /*menuManager.writeForAdmin(db.getEntrants(), "Entrants:");
                     menuManager.writeForAdmin(db.getAdmins(), "Admins:");

@@ -14,17 +14,21 @@ import by.training.nc.dev3.enums.PointName;
  */
 public class Subject extends Point {
 
+    private static int count = 0;
+    
     public Subject() {
         super();
+        count++;
     }
 
     public Subject(PointName name) {
         super(name);
+        count++;
     }
 
     @Override
     public String toString() {
-        return "Subject{" + super.toString() + '}';
+        return "Subject{" + super.toString() + ", count=" + count + '}';
     }
 
     @Override
@@ -35,5 +39,9 @@ public class Subject extends Point {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public static int getCount() {
+        return count;
     }
 }

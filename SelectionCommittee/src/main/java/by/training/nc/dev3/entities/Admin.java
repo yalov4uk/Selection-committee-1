@@ -15,17 +15,21 @@ public class Admin extends Human {
 
     private String login;
     private String password;
+    
+    private static int count = 0;
 
     public Admin() {
         super();
         this.login = "admin";
         this.password = "admin";
+        count++;
     }
 
     public Admin(String name) {
         super(name);
         this.login = "admin";
         this.password = "admin";
+        count++;
     }
 
     @Override
@@ -62,6 +66,10 @@ public class Admin extends Human {
 
     @Override
     public String toString() {
-        return "Admin{" + super.toString() + "login=" + login + ", password=" + password + '}';
+        return "Admin{" + super.toString() + "login=" + login + ", password=" + password + ", count=" + count + '}';
+    }
+
+    public static int getCount() {
+        return count;
     }
 }
