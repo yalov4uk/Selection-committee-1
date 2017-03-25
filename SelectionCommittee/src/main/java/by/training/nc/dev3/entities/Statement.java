@@ -52,8 +52,7 @@ public class Statement extends Entity implements Comparable<Object> {
 
     @Override
     public String toString() {
-        return "Statement{" + "id=" + id + ", enrollee=" + enrollee
-                + ", faculty=" + faculty + ", count=" + count + '}';
+        return "Statement{" + "id=" + id + ", enrollee=" + enrollee + ", faculty=" + faculty + ", count=" + count + '}';
     }
 
     @Override

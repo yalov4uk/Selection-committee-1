@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @author Valera Yalov4uk
  */
-public interface Calculatable {
+public interface ISystemManager {
 
     Map<FacultyName, List<Statement>> calculate(List<Statement> statements);
 }

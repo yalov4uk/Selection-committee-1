@@ -5,32 +5,37 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.abstracts.Human;
+import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.iterfaces.IAdminManager;
 
 import java.util.List;
 import java.util.ListIterator;
 
 /**
- * @param <T>
  * @author Valera Yalov4uk
  */
-public class AdminManager<T extends Human> {
+public class AdminManager implements IAdminManager {
 
-    private T admin;
+    private Admin admin;
 
-    public AdminManager() {
-    }
-
-    public AdminManager(T admin) {
-        this.admin = admin;
+    public Statement createStatement(List<Faculty> faculties, int id) {
+        for (Faculty faculty : faculties) {
+            for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
+                if (enrollee.getId() == id) {
+                    Statement statement = new Statement(enrollee, faculty);
+                    faculty.getRegisteredEntrants().remove(enrollee);
+                    return statement;
+                }
+            }
+        }
+        return null;
     }
 
     public Statement registerStatement(Faculty faculty, String name) {
-        ListIterator<Enrollee> listIter = faculty.getRegisteredEntrants().
-                listIterator();
+        ListIterator<Enrollee> listIter = faculty.getRegisteredEntrants().listIterator();
         while (listIter.hasNext()) {
             Enrollee curEnrollee = listIter.next();
             if (curEnrollee.getName().equals(name)) {
@@ -42,22 +47,18 @@ public class AdminManager<T extends Human> {
         return null;
     }
 
-    public Statement registerStatement(List<Faculty> list, int id) {
-        for (Faculty faculty : list) {
-            for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
-                Statement statement = new Statement(enrollee, faculty);
-                faculty.getRegisteredEntrants().remove(enrollee);
-                return statement;
-            }
-        }
-        return null;
+    public AdminManager() {
     }
 
-    public T getAdmin() {
+    public AdminManager(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Admin getAdmin() {
         return admin;
     }
 
-    public void setAdmin(T admin) {
+    public void setAdmin(Admin admin) {
         this.admin = admin;
     }
 }

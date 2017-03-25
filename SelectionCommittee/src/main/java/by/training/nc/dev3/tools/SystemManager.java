@@ -7,7 +7,7 @@ package by.training.nc.dev3.tools;
 
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
-import by.training.nc.dev3.iterfaces.Calculatable;
+import by.training.nc.dev3.iterfaces.ISystemManager;
 import by.training.nc.dev3.tasks.StatementComparator;
 
 import java.util.ArrayList;
@@ -18,19 +18,15 @@ import java.util.Map;
 /**
  * @author Valera Yalov4uk
  */
-public class SystemManager implements Calculatable {
+public class SystemManager implements ISystemManager {
 
-    @Override
-    public Map<FacultyName, List<Statement>> calculate(
-            List<Statement> statements) {
-        Map<FacultyName, List<Statement>> simpleMap = initilizeMap();
-        statements.forEach((statement) -> {
-            simpleMap.get(statement.getFaculty().getName()).add(statement);
-        });
+    public Map<FacultyName, List<Statement>> calculate(List<Statement> statements) {
+        Map<FacultyName, List<Statement>> simpleMap = initializeMap();
+        statements.forEach((statement) -> simpleMap.get(statement.getFaculty().getName()).add(statement));
         return sortMap(simpleMap);
     }
 
-    private Map<FacultyName, List<Statement>> initilizeMap() {
+    private Map<FacultyName, List<Statement>> initializeMap() {
         Map<FacultyName, List<Statement>> simpleMap = new HashMap<>();
         for (FacultyName facultyName : FacultyName.values()) {
             simpleMap.put(facultyName, new ArrayList<>());

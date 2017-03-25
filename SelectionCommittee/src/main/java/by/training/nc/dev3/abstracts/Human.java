@@ -5,6 +5,8 @@
  */
 package by.training.nc.dev3.abstracts;
 
+import by.training.nc.dev3.iterfaces.IServerSubMenu;
+
 /**
  * @author Valera Yalov4uk
  */
@@ -13,6 +15,10 @@ public abstract class Human extends Entity {
     private static final long serialVersionUID = 1L;
 
     protected String name;
+    protected String login;
+    protected String password;
+
+    public abstract void goNextMenu(IServerSubMenu server);
 
     public Human() {
         super();
@@ -21,6 +27,13 @@ public abstract class Human extends Entity {
     public Human(String name) {
         super();
         this.name = name;
+    }
+
+    public Human(String name, String login, String password) {
+        super();
+        this.name = name;
+        this.login = login;
+        this.password = password;
     }
 
     @Override
@@ -64,5 +77,21 @@ public abstract class Human extends Entity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

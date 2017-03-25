@@ -7,6 +7,7 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.abstracts.Point;
+import by.training.nc.dev3.iterfaces.IServerSubMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,10 @@ public class Enrollee extends Human implements Comparable {
     private static final long serialVersionUID = 1L;
     private static int count = 0;
     private List<Point> points;
+
+    public void goNextMenu(IServerSubMenu server){
+        server.menuEnrollee();
+    }
 
     public Enrollee() {
         super();
@@ -35,6 +40,12 @@ public class Enrollee extends Human implements Comparable {
     public Enrollee(String name, List<Point> points) {
         super(name);
         this.points = points;
+        count++;
+    }
+
+    public Enrollee(String name, String login, String password) {
+        super(name, login, password);
+        points = new ArrayList<>();
         count++;
     }
 
@@ -62,8 +73,7 @@ public class Enrollee extends Human implements Comparable {
 
     @Override
     public String toString() {
-        return "Enrollee{" + super.toString() + ", points=" + points
-                + ", count=" + count + '}';
+        return "Enrollee{" + super.toString() + ", points=" + points + ", count=" + count + '}';
     }
 
     @Override
@@ -85,8 +95,7 @@ public class Enrollee extends Human implements Comparable {
             return false;
         }
         final Enrollee other = (Enrollee) obj;
-        if (this.points != other.points && (this.points == null
-                || !this.points.equals(other.points))) {
+        if (this.points != other.points && (this.points == null || !this.points.equals(other.points))) {
             return false;
         }
         if (!super.equals(obj)) {

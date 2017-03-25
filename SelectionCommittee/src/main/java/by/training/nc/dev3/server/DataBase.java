@@ -5,6 +5,7 @@
  */
 package by.training.nc.dev3.server;
 
+import by.training.nc.dev3.abstracts.Human;
 import by.training.nc.dev3.abstracts.Point;
 import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Enrollee;
@@ -24,8 +25,8 @@ public class DataBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private List<Enrollee> entrants;
-    private List<Admin> admins;
+    private List<Human> entrants;
+    private List<Human> admins;
     private List<Point> points;
     private List<Faculty> faculties;
     private List<Statement> statements;
@@ -36,33 +37,35 @@ public class DataBase implements Serializable {
         points = PointInitializer.initialize();
         faculties = FacultyInitializer.initialize();
         statements = new ArrayList<>();
+
+        admins.add(new Admin("Admin1", "admin", "admin"));
     }
 
     /**
      * @return
      */
-    public List<Enrollee> getEntrants() {
+    public List<Human> getEntrants() {
         return entrants;
     }
 
     /**
      * @param entrants
      */
-    public void setEntrants(List<Enrollee> entrants) {
+    public void setEntrants(List<Human> entrants) {
         this.entrants = entrants;
     }
 
     /**
      * @return
      */
-    public List<Admin> getAdmins() {
+    public List<Human> getAdmins() {
         return admins;
     }
 
     /**
      * @param admins
      */
-    public void setAdmins(List<Admin> admins) {
+    public void setAdmins(List<Human> admins) {
         this.admins = admins;
     }
 
@@ -106,5 +109,11 @@ public class DataBase implements Serializable {
      */
     public void setStatements(List<Statement> statements) {
         this.statements = statements;
+    }
+
+    public List<Human> getHumans(){
+        List<Human> humans = new ArrayList(admins);
+        humans.addAll(entrants);
+        return humans;
     }
 }

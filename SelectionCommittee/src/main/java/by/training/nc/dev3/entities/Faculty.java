@@ -31,8 +31,7 @@ public class Faculty extends Entity {
         count++;
     }
 
-    public Faculty(FacultyName name, int maxSize,
-                   List<PointName> requiredPoints) {
+    public Faculty(FacultyName name, int maxSize, List<PointName> requiredPoints) {
         super();
         this.name = name;
         this.maxSize = maxSize;
@@ -85,19 +84,10 @@ public class Faculty extends Entity {
         this.registeredEntrants = registeredEntrants;
     }
 
-    /**
-     * @param enrollee
-     */
-    public void setRegisteredEntrant(Enrollee enrollee) {
-        this.registeredEntrants.add(enrollee);
-    }
-
     @Override
     public String toString() {
-        return "Faculty{" + "id=" + id + ", name=" + name + ", maxSize="
-                + maxSize + ", requiredPoints=" + requiredPoints
-                + ", registeredEntrants=" + registeredEntrants + ", count="
-                + count + '}';
+        return "Faculty{" + "id=" + id + ", name=" + name + ", maxSize=" + maxSize + ", requiredPoints="
+                + requiredPoints + ", registeredEntrants=" + registeredEntrants + ", count=" + count + '}';
     }
 
     @Override
@@ -106,10 +96,8 @@ public class Faculty extends Entity {
         hash = 11 * hash + this.id;
         hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
         hash = 11 * hash + this.maxSize;
-        hash = 11 * hash + (this.requiredPoints != null
-                ? this.requiredPoints.hashCode() : 0);
-        hash = 11 * hash + (this.registeredEntrants != null
-                ? this.registeredEntrants.hashCode() : 0);
+        hash = 11 * hash + (this.requiredPoints != null ? this.requiredPoints.hashCode() : 0);
+        hash = 11 * hash + (this.registeredEntrants != null ? this.registeredEntrants.hashCode() : 0);
         return hash;
     }
 
@@ -134,13 +122,11 @@ public class Faculty extends Entity {
         if (this.name != other.name) {
             return false;
         }
-        if (this.requiredPoints != other.requiredPoints
-                && (this.requiredPoints == null
+        if (this.requiredPoints != other.requiredPoints && (this.requiredPoints == null
                 || !this.requiredPoints.equals(other.requiredPoints))) {
             return false;
         }
-        if (this.registeredEntrants != other.registeredEntrants
-                && (this.registeredEntrants == null
+        if (this.registeredEntrants != other.registeredEntrants && (this.registeredEntrants == null
                 || !this.registeredEntrants.equals(other.registeredEntrants))) {
             return false;
         }

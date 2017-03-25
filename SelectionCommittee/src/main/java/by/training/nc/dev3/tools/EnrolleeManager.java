@@ -11,36 +11,32 @@ import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Subject;
 import by.training.nc.dev3.enums.PointName;
+import by.training.nc.dev3.iterfaces.IEnrolleeManager;
+import by.training.nc.dev3.iterfaces.IInOutManager;
 
 /**
  * @author Valera Yalov4uk
  */
-public class EnrolleeManager {
+public class EnrolleeManager implements IEnrolleeManager {
 
     private Enrollee enrollee;
+
+    public void registerEnrollee(Faculty faculty, IInOutManager inOutManager) {
+        for (PointName requiredPointName : faculty.getRequiredPoints()) {
+            String message = enrollee.getName() + " enter your points on the " + requiredPointName;
+            Point point = requiredPointName.equals(PointName.CERTIFICATE) ? new Certificate()
+                    : new Subject(requiredPointName);
+            point.setValue(inOutManager.inputInteger(message, 0, 100));
+            enrollee.addPoint(point);
+        }
+        faculty.getRegisteredEntrants().add(enrollee);
+    }
 
     public EnrolleeManager() {
     }
 
     public EnrolleeManager(Enrollee enrollee) {
         this.enrollee = enrollee;
-    }
-
-    public void register(Faculty faculty) {
-        int maxPoints = 100;
-        int minPoints = 0;
-        for (PointName requiredPointName : faculty.getRequiredPoints()) {
-            String message = enrollee.getName() + " enter your points on the "
-                    + requiredPointName;
-            Integer value = new MenuManager().enterValue(message,
-                    minPoints, maxPoints);
-            Point point = requiredPointName.equals(PointName.CERTIFICATE)
-                    ? new Certificate()
-                    : new Subject(requiredPointName);
-            point.setValue(value);
-            enrollee.addPoint(point);
-        }
-        faculty.setRegisteredEntrant(enrollee);
     }
 
     public Enrollee getEnrollee() {
