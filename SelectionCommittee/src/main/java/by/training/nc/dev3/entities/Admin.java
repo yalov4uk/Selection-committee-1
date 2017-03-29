@@ -16,7 +16,7 @@ public class Admin extends Human {
     private static final long serialVersionUID = 1L;
     private static int count = 0;
 
-    public void goNextMenu(IServerSubMenu server){
+    public void goNextMenu(IServerSubMenu server) {
         server.menuAdmin();
     }
 

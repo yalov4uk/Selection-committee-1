@@ -8,7 +8,7 @@ import by.training.nc.dev3.entities.Faculty;
  */
 public interface IEnrolleeManager {
 
-    void registerEnrollee(Faculty faculty, IInOutManager inOutManager);
+    boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager);
 
     void setEnrollee(Enrollee enrollee);
 }

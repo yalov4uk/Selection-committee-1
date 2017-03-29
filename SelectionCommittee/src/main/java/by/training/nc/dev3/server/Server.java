@@ -152,8 +152,9 @@ public class Server implements IServer, IServerSubMenu {
         String facultyName = inOutManager.inputString("Enter faculty name");
         for (Faculty faculty : db.getFaculties()) {
             if (faculty.getName().toString().equalsIgnoreCase(facultyName)) {
-                enrolleeManager.registerEnrollee(faculty, inOutManager);
-                inOutManager.outputString("Success");
+                if (enrolleeManager.registerEnrollee(faculty, inOutManager)) {
+                    inOutManager.outputString("Success");
+                }
                 return;
             }
         }

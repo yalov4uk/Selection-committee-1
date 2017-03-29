@@ -6,5 +6,6 @@ package by.training.nc.dev3.iterfaces;
 public interface IServerSubMenu {
 
     void menuAdmin();
+
     void menuEnrollee();
 }

@@ -21,8 +21,15 @@ public class EnrolleeManager implements IEnrolleeManager {
 
     private Enrollee enrollee;
 
-    public void registerEnrollee(Faculty faculty, IInOutManager inOutManager) {
+    public boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager) {
+        if (faculty.getRegisteredEntrants().contains(enrollee)){
+            inOutManager.outputString("You already have been registered");
+            return false;
+        }
         for (PointName requiredPointName : faculty.getRequiredPoints()) {
+            if (pointExist(requiredPointName)){
+                continue;
+            }
             String message = enrollee.getName() + " enter your points on the " + requiredPointName;
             Point point = requiredPointName.equals(PointName.CERTIFICATE) ? new Certificate()
                     : new Subject(requiredPointName);
@@ -30,6 +37,16 @@ public class EnrolleeManager implements IEnrolleeManager {
             enrollee.addPoint(point);
         }
         faculty.getRegisteredEntrants().add(enrollee);
+        return true;
+    }
+
+    private boolean pointExist(PointName requiredPointName){
+        for (Point point : enrollee.getPoints()){
+            if (point.getName().equals(requiredPointName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public EnrolleeManager() {

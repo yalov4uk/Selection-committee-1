@@ -25,7 +25,7 @@ public class RegisterManager implements IRegisterManager {
             }
             if (!flag) {
                 return new Enrollee(inOutManager.inputString("Enter your name"), login,
-                        inOutManager.inputString("Emter your password"));
+                        inOutManager.inputString("Enter your password"));
             }
         }
     }

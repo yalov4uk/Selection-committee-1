@@ -18,10 +18,11 @@ import java.io.ObjectOutputStream;
  */
 public class SerializeManager implements ISerializeManager<DataBase> {
 
-    private final String filepath = "src/main/resources/files/serializedDb.txt";
+    private final String filename = "src/main/resources/files/serializedDb.txt";
+    //getClass().getClassLoader().getResource(filename).getFile() dont work correctly, return path "target/classes/..."
 
     public boolean serialize(DataBase object) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             oos.writeObject(object);
             return true;
         } catch (Exception ex) {
@@ -31,7 +32,7 @@ public class SerializeManager implements ISerializeManager<DataBase> {
     }
 
     public DataBase deserialize() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             return (DataBase) ois.readObject();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

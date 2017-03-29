@@ -21,7 +21,7 @@ public class Enrollee extends Human implements Comparable {
     private static int count = 0;
     private List<Point> points;
 
-    public void goNextMenu(IServerSubMenu server){
+    public void goNextMenu(IServerSubMenu server) {
         server.menuEnrollee();
     }
 
