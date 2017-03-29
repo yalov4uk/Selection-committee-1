@@ -37,38 +37,30 @@ public abstract class Human extends Entity {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + (this.name != null ? this.name.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Human human = (Human) o;
+
+        if (name != null ? !name.equals(human.name) : human.name != null) return false;
+        if (login != null ? !login.equals(human.login) : human.login != null) return false;
+        return password != null ? password.equals(human.password) : human.password == null;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Human other = (Human) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if ((this.name == null) ? (other.name != null)
-                : !this.name.equals(other.name)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
-        return "id=" + id + ", name=" + name;
+        return super.toString() + ", name=" + name;
     }
 
     public String getName() {

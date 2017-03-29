@@ -86,50 +86,32 @@ public class Faculty extends Entity {
 
     @Override
     public String toString() {
-        return "Faculty{" + "id=" + id + ", name=" + name + ", maxSize=" + maxSize + ", requiredPoints="
+        return "Faculty{" + super.toString() + ", name=" + name + ", maxSize=" + maxSize + ", requiredPoints="
                 + requiredPoints + ", registeredEntrants=" + registeredEntrants + ", count=" + count + '}';
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + this.id;
-        hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 11 * hash + this.maxSize;
-        hash = 11 * hash + (this.requiredPoints != null ? this.requiredPoints.hashCode() : 0);
-        hash = 11 * hash + (this.registeredEntrants != null ? this.registeredEntrants.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Faculty faculty = (Faculty) o;
+
+        if (maxSize != faculty.maxSize) return false;
+        if (name != faculty.name) return false;
+        if (requiredPoints != null ? !requiredPoints.equals(faculty.requiredPoints) : faculty.requiredPoints != null)
+            return false;
+        return registeredEntrants != null ? registeredEntrants.equals(faculty.registeredEntrants) : faculty.registeredEntrants == null;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Faculty other = (Faculty) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (this.maxSize != other.maxSize) {
-            return false;
-        }
-        if (this.name != other.name) {
-            return false;
-        }
-        if (this.requiredPoints != other.requiredPoints && (this.requiredPoints == null
-                || !this.requiredPoints.equals(other.requiredPoints))) {
-            return false;
-        }
-        if (this.registeredEntrants != other.registeredEntrants && (this.registeredEntrants == null
-                || !this.registeredEntrants.equals(other.registeredEntrants))) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + maxSize;
+        result = 31 * result + (requiredPoints != null ? requiredPoints.hashCode() : 0);
+        result = 31 * result + (registeredEntrants != null ? registeredEntrants.hashCode() : 0);
+        return result;
     }
 }

@@ -52,7 +52,7 @@ public class Statement extends Entity implements Comparable<Object> {
 
     @Override
     public String toString() {
-        return "Statement{" + "id=" + id + ", enrollee=" + enrollee + ", faculty=" + faculty + ", count=" + count + '}';
+        return "Statement{" + super.toString() + ", enrollee=" + enrollee + ", faculty=" + faculty + ", count=" + count + '}';
     }
 
     @Override
@@ -68,35 +68,22 @@ public class Statement extends Entity implements Comparable<Object> {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.id;
-        hash = 53 * hash + (this.enrollee != null ? this.enrollee.hashCode() : 0);
-        hash = 53 * hash + (this.faculty != null ? this.faculty.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Statement statement = (Statement) o;
+
+        if (enrollee != null ? !enrollee.equals(statement.enrollee) : statement.enrollee != null) return false;
+        return faculty != null ? faculty.equals(statement.faculty) : statement.faculty == null;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Statement other = (Statement) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (this.enrollee != other.enrollee && (this.enrollee == null || !this.enrollee.equals(other.enrollee))) {
-            return false;
-        }
-        if (this.faculty != other.faculty && (this.faculty == null || !this.faculty.equals(other.faculty))) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (enrollee != null ? enrollee.hashCode() : 0);
+        result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
+        return result;
     }
 }
