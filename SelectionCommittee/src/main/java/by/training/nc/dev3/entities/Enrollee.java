@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Valera Yalov4uk
  */
-public class Enrollee extends Human implements Comparable {
+public class Enrollee extends Human {
 
     private static final long serialVersionUID = 1L;
     private static int count = 0;
@@ -91,18 +91,6 @@ public class Enrollee extends Human implements Comparable {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (points != null ? points.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        int result = 0;
-        for (Point point : this.getPoints()) {
-            result -= point.getValue();
-        }
-        for (Point point : ((Enrollee) o).getPoints()) {
-            result += point.getValue();
-        }
         return result;
     }
 }

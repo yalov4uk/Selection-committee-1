@@ -16,7 +16,7 @@ public class StatementComparator implements Comparator<Statement> {
 
     @Override
     public int compare(Statement o1, Statement o2) {
-        return o1.getEnrollee().compareTo(o2.getEnrollee());
+        return o1.compareTo(o2);
     }
 
 }

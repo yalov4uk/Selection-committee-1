@@ -59,10 +59,14 @@ public class Statement extends Entity implements Comparable<Object> {
     public int compareTo(Object o) {
         int result = 0;
         for (Point point : this.enrollee.getPoints()) {
-            result -= point.getValue();
+            if (faculty.getRequiredPoints().contains(point.getName())) {
+                result -= point.getValue();
+            }
         }
         for (Point point : ((Statement) o).enrollee.getPoints()) {
-            result += point.getValue();
+            if (faculty.getRequiredPoints().contains(point.getName())) {
+                result += point.getValue();
+            }
         }
         return result;
     }
