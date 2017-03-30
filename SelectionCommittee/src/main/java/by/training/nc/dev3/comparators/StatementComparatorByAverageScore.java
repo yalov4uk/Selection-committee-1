@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package by.training.nc.dev3.tasks;
+package by.training.nc.dev3.comparators;
 
 import by.training.nc.dev3.entities.Statement;
 
@@ -12,11 +12,11 @@ import java.util.Comparator;
 /**
  * @author Valera Yalov4uk
  */
-public class StatementComparator implements Comparator<Statement> {
+public class StatementComparatorByAverageScore implements Comparator<Statement> {
 
     @Override
     public int compare(Statement o1, Statement o2) {
-        return o1.compareTo(o2);
+        return o2.compareTo(o1);
     }
 
 }

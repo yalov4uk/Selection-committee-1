@@ -8,7 +8,7 @@ package by.training.nc.dev3.tools;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.iterfaces.ISystemManager;
-import by.training.nc.dev3.tasks.StatementComparator;
+import by.training.nc.dev3.comparators.StatementComparatorByAverageScore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class SystemManager implements ISystemManager {
     private Map<FacultyName, List<Statement>> sortMap(Map<FacultyName, List<Statement>> simpleMap) {
         simpleMap.values().forEach((list) -> {
             //Collections.sort(list);  //comparable
-            list.sort(new StatementComparator());  //comparator
+            list.sort(new StatementComparatorByAverageScore());  //comparator
         });
         return simpleMap;
     }

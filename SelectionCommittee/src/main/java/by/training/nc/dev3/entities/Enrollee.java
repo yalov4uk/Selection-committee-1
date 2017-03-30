@@ -25,6 +25,16 @@ public class Enrollee extends Human {
         server.menuEnrollee();
     }
 
+    public Integer getAverageScore(Faculty faculty){
+        int result = 0;
+        for (Point point : points) {
+            if (faculty.getRequiredPoints().contains(point.getName())) {
+                result += point.getValue();
+            }
+        }
+        return result;
+    }
+
     public Enrollee() {
         super();
         points = new ArrayList<>();

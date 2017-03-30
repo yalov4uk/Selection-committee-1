@@ -6,7 +6,6 @@
 package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Entity;
-import by.training.nc.dev3.abstracts.Point;
 
 /**
  * @author Valera Yalov4uk
@@ -57,18 +56,7 @@ public class Statement extends Entity implements Comparable<Object> {
 
     @Override
     public int compareTo(Object o) {
-        int result = 0;
-        for (Point point : this.enrollee.getPoints()) {
-            if (faculty.getRequiredPoints().contains(point.getName())) {
-                result -= point.getValue();
-            }
-        }
-        for (Point point : ((Statement) o).enrollee.getPoints()) {
-            if (faculty.getRequiredPoints().contains(point.getName())) {
-                result += point.getValue();
-            }
-        }
-        return result;
+        return this.enrollee.getAverageScore(this.faculty).compareTo(((Statement)o).getEnrollee().getAverageScore(this.faculty));
     }
 
     @Override
