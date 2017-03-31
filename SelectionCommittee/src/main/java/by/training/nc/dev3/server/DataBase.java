@@ -6,12 +6,10 @@
 package by.training.nc.dev3.server;
 
 import by.training.nc.dev3.abstracts.Human;
-import by.training.nc.dev3.abstracts.Point;
 import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.initializers.FacultyInitializer;
-import by.training.nc.dev3.initializers.PointInitializer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,14 +24,12 @@ public class DataBase implements Serializable {
 
     private List<Human> entrants;
     private List<Human> admins;
-    private List<Point> points;
     private List<Faculty> faculties;
     private List<Statement> statements;
 
     public DataBase() {
         entrants = new ArrayList<>();
         admins = new ArrayList<>();
-        points = PointInitializer.initialize();
         faculties = FacultyInitializer.initialize();
         statements = new ArrayList<>();
 
@@ -66,20 +62,6 @@ public class DataBase implements Serializable {
      */
     public void setAdmins(List<Human> admins) {
         this.admins = admins;
-    }
-
-    /**
-     * @return
-     */
-    public List<Point> getPoints() {
-        return points;
-    }
-
-    /**
-     * @param points
-     */
-    public void setPoints(List<Point> points) {
-        this.points = points;
     }
 
     /**

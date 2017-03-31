@@ -53,11 +53,11 @@ public class Server implements IServer, IServerSubMenu {
 
     public void menuAdmin() {
         String message = "--------------------------------------\n" +
-                "1. Show admins.\n2. Show entrants.\n3. Show faculties.\n4. Show statements.\n5. Show points.\n" +
-                "6. Create statement.\n7. Calculate and show entrants.\n8. Save.\n9. Load.\n0. Back.\n" +
+                "1. Show admins.\n2. Show entrants.\n3. Show faculties.\n4. Show statements.\n" +
+                "5. Create statement.\n6. Calculate and show entrants.\n7. Save.\n8. Load.\n0. Back.\n" +
                 "--------------------------------------";
         while (true) {
-            switch (inOutManager.inputInteger(message, 0, 9)) {
+            switch (inOutManager.inputInteger(message, 0, 8)) {
                 case 1:
                     inOutManager.outputList(db.getAdmins(), "Admins:");
                     break;
@@ -71,22 +71,19 @@ public class Server implements IServer, IServerSubMenu {
                     inOutManager.outputList(db.getStatements(), "Statements:");
                     break;
                 case 5:
-                    inOutManager.outputList(db.getPoints(), "Points:");
-                    break;
-                case 6:
                     createStatement();
                     break;
-                case 7:
+                case 6:
                     inOutManager.outputResultEntrants(systemManager.calculate(db.getStatements()));
                     break;
-                case 8:
+                case 7:
                     if (serializeManager.serialize(db)) {
                         inOutManager.outputString("Success");
                     } else {
                         inOutManager.outputString("Error");
                     }
                     break;
-                case 9:
+                case 8:
                     db = serializeManager.deserialize();
                     inOutManager.outputString("Success");
                     break;
