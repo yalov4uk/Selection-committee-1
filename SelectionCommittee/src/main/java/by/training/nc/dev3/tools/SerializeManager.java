@@ -23,8 +23,8 @@ public class SerializeManager implements ISerializeManager<DataBase> {
             return true;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            return false;
         }
-        return false;
     }
 
     public DataBase deserialize() {
@@ -32,7 +32,7 @@ public class SerializeManager implements ISerializeManager<DataBase> {
             return (DataBase) ois.readObject();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            return null;
         }
-        return null;
     }
 }

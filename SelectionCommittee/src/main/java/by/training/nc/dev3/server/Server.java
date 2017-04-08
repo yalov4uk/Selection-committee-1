@@ -5,11 +5,10 @@
  */
 package by.training.nc.dev3.server;
 
-import by.training.nc.dev3.abstracts.Human;
-import by.training.nc.dev3.entities.Admin;
-import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.entities.Subject;
+import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.*;
 import by.training.nc.dev3.tools.*;
 
@@ -32,18 +31,15 @@ public class Server implements IServer, IServerSubMenu {
 
     public void main() {
         String message = "--------------------------------------\n" +
-                "1. Register.\n2. Login.\n3. Gregorian calendar.\n0. Exit.\n" +
+                "1. Register.\n2. Login.\n0. Exit.\n" +
                 "--------------------------------------";
         while (true) {
-            switch (inOutManager.inputInteger(message, 0, 3)) {
+            switch (inOutManager.inputInteger(message, 0, 2)) {
                 case 1:
                     register();
                     break;
                 case 2:
                     login();
-                    break;
-                case 3:
-                    gregorianCalendar();
                     break;
                 default:
                     System.exit(0);
@@ -53,16 +49,18 @@ public class Server implements IServer, IServerSubMenu {
 
     public void menuAdmin() {
         String message = "--------------------------------------\n" +
-                "1. Show admins.\n2. Show entrants.\n3. Show faculties.\n4. Show statements.\n" +
+                "1. Show users.\n2. Show roles, subjects, subject names.\n3. Show faculties.\n4. Show statements.\n" +
                 "5. Create statement.\n6. Calculate and show entrants.\n7. Save.\n8. Load.\n0. Back.\n" +
                 "--------------------------------------";
         while (true) {
             switch (inOutManager.inputInteger(message, 0, 8)) {
                 case 1:
-                    inOutManager.outputList(db.getAdmins(), "Admins:");
+                    inOutManager.outputList(db.getUsers(), "Users:");
                     break;
                 case 2:
-                    inOutManager.outputList(db.getEntrants(), "Entrants:");
+                    inOutManager.outputList(db.getRoles(), "Roles:");
+                    inOutManager.outputList(db.getSubjects(), "Subjects:");
+                    inOutManager.outputList(db.getSubjectNames(), "SubjectNames:");
                     break;
                 case 3:
                     inOutManager.outputList(db.getFaculties(), "Faculties:");
@@ -112,21 +110,22 @@ public class Server implements IServer, IServerSubMenu {
     }
 
     private void register() {
-        Human curUser = registerManager.register(db.getHumans(), inOutManager);
-        enrolleeManager.setEnrollee((Enrollee) curUser);
-        db.getEntrants().add(curUser);
-        curUser.goNextMenu(this);
+        User curUser = registerManager.register(db.getUsers(), inOutManager);
+        enrolleeManager.setEnrollee(curUser);
+        db.getUsers().add(curUser);
+        menuEnrollee();
     }
 
     private void login() {
-        Human curUser = loginManager.login(db.getHumans(), inOutManager);
+        User curUser = loginManager.login(db.getUsers(), inOutManager);
         if (curUser != null) {
-            if (curUser instanceof Enrollee) {
-                enrolleeManager.setEnrollee((Enrollee) curUser);
+            if (curUser.getRoleId() == 1) {
+                enrolleeManager.setEnrollee(curUser);
+                menuEnrollee();
             } else {
-                adminManager.setAdmin((Admin) curUser);
+                adminManager.setAdmin(curUser);
+                menuAdmin();
             }
-            curUser.goNextMenu(this);
         }
     }
 
@@ -136,9 +135,9 @@ public class Server implements IServer, IServerSubMenu {
 
     private void createStatement() {
         Statement statement = adminManager.createStatement(
-                db.getFaculties(), inOutManager.inputInteger("Enter enrolle id", 0, 10000000));
+                db.getFaculties(), inOutManager.inputInteger("Enter registered to faculty user id", 0, 10000000));
         if (statement == null) {
-            inOutManager.outputString("No student with this id");
+            inOutManager.outputString("No registered to faculty student with this id");
         } else {
             db.getStatements().add(statement);
             inOutManager.outputString("Success");
@@ -149,8 +148,13 @@ public class Server implements IServer, IServerSubMenu {
         String facultyName = inOutManager.inputString("Enter faculty name");
         for (Faculty faculty : db.getFaculties()) {
             if (faculty.getName().toString().equalsIgnoreCase(facultyName)) {
-                if (enrolleeManager.registerEnrollee(faculty, inOutManager)) {
+                if (enrolleeManager.registerEnrollee(faculty, inOutManager, db)) {
                     inOutManager.outputString("Success");
+                    for (Subject subject : enrolleeManager.getEnrollee().getSubjects()) {
+                        if (!db.getSubjects().contains(subject)) {
+                            db.getSubjects().add(subject);
+                        }
+                    }
                 }
                 return;
             }

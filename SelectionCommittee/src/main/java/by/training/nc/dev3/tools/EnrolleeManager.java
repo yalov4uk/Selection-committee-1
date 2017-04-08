@@ -5,44 +5,47 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.abstracts.Point;
-import by.training.nc.dev3.entities.Certificate;
-import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Subject;
-import by.training.nc.dev3.enums.PointName;
+import by.training.nc.dev3.entities.SubjectName;
+import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.IEnrolleeManager;
 import by.training.nc.dev3.iterfaces.IInOutManager;
+import by.training.nc.dev3.server.DataBase;
 
 /**
  * @author Valera Yalov4uk
  */
 public class EnrolleeManager implements IEnrolleeManager {
 
-    private Enrollee enrollee;
+    private User enrollee;
 
-    public boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager) {
-        if (faculty.getRegisteredEntrants().contains(enrollee)){
+    public boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager, DataBase db) {
+        if (faculty.getRegisteredUsers().contains(enrollee)) {
             inOutManager.outputString("You already have been registered");
             return false;
         }
-        for (PointName requiredPointName : faculty.getRequiredPoints()) {
-            if (pointExist(requiredPointName)){
+        for (SubjectName requiredSubjectName : faculty.getRequiredSubjects()) {
+            if (subjectExist(requiredSubjectName)) {
                 continue;
             }
-            String message = enrollee.getName() + " enter your points on the " + requiredPointName;
-            Point point = requiredPointName.equals(PointName.CERTIFICATE) ? new Certificate()
-                    : new Subject(requiredPointName);
-            point.setValue(inOutManager.inputInteger(message, 0, 100));
-            enrollee.addPoint(point);
+            addSubject(requiredSubjectName, inOutManager, db);
         }
-        faculty.getRegisteredEntrants().add(enrollee);
+        faculty.getRegisteredUsers().add(enrollee);
         return true;
     }
 
-    private boolean pointExist(PointName requiredPointName){
-        for (Point point : enrollee.getPoints()){
-            if (point.getName().equals(requiredPointName)){
+    private void addSubject(SubjectName requiredSubjectName, IInOutManager inOutManager, DataBase db) {
+        String message = enrollee.getName() + " enter your points on the " + requiredSubjectName;
+        Subject subject = new Subject(requiredSubjectName);
+        subject.setValue(inOutManager.inputInteger(message, 0, 100));
+        enrollee.getSubjects().add(subject);
+        db.getSubjects().add(subject);
+    }
+
+    private boolean subjectExist(SubjectName requiredSubjectName) {
+        for (Subject subject : enrollee.getSubjects()) {
+            if (subject.getName().equals(requiredSubjectName)) {
                 return true;
             }
         }
@@ -52,15 +55,15 @@ public class EnrolleeManager implements IEnrolleeManager {
     public EnrolleeManager() {
     }
 
-    public EnrolleeManager(Enrollee enrollee) {
+    public EnrolleeManager(User enrollee) {
         this.enrollee = enrollee;
     }
 
-    public Enrollee getEnrollee() {
+    public User getEnrollee() {
         return enrollee;
     }
 
-    public void setEnrollee(Enrollee enrollee) {
+    public void setEnrollee(User enrollee) {
         this.enrollee = enrollee;
     }
 }

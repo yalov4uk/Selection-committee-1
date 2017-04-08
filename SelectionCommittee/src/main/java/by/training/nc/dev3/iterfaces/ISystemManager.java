@@ -6,7 +6,6 @@
 package by.training.nc.dev3.iterfaces;
 
 import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.enums.FacultyName;
 
 import java.util.List;
 import java.util.Map;
@@ -16,5 +15,5 @@ import java.util.Map;
  */
 public interface ISystemManager {
 
-    Map<FacultyName, List<Statement>> calculate(List<Statement> statements);
+    Map<String, List<Statement>> calculate(List<Statement> statements);
 }

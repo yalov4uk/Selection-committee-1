@@ -1,7 +1,6 @@
 package by.training.nc.dev3.iterfaces;
 
 import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.enums.FacultyName;
 
 import java.util.List;
 import java.util.Map;
@@ -11,13 +10,13 @@ import java.util.Map;
  */
 public interface IInOutManager {
 
-    int inputInteger(String message, int min, int max);
+    int inputInteger(java.lang.String message, int min, int max);
 
-    String inputString(String message);
+    java.lang.String inputString(java.lang.String message);
 
-    void outputResultEntrants(Map<FacultyName, List<Statement>> statements);
+    void outputResultEntrants(Map<String, List<Statement>> statements);
 
-    <T> void outputList(List<T> list, String message);
+    <T> void outputList(List<T> list, java.lang.String message);
 
-    void outputString(String message);
+    void outputString(java.lang.String message);
 }

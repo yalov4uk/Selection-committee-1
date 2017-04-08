@@ -6,7 +6,6 @@
 package by.training.nc.dev3.tools;
 
 import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.enums.FacultyName;
 import by.training.nc.dev3.exceptions.InvalidInput;
 import by.training.nc.dev3.iterfaces.IInOutManager;
 
@@ -21,7 +20,7 @@ public class InOutManager implements IInOutManager {
 
     private final Scanner in;
 
-    public int inputInteger(String message, int min, int max) {
+    public int inputInteger(java.lang.String message, int min, int max) {
         while (true) {
             System.out.println(message);
             try {
@@ -39,31 +38,31 @@ public class InOutManager implements IInOutManager {
         }
     }
 
-    public String inputString(String message) {
+    public java.lang.String inputString(java.lang.String message) {
         System.out.println(message);
         return getIn().nextLine();
     }
 
-    public void outputResultEntrants(Map<FacultyName, List<Statement>> statements) {
+    public void outputResultEntrants(Map<String, List<Statement>> statements) {
         for (List<Statement> list : statements.values()) {
             if (!list.isEmpty()) {
                 System.out.println("Faculty " + list.get(0).getFaculty().getName() + ":");
                 for (int j = 0; j < list.size(); j++) {
-                    String response = j < list.get(0).getFaculty().getMaxSize() ? " accepted" : " rejected";
-                    System.out.println("    " + list.get(j).getEnrollee() + response);
+                    java.lang.String response = j < list.get(0).getFaculty().getMaxSize() ? " accepted" : " rejected";
+                    System.out.println("    " + list.get(j).getUser() + response);
                 }
             }
         }
     }
 
-    public <T> void outputList(List<T> list, String message) {
+    public <T> void outputList(List<T> list, java.lang.String message) {
         System.out.println(message);
         list.forEach((elem) -> {
             System.out.println("    " + elem);
         });
     }
 
-    public void outputString(String message) {
+    public void outputString(java.lang.String message) {
         System.out.println(message);
     }
 

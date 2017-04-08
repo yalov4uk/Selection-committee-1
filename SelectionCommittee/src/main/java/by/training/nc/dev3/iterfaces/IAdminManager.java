@@ -1,8 +1,8 @@
 package by.training.nc.dev3.iterfaces;
 
-import by.training.nc.dev3.entities.Admin;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.entities.User;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface IAdminManager {
 
     Statement createStatement(List<Faculty> faculties, int id);
 
-    void setAdmin(Admin admin);
+    void setAdmin(User admin);
 }

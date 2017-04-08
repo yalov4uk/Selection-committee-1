@@ -1,6 +1,6 @@
 package by.training.nc.dev3.iterfaces;
 
-import by.training.nc.dev3.abstracts.Human;
+import by.training.nc.dev3.entities.User;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface IRegisterManager {
 
-    Human register(List<Human> humans, IInOutManager inOutManager);
+    User register(List<User> users, IInOutManager inOutManager);
 }

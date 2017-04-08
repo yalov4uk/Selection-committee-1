@@ -1,6 +1,6 @@
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.abstracts.Human;
+import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.IInOutManager;
 import by.training.nc.dev3.iterfaces.ILoginManager;
 
@@ -11,12 +11,12 @@ import java.util.List;
  */
 public class LoginManager implements ILoginManager {
 
-    public Human login(List<Human> humans, IInOutManager inOutManager) {
+    public User login(List<User> users, IInOutManager inOutManager) {
         String login = inOutManager.inputString("Enter login");
-        for (Human human : humans) {
-            if (human.getLogin().equals(login)) {
-                if (human.getPassword().equals(inOutManager.inputString("Enter password"))) {
-                    return human;
+        for (User user : users) {
+            if (user.getLogin().equals(login)) {
+                if (user.getPassword().equals(inOutManager.inputString("Enter password"))) {
+                    return user;
                 }
             }
         }

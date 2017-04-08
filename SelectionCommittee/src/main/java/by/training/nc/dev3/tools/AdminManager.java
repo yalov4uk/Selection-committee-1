@@ -5,43 +5,28 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.entities.Admin;
-import by.training.nc.dev3.entities.Enrollee;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.entities.Statement;
+import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.IAdminManager;
 
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * @author Valera Yalov4uk
  */
 public class AdminManager implements IAdminManager {
 
-    private Admin admin;
+    private User admin;
 
     public Statement createStatement(List<Faculty> faculties, int id) {
         for (Faculty faculty : faculties) {
-            for (Enrollee enrollee : faculty.getRegisteredEntrants()) {
-                if (enrollee.getId() == id) {
-                    Statement statement = new Statement(enrollee, faculty);
-                    faculty.getRegisteredEntrants().remove(enrollee);
+            for (User user : faculty.getRegisteredUsers()) {
+                if (user.getId() == id) {
+                    Statement statement = new Statement(user, faculty);
+                    faculty.getRegisteredUsers().remove(user);
                     return statement;
                 }
-            }
-        }
-        return null;
-    }
-
-    public Statement registerStatement(Faculty faculty, String name) {
-        ListIterator<Enrollee> listIter = faculty.getRegisteredEntrants().listIterator();
-        while (listIter.hasNext()) {
-            Enrollee curEnrollee = listIter.next();
-            if (curEnrollee.getName().equals(name)) {
-                Statement statement = new Statement(curEnrollee, faculty);
-                listIter.remove();
-                return statement;
             }
         }
         return null;
@@ -50,15 +35,15 @@ public class AdminManager implements IAdminManager {
     public AdminManager() {
     }
 
-    public AdminManager(Admin admin) {
+    public AdminManager(User admin) {
         this.admin = admin;
     }
 
-    public Admin getAdmin() {
+    public User getAdmin() {
         return admin;
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(User admin) {
         this.admin = admin;
     }
 }

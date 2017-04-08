@@ -6,8 +6,6 @@
 package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Entity;
-import by.training.nc.dev3.enums.FacultyName;
-import by.training.nc.dev3.enums.PointName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,32 +17,32 @@ public class Faculty extends Entity {
 
     private static final long serialVersionUID = 1L;
     private static int count = 0;
-    private FacultyName name;
+
+    private String name;
     private int maxSize;
-    private List<PointName> requiredPoints;
-    private List<Enrollee> registeredEntrants;
+
+    private List<SubjectName> requiredSubjects;
+    private List<User> registeredUsers;
 
     public Faculty() {
-        super();
-        requiredPoints = new ArrayList<>();
-        registeredEntrants = new ArrayList<>();
-        count++;
+        super(count++);
+        requiredSubjects = new ArrayList<>();
+        registeredUsers = new ArrayList<>();
     }
 
-    public Faculty(FacultyName name, int maxSize, List<PointName> requiredPoints) {
-        super();
+    public Faculty(String name, int maxSize, List<SubjectName> requiredSubjects) {
+        super(count++);
         this.name = name;
         this.maxSize = maxSize;
-        this.requiredPoints = requiredPoints;
-        registeredEntrants = new ArrayList<>();
-        count++;
+        this.requiredSubjects = requiredSubjects;
+        registeredUsers = new ArrayList<>();
     }
 
-    public FacultyName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(FacultyName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -59,35 +57,40 @@ public class Faculty extends Entity {
     /**
      * @return
      */
-    public List<PointName> getRequiredPoints() {
-        return requiredPoints;
+    public List<SubjectName> getRequiredSubjects() {
+        return requiredSubjects;
     }
 
     /**
-     * @param requiredPoints
+     * @param requiredSubjects
      */
-    public void setRequiredPoints(List<PointName> requiredPoints) {
-        this.requiredPoints = requiredPoints;
+    public void setRequiredSubjects(List<SubjectName> requiredSubjects) {
+        this.requiredSubjects = requiredSubjects;
     }
 
     /**
      * @return
      */
-    public List<Enrollee> getRegisteredEntrants() {
-        return registeredEntrants;
+    public List<User> getRegisteredUsers() {
+        return registeredUsers;
     }
 
     /**
-     * @param registeredEntrants
+     * @param registeredUsers
      */
-    public void setRegisteredEntrants(List<Enrollee> registeredEntrants) {
-        this.registeredEntrants = registeredEntrants;
+    public void setRegisteredEntrants(List<User> registeredUsers) {
+        this.registeredUsers = registeredUsers;
     }
 
     @Override
     public String toString() {
-        return "Faculty{" + super.toString() + ", name=" + name + ", maxSize=" + maxSize + ", requiredPoints="
-                + requiredPoints + ", registeredEntrants=" + registeredEntrants + ", count=" + count + '}';
+        return "Faculty{" +
+                super.toString() +
+                ", name='" + name + '\'' +
+                ", maxSize=" + maxSize +
+                ", requiredSubjects=" + requiredSubjects +
+                ", registeredUsers=" + registeredUsers +
+                '}';
     }
 
     @Override
@@ -100,9 +103,9 @@ public class Faculty extends Entity {
 
         if (maxSize != faculty.maxSize) return false;
         if (name != faculty.name) return false;
-        if (requiredPoints != null ? !requiredPoints.equals(faculty.requiredPoints) : faculty.requiredPoints != null)
+        if (requiredSubjects != null ? !requiredSubjects.equals(faculty.requiredSubjects) : faculty.requiredSubjects != null)
             return false;
-        return registeredEntrants != null ? registeredEntrants.equals(faculty.registeredEntrants) : faculty.registeredEntrants == null;
+        return registeredUsers != null ? registeredUsers.equals(faculty.registeredUsers) : faculty.registeredUsers == null;
     }
 
     @Override
@@ -110,8 +113,8 @@ public class Faculty extends Entity {
         int result = super.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + maxSize;
-        result = 31 * result + (requiredPoints != null ? requiredPoints.hashCode() : 0);
-        result = 31 * result + (registeredEntrants != null ? registeredEntrants.hashCode() : 0);
+        result = 31 * result + (requiredSubjects != null ? requiredSubjects.hashCode() : 0);
+        result = 31 * result + (registeredUsers != null ? registeredUsers.hashCode() : 0);
         return result;
     }
 }

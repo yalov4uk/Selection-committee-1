@@ -6,7 +6,6 @@
 package by.training.nc.dev3.abstracts;
 
 import java.io.Serializable;
-import java.util.Random;
 
 /**
  * @author Valera Yalov4uk
@@ -17,9 +16,8 @@ public abstract class Entity implements Serializable {
 
     protected int id;
 
-    public Entity() {
-        Random rnd = new Random(System.currentTimeMillis());
-        this.id = rnd.nextInt(10000);
+    public Entity(int id) {
+        this.id = id;
     }
 
     public int getId() {
