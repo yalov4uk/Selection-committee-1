@@ -7,8 +7,7 @@ package by.training.nc.dev3.entities;
 
 import by.training.nc.dev3.abstracts.Entity;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 /**
  * @author Valera Yalov4uk
@@ -18,7 +17,7 @@ public class Statement extends Entity implements Comparable<Object> {
     private static final long serialVersionUID = 1L;
     private static int count = 0;
 
-    private Calendar date;
+    private java.sql.Date date;
     private User user;
     private int userId;
     private Faculty faculty;
@@ -26,14 +25,28 @@ public class Statement extends Entity implements Comparable<Object> {
 
     public Statement() {
         super(count++);
-        this.date = new GregorianCalendar();
+        this.date = new java.sql.Date(new Date().getTime());
     }
 
     public Statement(User user, Faculty faculty) {
         super(count++);
         this.user = user;
         this.faculty = faculty;
-        this.date = new GregorianCalendar();
+        this.date = new java.sql.Date(new Date().getTime());
+    }
+
+    public Statement(int userId, int facultyId) {
+        super(count++);
+        this.userId = userId;
+        this.facultyId = facultyId;
+        this.date = new java.sql.Date(new Date().getTime());
+    }
+
+    public Statement(int id, int userId, int facultyId, java.sql.Date date) {
+        super(id);
+        this.userId = userId;
+        this.facultyId = facultyId;
+        this.date = date;
     }
 
     public static int getCount() {
@@ -72,11 +85,11 @@ public class Statement extends Entity implements Comparable<Object> {
         this.facultyId = facultyId;
     }
 
-    public Calendar getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 
@@ -84,7 +97,7 @@ public class Statement extends Entity implements Comparable<Object> {
     public String toString() {
         return "Statement{" +
                 super.toString() +
-                ", date=" + date.getTime() +
+                ", date=" + date +
                 ", user=" + user +
                 ", userId='" + userId + '\'' +
                 ", faculty=" + faculty +

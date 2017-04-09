@@ -26,8 +26,16 @@ public class Faculty extends Entity {
 
     public Faculty() {
         super(count++);
-        requiredSubjects = new ArrayList<>();
-        registeredUsers = new ArrayList<>();
+        this.requiredSubjects = new ArrayList<>();
+        this.registeredUsers = new ArrayList<>();
+    }
+
+    public Faculty(String name, int maxSize) {
+        super(count++);
+        this.name = name;
+        this.maxSize = maxSize;
+        this.requiredSubjects = new ArrayList<>();
+        this.registeredUsers = new ArrayList<>();
     }
 
     public Faculty(String name, int maxSize, List<SubjectName> requiredSubjects) {
@@ -35,7 +43,15 @@ public class Faculty extends Entity {
         this.name = name;
         this.maxSize = maxSize;
         this.requiredSubjects = requiredSubjects;
-        registeredUsers = new ArrayList<>();
+        this.registeredUsers = new ArrayList<>();
+    }
+
+    public Faculty(int id, int maxSize, String name) {
+        super(id);
+        this.name = name;
+        this.maxSize = maxSize;
+        this.requiredSubjects = new ArrayList<>();
+        this.registeredUsers = new ArrayList<>();
     }
 
     public String getName() {

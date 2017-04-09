@@ -50,6 +50,15 @@ public class User extends Entity {
         this.subjects = new ArrayList<>();
     }
 
+    public User(int id, String name, String login, String password, int roleId) {
+        super(id);
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.roleId = roleId;
+        this.subjects = new ArrayList<>();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
