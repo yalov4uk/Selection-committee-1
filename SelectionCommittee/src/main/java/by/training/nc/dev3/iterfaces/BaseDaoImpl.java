@@ -1,4 +1,4 @@
-package by.training.nc.dev3.dao.interfaces;
+package by.training.nc.dev3.iterfaces;
 
 import by.training.nc.dev3.exceptions.DaoException;
 

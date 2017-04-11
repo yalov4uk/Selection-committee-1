@@ -30,7 +30,7 @@ public class User extends Entity {
     public Integer getAverageScore(Faculty faculty) {
         int result = 0;
         for (Subject subject : subjects) {
-            if (faculty.getRequiredSubjects().contains(subject.getName())) {
+            if (faculty.getRequiredSubjects().contains(subject.getSubjectName())) {
                 result += subject.getValue();
             }
         }
@@ -62,7 +62,7 @@ public class User extends Entity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if ((!(o instanceof User))) return false;
         if (!super.equals(o)) return false;
 
         User user = (User) o;

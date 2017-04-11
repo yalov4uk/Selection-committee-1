@@ -1,5 +1,6 @@
 package by.training.nc.dev3.dao;
 
+import by.training.nc.dev3.abstracts.BaseDao;
 import by.training.nc.dev3.entities.Faculty;
 import by.training.nc.dev3.exceptions.DaoException;
 

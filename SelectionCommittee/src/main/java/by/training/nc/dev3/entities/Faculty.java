@@ -112,7 +112,7 @@ public class Faculty extends Entity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if ((!(o instanceof Faculty))) return false;
         if (!super.equals(o)) return false;
 
         Faculty faculty = (Faculty) o;

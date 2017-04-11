@@ -16,8 +16,11 @@ public class Subject extends Entity {
     private static int count = 0;
 
     private int value;
-    private SubjectName name;
+
+    private SubjectName subjectName;
     private int subjectNameId;
+    private User user;
+    private int userId;
 
     public Subject() {
         super(count++);
@@ -25,19 +28,33 @@ public class Subject extends Entity {
 
     public Subject(SubjectName name) {
         super(count++);
-        this.name = name;
+        this.subjectName = name;
+    }
+
+    public Subject(int value, int subjectNameId, int userId) {
+        super(count++);
+        this.value = value;
+        this.subjectNameId = subjectNameId;
+        this.userId = userId;
+    }
+
+    public Subject(int id, int value, int subjectNameId, int userId) {
+        super(id);
+        this.value = value;
+        this.subjectNameId = subjectNameId;
+        this.userId = userId;
     }
 
     public static int getCount() {
         return count;
     }
 
-    public SubjectName getName() {
-        return name;
+    public SubjectName getSubjectName() {
+        return subjectName;
     }
 
-    public void setName(SubjectName name) {
-        this.name = name;
+    public void setSubjectName(SubjectName name) {
+        this.subjectName = name;
     }
 
     public int getValue() {
@@ -48,23 +65,53 @@ public class Subject extends Entity {
         this.value = value;
     }
 
+    public int getSubjectNameId() {
+        return subjectNameId;
+    }
+
+    public void setSubjectNameId(int subjectNameId) {
+        this.subjectNameId = subjectNameId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if ((!(o instanceof Subject))) return false;
         if (!super.equals(o)) return false;
 
         Subject subject = (Subject) o;
 
         if (value != subject.value) return false;
-        return name == subject.name;
+        if (subjectNameId != subject.subjectNameId) return false;
+        if (userId != subject.userId) return false;
+        if (subjectName != null ? !subjectName.equals(subject.subjectName) : subject.subjectName != null) return false;
+        return user != null ? user.equals(subject.user) : subject.user == null;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + value;
+        result = 31 * result + (subjectName != null ? subjectName.hashCode() : 0);
+        result = 31 * result + subjectNameId;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + userId;
         return result;
     }
 
@@ -73,8 +120,10 @@ public class Subject extends Entity {
         return "Subject{" +
                 super.toString() +
                 ", value=" + value +
-                ", name=" + name +
-                ", subjectNameId='" + subjectNameId + '\'' +
+                ", subjectName=" + subjectName +
+                ", subjectNameId=" + subjectNameId +
+                ", user=" + user +
+                ", userId=" + userId +
                 '}';
     }
 }

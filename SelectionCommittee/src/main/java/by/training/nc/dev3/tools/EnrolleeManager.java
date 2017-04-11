@@ -45,7 +45,7 @@ public class EnrolleeManager implements IEnrolleeManager {
 
     private boolean subjectExist(SubjectName requiredSubjectName) {
         for (Subject subject : enrollee.getSubjects()) {
-            if (subject.getName().equals(requiredSubjectName)) {
+            if (subject.getSubjectName().equals(requiredSubjectName)) {
                 return true;
             }
         }

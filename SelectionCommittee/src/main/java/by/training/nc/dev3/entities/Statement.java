@@ -107,13 +107,13 @@ public class Statement extends Entity implements Comparable<Object> {
 
     @Override
     public int compareTo(Object o) {
-        return this.user.getAverageScore(this.faculty).compareTo(((Statement) o).getUser().getAverageScore(this.faculty));
+        return user.getAverageScore(faculty).compareTo(((Statement) o).getUser().getAverageScore(faculty));
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if ((!(o instanceof Statement))) return false;
         if (!super.equals(o)) return false;
 
         Statement statement = (Statement) o;

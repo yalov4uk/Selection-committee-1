@@ -1,6 +1,6 @@
-package by.training.nc.dev3.dao;
+package by.training.nc.dev3.abstracts;
 
-import by.training.nc.dev3.dao.interfaces.BaseDaoImpl;
+import by.training.nc.dev3.iterfaces.BaseDaoImpl;
 import by.training.nc.dev3.exceptions.DaoException;
 
 import java.sql.Connection;
