@@ -2,7 +2,7 @@ package by.training.nc.dev3.dao;
 
 import by.training.nc.dev3.abstracts.BaseDao;
 import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.exceptions.DaoException;
+import by.training.nc.dev3.iterfaces.dao.StatementDaoImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Valera Yalov4uk on 4/9/2017.
  */
-public class StatementDao extends BaseDao<Statement> {
+public class StatementDao extends BaseDao<Statement> implements StatementDaoImpl {
     @Override
     public String getCreateQuery() {
         return "insert into statements (date, userId, facultyId) values (?, ?, ?);";
@@ -36,36 +36,22 @@ public class StatementDao extends BaseDao<Statement> {
     }
 
     @Override
-    protected void prepareStatementForInsert(PreparedStatement statement, Statement object) throws DaoException {
-        try {
-            prepareStatement(statement, object);
-        } catch (Exception e) {
-            throw new DaoException(e);
-
-        }
+    protected void prepareStatementForInsert(PreparedStatement statement, Statement object) throws SQLException {
+        prepareStatement(statement, object);
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, Statement object) throws DaoException {
-        try {
-            prepareStatement(statement, object);
-            statement.setInt(4, object.getId());
-        } catch (Exception e) {
-            throw new DaoException(e);
-
-        }
+    protected void prepareStatementForUpdate(PreparedStatement statement, Statement object) throws SQLException {
+        prepareStatement(statement, object);
+        statement.setInt(4, object.getId());
     }
 
     @Override
-    protected List<Statement> parseResultSet(ResultSet rs) throws DaoException {
+    protected List<Statement> parseResultSet(ResultSet rs) throws SQLException {
         List<Statement> result = new LinkedList<>();
-        try {
-            while (rs.next()) {
-                result.add(new Statement(rs.getInt("id"), rs.getInt("facultyId"),
-                        rs.getInt("userId"), rs.getDate("date")));
-            }
-        } catch (Exception e) {
-            throw new DaoException(e);
+        while (rs.next()) {
+            result.add(new Statement(rs.getInt("id"), rs.getInt("facultyId"),
+                    rs.getInt("userId"), rs.getDate("date")));
         }
         return result;
     }

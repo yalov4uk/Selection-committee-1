@@ -11,7 +11,10 @@ import by.training.nc.dev3.entities.SubjectName;
 import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.IEnrolleeManager;
 import by.training.nc.dev3.iterfaces.IInOutManager;
+import by.training.nc.dev3.iterfaces.dao.RegisteredUsersDaoImpl;
 import by.training.nc.dev3.server.DataBase;
+
+import java.sql.SQLException;
 
 /**
  * @author Valera Yalov4uk
@@ -20,11 +23,11 @@ public class EnrolleeManager implements IEnrolleeManager {
 
     private User enrollee;
 
-    public boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager, DataBase db) {
-        if (faculty.getRegisteredUsers().contains(enrollee)) {
+    public boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager, RegisteredUsersDaoImpl registeredUsersDao) throws SQLException{
+        if (registeredUsersDao.findRegisteredUserByIds(faculty.getId(), enrollee.getId()) == null) {
             inOutManager.outputString("You already have been registered");
             return false;
-        }
+        }//todo: many to many
         for (SubjectName requiredSubjectName : faculty.getRequiredSubjects()) {
             if (subjectExist(requiredSubjectName)) {
                 continue;

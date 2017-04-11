@@ -2,7 +2,7 @@ package by.training.nc.dev3.dao;
 
 import by.training.nc.dev3.abstracts.BaseDao;
 import by.training.nc.dev3.entities.SubjectName;
-import by.training.nc.dev3.exceptions.DaoException;
+import by.training.nc.dev3.iterfaces.dao.SubjectNameDaoImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Valera Yalov4uk on 4/10/2017.
  */
-public class SubjectNameDao extends BaseDao<SubjectName> {
+public class SubjectNameDao extends BaseDao<SubjectName> implements SubjectNameDaoImpl {
     @Override
     public String getCreateQuery() {
         return "insert into subject_names (name) values (?);";
@@ -36,35 +36,21 @@ public class SubjectNameDao extends BaseDao<SubjectName> {
     }
 
     @Override
-    protected void prepareStatementForInsert(PreparedStatement statement, SubjectName object) throws DaoException {
-        try {
-            prepareStatement(statement, object);
-        } catch (Exception e) {
-            throw new DaoException(e);
-
-        }
+    protected void prepareStatementForInsert(PreparedStatement statement, SubjectName object) throws SQLException {
+        prepareStatement(statement, object);
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, SubjectName object) throws DaoException {
-        try {
-            prepareStatement(statement, object);
-            statement.setInt(2, object.getId());
-        } catch (Exception e) {
-            throw new DaoException(e);
-
-        }
+    protected void prepareStatementForUpdate(PreparedStatement statement, SubjectName object) throws SQLException {
+        prepareStatement(statement, object);
+        statement.setInt(2, object.getId());
     }
 
     @Override
-    protected List<SubjectName> parseResultSet(ResultSet rs) throws DaoException {
+    protected List<SubjectName> parseResultSet(ResultSet rs) throws SQLException {
         List<SubjectName> result = new LinkedList<>();
-        try {
-            while (rs.next()) {
-                result.add(new SubjectName(rs.getInt("id"), rs.getString("name")));
-            }
-        } catch (Exception e) {
-            throw new DaoException(e);
+        while (rs.next()) {
+            result.add(new SubjectName(rs.getInt("id"), rs.getString("name")));
         }
         return result;
     }

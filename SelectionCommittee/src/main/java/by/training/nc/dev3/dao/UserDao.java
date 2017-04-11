@@ -2,7 +2,7 @@ package by.training.nc.dev3.dao;
 
 import by.training.nc.dev3.abstracts.BaseDao;
 import by.training.nc.dev3.entities.User;
-import by.training.nc.dev3.exceptions.DaoException;
+import by.training.nc.dev3.iterfaces.dao.UserDaoImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Valera Yalov4uk on 4/9/2017.
  */
-public class UserDao extends BaseDao<User> {
+public class UserDao extends BaseDao<User> implements UserDaoImpl {
     @Override
     public String getCreateQuery() {
         return "insert into users (name, login, password, roleId) values (?, ?, ?, ?);";
@@ -36,37 +36,23 @@ public class UserDao extends BaseDao<User> {
     }
 
     @Override
-    protected void prepareStatementForInsert(PreparedStatement statement, User object) throws DaoException {
-        try {
-            prepareStatement(statement, object);
-        } catch (Exception e) {
-            throw new DaoException(e);
-
-        }
+    protected void prepareStatementForInsert(PreparedStatement statement, User object) throws SQLException {
+        prepareStatement(statement, object);
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, User object) throws DaoException {
-        try {
-            prepareStatement(statement, object);
-            statement.setInt(5, object.getId());
-        } catch (Exception e) {
-            throw new DaoException(e);
-
-        }
+    protected void prepareStatementForUpdate(PreparedStatement statement, User object) throws SQLException {
+        prepareStatement(statement, object);
+        statement.setInt(5, object.getId());
     }
 
     @Override
-    protected List<User> parseResultSet(ResultSet rs) throws DaoException {
+    protected List<User> parseResultSet(ResultSet rs) throws SQLException {
         List<User> result = new LinkedList<>();
-        try {
-            while (rs.next()) {
-                result.add(new User(rs.getInt("id"), rs.getString("name"),
-                        rs.getString("login"), rs.getString("password"),
-                        rs.getInt("roleId")));
-            }
-        } catch (Exception e) {
-            throw new DaoException(e);
+        while (rs.next()) {
+            result.add(new User(rs.getInt("id"), rs.getString("name"),
+                    rs.getString("login"), rs.getString("password"),
+                    rs.getInt("roleId")));
         }
         return result;
     }
@@ -75,10 +61,24 @@ public class UserDao extends BaseDao<User> {
         super(connection);
     }
 
-    private void prepareStatement(PreparedStatement statement, User object) throws SQLException{
+    private void prepareStatement(PreparedStatement statement, User object) throws SQLException {
         statement.setString(1, object.getName());
         statement.setString(2, object.getLogin());
         statement.setString(3, object.getPassword());
         statement.setInt(4, object.getRoleId());
+    }
+
+    public User findByLogin(String login) throws SQLException {
+        List<User> list;
+        String sql = "select * from users where login = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, login);
+            ResultSet rs = statement.executeQuery();
+            list = parseResultSet(rs);
+        }
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        return list.iterator().next();
     }
 }

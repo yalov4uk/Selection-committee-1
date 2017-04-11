@@ -24,6 +24,27 @@
             <version>6.0.6</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jolbox/bonecp -->
+        <!-- dependency for bone connection pull-->
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp</artifactId>
+            <version>0.8.0.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- dependency for logger for BoneCP-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
 
     </dependencies>
 

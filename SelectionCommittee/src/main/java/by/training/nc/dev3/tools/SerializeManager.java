@@ -6,18 +6,17 @@
 package by.training.nc.dev3.tools;
 
 import by.training.nc.dev3.iterfaces.ISerializeManager;
-import by.training.nc.dev3.server.DataBase;
 
 import java.io.*;
 
 /**
  * @author Valera Yalov4uk
  */
-public class SerializeManager implements ISerializeManager<DataBase> {
+public class SerializeManager<T> implements ISerializeManager<T> {
 
     private File file = new File("files" + File.separator + "serializedDb.txt");
 
-    public boolean serialize(DataBase object) {
+    public boolean serialize(T object) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(object);
             return true;
@@ -27,9 +26,9 @@ public class SerializeManager implements ISerializeManager<DataBase> {
         }
     }
 
-    public DataBase deserialize() {
+    public T deserialize() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            return (DataBase) ois.readObject();
+            return (T) ois.readObject();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return null;

@@ -5,13 +5,15 @@
  */
 package by.training.nc.dev3.server;
 
-import by.training.nc.dev3.entities.Faculty;
-import by.training.nc.dev3.entities.Statement;
-import by.training.nc.dev3.entities.Subject;
-import by.training.nc.dev3.entities.User;
+import by.training.nc.dev3.dao.*;
+import by.training.nc.dev3.entities.*;
+import by.training.nc.dev3.initializers.BoneCPConf;
 import by.training.nc.dev3.iterfaces.*;
+import by.training.nc.dev3.iterfaces.dao.*;
 import by.training.nc.dev3.tools.*;
+import com.jolbox.bonecp.BoneCP;
 
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 /**
@@ -19,17 +21,25 @@ import java.util.GregorianCalendar;
  */
 public class Server implements IServer, IServerSubMenu {
 
-    private DataBase db;
+    private BoneCP pool;
+
+    private FacultyDaoImpl facultyDao;
+    private RoleDaoImpl roleDao;
+    private StatementDaoImpl statementDao;
+    private SubjectDaoImpl subjectDao;
+    private SubjectNameDaoImpl subjectNameDao;
+    private UserDaoImpl userDao;
+    private RegisteredUsersDaoImpl registeredUsersDao;
 
     private IAdminManager adminManager;
     private IEnrolleeManager enrolleeManager;
     private IInOutManager inOutManager;
-    private ISerializeManager<DataBase> serializeManager;
+    private ISerializeManager<User> serializeManager;
     private ISystemManager systemManager;
     private IRegisterManager registerManager;
     private ILoginManager loginManager;
 
-    public void main() {
+    public void main() throws SQLException {
         String message = "--------------------------------------\n" +
                 "1. Register.\n2. Login.\n0. Exit.\n" +
                 "--------------------------------------";
@@ -47,7 +57,7 @@ public class Server implements IServer, IServerSubMenu {
         }
     }
 
-    public void menuAdmin() {
+    public void menuAdmin() throws SQLException {
         String message = "--------------------------------------\n" +
                 "1. Show users.\n2. Show roles, subjects, subject names.\n3. Show faculties.\n4. Show statements.\n" +
                 "5. Create statement.\n6. Calculate and show entrants.\n7. Save.\n8. Load.\n0. Back.\n" +
@@ -91,14 +101,14 @@ public class Server implements IServer, IServerSubMenu {
         }
     }
 
-    public void menuEnrollee() {
+    public void menuEnrollee() throws SQLException {
         String message = "--------------------------------------\n" +
                 "1. Show faculties.\n2. Register to faculty.\n0. Back.\n" +
                 "--------------------------------------";
         while (true) {
             switch (inOutManager.inputInteger(message, 0, 2)) {
                 case 1:
-                    inOutManager.outputList(db.getFaculties(), "Faculties:");
+                    inOutManager.outputList(facultyDao.getAll(), "Faculties:");
                     break;
                 case 2:
                     registerToFaculty();
@@ -109,15 +119,14 @@ public class Server implements IServer, IServerSubMenu {
         }
     }
 
-    private void register() {
-        User curUser = registerManager.register(db.getUsers(), inOutManager);
-        enrolleeManager.setEnrollee(curUser);
-        db.getUsers().add(curUser);
+    private void register() throws SQLException {
+        User curUser = registerManager.register(userDao.getAll(), inOutManager);
+        enrolleeManager.setEnrollee(userDao.persist(curUser));
         menuEnrollee();
     }
 
-    private void login() {
-        User curUser = loginManager.login(db.getUsers(), inOutManager);
+    private void login() throws SQLException {
+        User curUser = loginManager.login(userDao, inOutManager);
         if (curUser != null) {
             if (curUser.getRoleId() == 1) {
                 enrolleeManager.setEnrollee(curUser);
@@ -144,25 +153,26 @@ public class Server implements IServer, IServerSubMenu {
         }
     }
 
-    private void registerToFaculty() {
+    private void registerToFaculty() throws SQLException {
         String facultyName = inOutManager.inputString("Enter faculty name");
-        for (Faculty faculty : db.getFaculties()) {
-            if (faculty.getName().toString().equalsIgnoreCase(facultyName)) {
-                if (enrolleeManager.registerEnrollee(faculty, inOutManager, db)) {
-                    inOutManager.outputString("Success");
-                    for (Subject subject : enrolleeManager.getEnrollee().getSubjects()) {
-                        if (!db.getSubjects().contains(subject)) {
-                            db.getSubjects().add(subject);
-                        }
+        Faculty faculty = facultyDao.findByName(facultyName);
+        if (faculty != null) {
+            if (enrolleeManager.registerEnrollee(faculty, inOutManager, registeredUsersDao)) {
+                inOutManager.outputString("Success");
+                for (Subject subject : enrolleeManager.getEnrollee().getSubjects()) {
+                    if (!db.getSubjects().contains(subject)) {
+                        db.getSubjects().add(subject);
                     }
                 }
-                return;
             }
+            return;
         }
         inOutManager.outputString("Incorrect faculty name");
     }
 
-    private void serverInit() {
+    public Server() throws SQLException {
+        pool = new BoneCP(BoneCPConf.initialize());
+
         adminManager = new AdminManager();
         enrolleeManager = new EnrolleeManager();
         inOutManager = new InOutManager();
@@ -170,29 +180,20 @@ public class Server implements IServer, IServerSubMenu {
         systemManager = new SystemManager();
         registerManager = new RegisterManager();
         loginManager = new LoginManager();
+
+        facultyDao = new FacultyDao(pool.getConnection());
+        roleDao = new RoleDao(pool.getConnection());
+        statementDao = new StatementDao(pool.getConnection());
+        subjectDao = new SubjectDao(pool.getConnection());
+        subjectNameDao = new SubjectNameDao(pool.getConnection());
+        userDao = new UserDao(pool.getConnection());
+        registeredUsersDao = new RegisteredUsersDao(pool.getConnection());
     }
 
-    public Server() {
-        db = new DataBase();
-        serverInit();
-
-    }
-
-    public Server(DataBase db) {
-        this.db = db;
-        serverInit();
-    }
-
-    /**
-     * @return
-     */
     public IAdminManager getAdminManager() {
         return adminManager;
     }
 
-    /**
-     * @param adminManager
-     */
     public void setAdminManager(IAdminManager adminManager) {
         this.adminManager = adminManager;
     }
@@ -213,11 +214,11 @@ public class Server implements IServer, IServerSubMenu {
         this.inOutManager = inOutManager;
     }
 
-    public ISerializeManager<DataBase> getSerializeManager() {
+    public ISerializeManager<User> getSerializeManager() {
         return serializeManager;
     }
 
-    public void setSerializeManager(ISerializeManager<DataBase> serializeManager) {
+    public void setSerializeManager(ISerializeManager<User> serializeManager) {
         this.serializeManager = serializeManager;
     }
 
