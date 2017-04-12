@@ -5,11 +5,18 @@ import by.training.nc.dev3.abstracts.Entity;
 /**
  * Created by Valera Yalov4uk on 4/11/2017.
  */
-public class RegisteredUsers extends Entity {
+public class RegisteredUser extends Entity {
     private int facultyId;
     private int userId;
+    private static int count = 0;
 
-    public RegisteredUsers(int id, int facultyId,  int userId) {
+    public RegisteredUser(int facultyId, int userId) {
+        super(count++);
+        this.facultyId = facultyId;
+        this.userId = userId;
+    }
+
+    public RegisteredUser(int id, int facultyId, int userId) {
         super(id);
         this.facultyId = facultyId;
         this.userId = userId;

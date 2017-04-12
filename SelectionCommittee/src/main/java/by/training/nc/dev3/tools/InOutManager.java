@@ -20,7 +20,7 @@ public class InOutManager implements IInOutManager {
 
     private final Scanner in;
 
-    public int inputInteger(java.lang.String message, int min, int max) {
+    public int inputInteger(String message, int min, int max) {
         while (true) {
             System.out.println(message);
             try {
@@ -38,7 +38,7 @@ public class InOutManager implements IInOutManager {
         }
     }
 
-    public java.lang.String inputString(java.lang.String message) {
+    public String inputString(String message) {
         System.out.println(message);
         return getIn().nextLine();
     }
@@ -48,21 +48,21 @@ public class InOutManager implements IInOutManager {
             if (!list.isEmpty()) {
                 System.out.println("Faculty " + list.get(0).getFaculty().getName() + ":");
                 for (int j = 0; j < list.size(); j++) {
-                    java.lang.String response = j < list.get(0).getFaculty().getMaxSize() ? " accepted" : " rejected";
+                    String response = j < list.get(0).getFaculty().getMaxSize() ? " accepted" : " rejected";
                     System.out.println("    " + list.get(j).getUser() + response);
                 }
             }
         }
     }
 
-    public <T> void outputList(List<T> list, java.lang.String message) {
+    public <T> void outputList(List<T> list, String message) {
         System.out.println(message);
         list.forEach((elem) -> {
             System.out.println("    " + elem);
         });
     }
 
-    public void outputString(java.lang.String message) {
+    public void outputString(String message) {
         System.out.println(message);
     }
 

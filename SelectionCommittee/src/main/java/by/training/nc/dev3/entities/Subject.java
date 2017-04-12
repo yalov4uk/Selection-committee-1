@@ -26,11 +26,6 @@ public class Subject extends Entity {
         super(count++);
     }
 
-    public Subject(SubjectName name) {
-        super(count++);
-        this.subjectName = name;
-    }
-
     public Subject(int value, int subjectNameId, int userId) {
         super(count++);
         this.value = value;

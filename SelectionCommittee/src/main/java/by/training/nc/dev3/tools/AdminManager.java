@@ -5,12 +5,15 @@
  */
 package by.training.nc.dev3.tools;
 
-import by.training.nc.dev3.entities.Faculty;
+import by.training.nc.dev3.entities.RegisteredUser;
 import by.training.nc.dev3.entities.Statement;
 import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.IAdminManager;
+import by.training.nc.dev3.iterfaces.IInOutManager;
+import by.training.nc.dev3.iterfaces.dao.RegisteredUsersDaoImpl;
+import by.training.nc.dev3.iterfaces.dao.StatementDaoImpl;
 
-import java.util.List;
+import java.sql.SQLException;
 
 /**
  * @author Valera Yalov4uk
@@ -19,17 +22,18 @@ public class AdminManager implements IAdminManager {
 
     private User admin;
 
-    public Statement createStatement(List<Faculty> faculties, int id) {
-        for (Faculty faculty : faculties) {
-            for (User user : faculty.getRegisteredUsers()) {
-                if (user.getId() == id) {
-                    Statement statement = new Statement(user, faculty);
-                    faculty.getRegisteredUsers().remove(user);
-                    return statement;
-                }
+    public void createStatement(RegisteredUsersDaoImpl registeredUsersDao, StatementDaoImpl
+            statementDao, IInOutManager inOutManager) throws SQLException {
+        int userId = inOutManager.inputInteger("Enter registered to faculty user id", 0, 10000000);
+        for (RegisteredUser registeredUser : registeredUsersDao.getAll()) {
+            if (registeredUser.getUserId() == userId) {
+                Statement statement = statementDao.persist(new Statement(userId, registeredUser.getFacultyId()));
+                registeredUsersDao.delete(userId);
+                inOutManager.outputString("Success");
+                return;
             }
         }
-        return null;
+        inOutManager.outputString("No registered to faculty student with this id");
     }
 
     public AdminManager() {

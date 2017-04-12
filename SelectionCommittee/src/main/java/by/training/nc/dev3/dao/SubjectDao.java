@@ -65,4 +65,15 @@ public class SubjectDao extends BaseDao<Subject> implements SubjectDaoImpl {
         statement.setInt(2, object.getSubjectNameId());
         statement.setInt(3, object.getUserId());
     }
+
+    public List<Subject> findAllByUserId(int userId) throws SQLException {
+        List<Subject> list;
+        String sql = getSelectQuery() + " where userId = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            list = parseResultSet(rs);
+        }
+        return list;
+    }
 }

@@ -1,7 +1,7 @@
 package by.training.nc.dev3.dao;
 
 import by.training.nc.dev3.abstracts.BaseDao;
-import by.training.nc.dev3.entities.RegisteredUsers;
+import by.training.nc.dev3.entities.RegisteredUser;
 import by.training.nc.dev3.iterfaces.dao.RegisteredUsersDaoImpl;
 
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Valera Yalov4uk on 4/11/2017.
  */
-public class RegisteredUsersDao extends BaseDao<RegisteredUsers> implements RegisteredUsersDaoImpl {
+public class RegisteredUsersDao extends BaseDao<RegisteredUser> implements RegisteredUsersDaoImpl {
     @Override
     public String getCreateQuery() {
         return "insert into registered_users (userId, facultyId) values (?, ?);";
@@ -36,21 +36,21 @@ public class RegisteredUsersDao extends BaseDao<RegisteredUsers> implements Regi
     }
 
     @Override
-    protected void prepareStatementForInsert(PreparedStatement statement, RegisteredUsers object) throws SQLException {
+    protected void prepareStatementForInsert(PreparedStatement statement, RegisteredUser object) throws SQLException {
         prepareStatement(statement, object);
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, RegisteredUsers object) throws SQLException {
+    protected void prepareStatementForUpdate(PreparedStatement statement, RegisteredUser object) throws SQLException {
         prepareStatement(statement, object);
         statement.setInt(3, object.getId());
     }
 
     @Override
-    protected List<RegisteredUsers> parseResultSet(ResultSet rs) throws SQLException {
-        List<RegisteredUsers> result = new LinkedList<>();
+    protected List<RegisteredUser> parseResultSet(ResultSet rs) throws SQLException {
+        List<RegisteredUser> result = new LinkedList<>();
         while (rs.next()) {
-            result.add(new RegisteredUsers(rs.getInt("id"), rs.getInt("facultyId"),
+            result.add(new RegisteredUser(rs.getInt("id"), rs.getInt("facultyId"),
                     rs.getInt("userId")));
         }
         return result;
@@ -60,13 +60,13 @@ public class RegisteredUsersDao extends BaseDao<RegisteredUsers> implements Regi
         super(connection);
     }
 
-    private void prepareStatement(PreparedStatement statement, RegisteredUsers object) throws SQLException {
+    private void prepareStatement(PreparedStatement statement, RegisteredUser object) throws SQLException {
         statement.setInt(1, object.getUserId());
         statement.setInt(2, object.getFacultyId());
     }
 
-    public RegisteredUsers findRegisteredUserByIds(int userId, int facultyId) throws SQLException{
-        List<RegisteredUsers> list;
+    public RegisteredUser findRegisteredUserByIds(int userId, int facultyId) throws SQLException{
+        List<RegisteredUser> list;
         String sql = "select * from registered_users where userId = ? and facultyId = ?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, userId);

@@ -14,7 +14,8 @@ import by.training.nc.dev3.tools.*;
 import com.jolbox.bonecp.BoneCP;
 
 import java.sql.SQLException;
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Valera Yalov4uk
@@ -30,6 +31,7 @@ public class Server implements IServer, IServerSubMenu {
     private SubjectNameDaoImpl subjectNameDao;
     private UserDaoImpl userDao;
     private RegisteredUsersDaoImpl registeredUsersDao;
+    private RequiredSubjectsDaoImpl requiredSubjectsDao;
 
     private IAdminManager adminManager;
     private IEnrolleeManager enrolleeManager;
@@ -65,34 +67,35 @@ public class Server implements IServer, IServerSubMenu {
         while (true) {
             switch (inOutManager.inputInteger(message, 0, 8)) {
                 case 1:
-                    inOutManager.outputList(db.getUsers(), "Users:");
+                    inOutManager.outputList(userDao.getAll(), "Users:");
                     break;
                 case 2:
-                    inOutManager.outputList(db.getRoles(), "Roles:");
-                    inOutManager.outputList(db.getSubjects(), "Subjects:");
-                    inOutManager.outputList(db.getSubjectNames(), "SubjectNames:");
+                    inOutManager.outputList(roleDao.getAll(), "Roles:");
+                    inOutManager.outputList(subjectDao.getAll(), "Subjects:");
+                    inOutManager.outputList(subjectNameDao.getAll(), "SubjectNames:");
                     break;
                 case 3:
-                    inOutManager.outputList(db.getFaculties(), "Faculties:");
+                    inOutManager.outputList(facultyDao.getAll(), "Faculties:");
                     break;
                 case 4:
-                    inOutManager.outputList(db.getStatements(), "Statements:");
+                    inOutManager.outputList(statementDao.getAll(), "Statements:");
                     break;
                 case 5:
-                    createStatement();
+                    adminManager.createStatement(registeredUsersDao, statementDao, inOutManager);
                     break;
                 case 6:
-                    inOutManager.outputResultEntrants(systemManager.calculate(db.getStatements()));
+                    List<Statement> statements = loadReferences();
+                    inOutManager.outputResultEntrants(systemManager.calculate(statements));
                     break;
                 case 7:
-                    if (serializeManager.serialize(db)) {
+                    if (serializeManager.serialize(userDao.getAll().get(0))) {
                         inOutManager.outputString("Success");
                     } else {
                         inOutManager.outputString("Error");
                     }
                     break;
                 case 8:
-                    db = serializeManager.deserialize();
+                    enrolleeManager.setEnrollee(serializeManager.deserialize());
                     inOutManager.outputString("Success");
                     break;
                 default:
@@ -138,36 +141,40 @@ public class Server implements IServer, IServerSubMenu {
         }
     }
 
-    private void gregorianCalendar() {
-        inOutManager.outputString("Today: " + new GregorianCalendar().getTime());
-    }
-
-    private void createStatement() {
-        Statement statement = adminManager.createStatement(
-                db.getFaculties(), inOutManager.inputInteger("Enter registered to faculty user id", 0, 10000000));
-        if (statement == null) {
-            inOutManager.outputString("No registered to faculty student with this id");
-        } else {
-            db.getStatements().add(statement);
-            inOutManager.outputString("Success");
-        }
-    }
-
     private void registerToFaculty() throws SQLException {
         String facultyName = inOutManager.inputString("Enter faculty name");
         Faculty faculty = facultyDao.findByName(facultyName);
-        if (faculty != null) {
-            if (enrolleeManager.registerEnrollee(faculty, inOutManager, registeredUsersDao)) {
-                inOutManager.outputString("Success");
-                for (Subject subject : enrolleeManager.getEnrollee().getSubjects()) {
-                    if (!db.getSubjects().contains(subject)) {
-                        db.getSubjects().add(subject);
-                    }
-                }
-            }
+        if (faculty != null && enrolleeManager.registerEnrollee(faculty, inOutManager, registeredUsersDao,
+                requiredSubjectsDao, subjectDao, subjectNameDao)) {
+            inOutManager.outputString("Success");
             return;
         }
         inOutManager.outputString("Incorrect faculty name");
+    }
+
+    private List<Statement> loadReferences() throws SQLException {
+        List<Statement> statements = statementDao.getAll();
+        for (Statement statement : statements) {
+            int facultyId = statement.getFacultyId();
+            int userId = statement.getUserId();
+            statement.setFaculty(facultyDao.find(facultyId));
+            statement.setUser(userDao.find(userId));
+
+            List<SubjectName> subjectNames = new ArrayList<>();
+            List<RequiredSubject> requiredSubjects = requiredSubjectsDao.findAllByFacultyId(facultyId);
+            for (RequiredSubject requiredSubject : requiredSubjects) {
+                subjectNames.add(subjectNameDao.find(requiredSubject.getSubjectNameId()));
+            }
+            statement.getFaculty().setRequiredSubjects(subjectNames);
+
+            List<Subject> subjects = subjectDao.findAllByUserId(userId);
+            statement.getUser().setSubjects(subjects);
+
+            for (Subject subject : subjects){
+                subject.setSubjectName(subjectNameDao.find(subject.getSubjectNameId()));
+            }
+        }
+        return statements;
     }
 
     public Server() throws SQLException {
@@ -188,6 +195,7 @@ public class Server implements IServer, IServerSubMenu {
         subjectNameDao = new SubjectNameDao(pool.getConnection());
         userDao = new UserDao(pool.getConnection());
         registeredUsersDao = new RegisteredUsersDao(pool.getConnection());
+        requiredSubjectsDao = new RequiredSubjectsDao(pool.getConnection());
     }
 
     public IAdminManager getAdminManager() {

@@ -26,6 +26,15 @@ public class Main {
 
 
 
+        /*List<Statement> list = new ArrayList<>();
+        list.add(new Statement(1, 1));
+        list.add(new Statement(2, 2));
+        for (Statement statement : list){
+            statement.setFaculty(new Faculty(statement.getFacultyId(), 3, "temp"));
+        }
+        list.forEach(elem -> elem.setFaculty(new Faculty(elem.getFacultyId(), 3, "temp")));
+        list.forEach(elem -> System.out.println(elem));*/
+
         /*BoneCPConfig config = new BoneCPConfig();
         config.setJdbcUrl(URL_FIXED);
         config.setUsername(USERNAME);
@@ -85,11 +94,11 @@ public class Main {
 
             /*SubjectDao sd = new SubjectDao(connection);
             Subject subject = sd.persist(new Subject(92, 1, 3));
-            System.out.println(sd.find(subject.getId()));*/
+            System.out.println(sd.find(subject.getId()));
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }

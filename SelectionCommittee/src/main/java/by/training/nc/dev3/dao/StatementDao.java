@@ -50,8 +50,8 @@ public class StatementDao extends BaseDao<Statement> implements StatementDaoImpl
     protected List<Statement> parseResultSet(ResultSet rs) throws SQLException {
         List<Statement> result = new LinkedList<>();
         while (rs.next()) {
-            result.add(new Statement(rs.getInt("id"), rs.getInt("facultyId"),
-                    rs.getInt("userId"), rs.getDate("date")));
+            result.add(new Statement(rs.getInt("id"), rs.getInt("userId"),
+                    rs.getInt("facultyId"), rs.getDate("date")));
         }
         return result;
     }
