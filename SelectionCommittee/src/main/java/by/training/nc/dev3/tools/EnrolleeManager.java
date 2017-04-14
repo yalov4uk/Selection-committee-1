@@ -8,12 +8,10 @@ package by.training.nc.dev3.tools;
 import by.training.nc.dev3.entities.*;
 import by.training.nc.dev3.iterfaces.IEnrolleeManager;
 import by.training.nc.dev3.iterfaces.IInOutManager;
-import by.training.nc.dev3.iterfaces.dao.RegisteredUsersDaoImpl;
-import by.training.nc.dev3.iterfaces.dao.RequiredSubjectsDaoImpl;
-import by.training.nc.dev3.iterfaces.dao.SubjectDaoImpl;
-import by.training.nc.dev3.iterfaces.dao.SubjectNameDaoImpl;
-
-import java.sql.SQLException;
+import by.training.nc.dev3.iterfaces.dao.RegisteredUserDao;
+import by.training.nc.dev3.iterfaces.dao.RequiredSubjectDao;
+import by.training.nc.dev3.iterfaces.dao.SubjectDao;
+import by.training.nc.dev3.iterfaces.dao.SubjectNameDao;
 
 /**
  * @author Valera Yalov4uk
@@ -23,14 +21,14 @@ public class EnrolleeManager implements IEnrolleeManager {
     private User enrollee;
 
     public boolean registerEnrollee(Faculty faculty, IInOutManager inOutManager,
-                                    RegisteredUsersDaoImpl registeredUsersDao,
-                                    RequiredSubjectsDaoImpl requiredSubjectsDao,
-                                    SubjectDaoImpl subjectDao, SubjectNameDaoImpl subjectNameDao) throws SQLException {
-        if (registeredUsersDao.findRegisteredUserByIds(faculty.getId(), enrollee.getId()) != null) {
+                                    RegisteredUserDao registeredUserDao,
+                                    RequiredSubjectDao requiredSubjectDao,
+                                    SubjectDao subjectDao, SubjectNameDao subjectNameDao) {
+        if (registeredUserDao.findRegisteredUserByIds(faculty.getId(), enrollee.getId()) != null) {
             inOutManager.outputString("You already have been registered");
             return false;
         }
-        for (RequiredSubject requiredSubject : requiredSubjectsDao.findAllByFacultyId(faculty.getId())) {
+        for (RequiredSubject requiredSubject : requiredSubjectDao.findAllByFacultyId(faculty.getId())) {
             for (Subject subject : subjectDao.findAllByUserId(enrollee.getId())) {
                 if (subject.getSubjectNameId() == requiredSubject.getSubjectNameId()) {
                     continue;
@@ -38,12 +36,12 @@ public class EnrolleeManager implements IEnrolleeManager {
             }
             addSubject(requiredSubject.getSubjectNameId(), inOutManager, subjectDao, subjectNameDao);
         }
-        registeredUsersDao.persist(new RegisteredUser(faculty.getId(), enrollee.getId()));
+        registeredUserDao.persist(new RegisteredUser(faculty.getId(), enrollee.getId()));
         return true;
     }
 
-    private void addSubject(int requiredSubjectNameId, IInOutManager inOutManager, SubjectDaoImpl subjectDao,
-                            SubjectNameDaoImpl subjectNameDao) throws SQLException {
+    private void addSubject(int requiredSubjectNameId, IInOutManager inOutManager, SubjectDao subjectDao,
+                            SubjectNameDao subjectNameDao) {
         SubjectName subjectName =   subjectNameDao.find(requiredSubjectNameId);
         String message = enrollee.getName() + " enter your points on the " + subjectName.getName();
         int value = inOutManager.inputInteger(message, 0, 100);

@@ -14,7 +14,6 @@ import java.util.Date;
  */
 public class Statement extends Entity implements Comparable<Object> {
 
-    private static final long serialVersionUID = 1L;
     private static int count = 0;
 
     private java.sql.Date date;

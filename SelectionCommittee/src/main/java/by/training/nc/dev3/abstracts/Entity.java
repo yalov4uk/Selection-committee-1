@@ -5,14 +5,10 @@
  */
 package by.training.nc.dev3.abstracts;
 
-import java.io.Serializable;
-
 /**
  * @author Valera Yalov4uk
  */
-public abstract class Entity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public abstract class Entity {
 
     protected int id;
 

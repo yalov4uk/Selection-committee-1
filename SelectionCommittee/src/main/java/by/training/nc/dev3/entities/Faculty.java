@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class Faculty extends Entity {
 
-    private static final long serialVersionUID = 1L;
     private static int count = 0;
 
     private String name;

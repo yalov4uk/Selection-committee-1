@@ -2,8 +2,6 @@ package by.training.nc.dev3.initializers;
 
 import com.jolbox.bonecp.BoneCPConfig;
 
-import java.sql.SQLException;
-
 /**
  * Created by Valera Yalov4uk on 4/11/2017.
  */
@@ -12,7 +10,7 @@ public class BoneCPConf {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-    public static BoneCPConfig initialize() throws SQLException {
+    public static BoneCPConfig initialize() {
         BoneCPConfig config = new BoneCPConfig();
         config.setJdbcUrl(URL_FIXED);
         config.setUsername(USERNAME);

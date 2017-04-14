@@ -6,6 +6,7 @@ import by.training.nc.dev3.abstracts.Entity;
  * Created by Valera Yalov4uk on 4/12/2017.
  */
 public class RequiredSubject extends Entity{
+
     private int facultyId;
     private int subjectNameId;
     private static int count = 0;

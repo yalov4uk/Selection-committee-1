@@ -7,7 +7,6 @@ import by.training.nc.dev3.abstracts.Entity;
  */
 public class SubjectName extends Entity {
 
-    private static final long serialVersionUID = 1L;
     private static int count = 0;
 
     private String name;

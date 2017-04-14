@@ -3,16 +3,14 @@ package by.training.nc.dev3.tools;
 import by.training.nc.dev3.entities.User;
 import by.training.nc.dev3.iterfaces.IInOutManager;
 import by.training.nc.dev3.iterfaces.ILoginManager;
-import by.training.nc.dev3.iterfaces.dao.UserDaoImpl;
-
-import java.sql.SQLException;
+import by.training.nc.dev3.iterfaces.dao.UserDao;
 
 /**
  * Created by Valera Yalov4uk on 3/25/2017.
  */
 public class LoginManager implements ILoginManager {
 
-    public User login(UserDaoImpl userDao, IInOutManager inOutManager) throws SQLException {
+    public User login(UserDao userDao, IInOutManager inOutManager) {
         String login = inOutManager.inputString("Enter login");
         User user = userDao.findByLogin(login);
         if (user != null){
