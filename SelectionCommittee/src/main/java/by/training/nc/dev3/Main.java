@@ -22,18 +22,5 @@ public class Main {
             System.out.println(e.getStackTrace());
             System.out.println(e.getMessage());
         }
-
-
-        /*BoneCP pool;
-        try {
-            pool = new BoneCP(BoneCPConf.initialize());
-        } catch (SQLException e) {
-            throw new DaoUncheckedException("BoneCP init error");
-        }
-
-        DaoFactory dao = new DaoFactoryImpl(pool);
-        RegisteredUserDao d = (RegisteredUserDao)dao.get(RegisteredUser.class);
-        System.out.println(d.getAll());*/
-
     }
 }

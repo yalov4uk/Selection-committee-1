@@ -3,7 +3,7 @@ package by.training.nc.dev3.factories.creators;
 import by.training.nc.dev3.dao.SubjectNameDaoImpl;
 import by.training.nc.dev3.exceptions.DaoUncheckedException;
 import by.training.nc.dev3.iterfaces.dao.BaseDao;
-import by.training.nc.dev3.iterfaces.factories.DaoCreator;
+import by.training.nc.dev3.iterfaces.factories.creators.DaoCreator;
 import com.jolbox.bonecp.BoneCP;
 
 import java.sql.SQLException;

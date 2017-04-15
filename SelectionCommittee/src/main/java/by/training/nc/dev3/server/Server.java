@@ -9,7 +9,7 @@ import by.training.nc.dev3.dao.*;
 import by.training.nc.dev3.entities.*;
 import by.training.nc.dev3.exceptions.DaoUncheckedException;
 import by.training.nc.dev3.factories.DaoFactoryImpl;
-import by.training.nc.dev3.initializers.BoneCPConf;
+import by.training.nc.dev3.initializers.BoneCPConfInitializer;
 import by.training.nc.dev3.iterfaces.*;
 import by.training.nc.dev3.iterfaces.dao.*;
 import by.training.nc.dev3.iterfaces.factories.DaoFactory;
@@ -213,7 +213,7 @@ public class Server implements IServer, IServerSubMenu {
 
     public Server() {
         try {
-            pool = new BoneCP(BoneCPConf.initialize());
+            pool = new BoneCP(BoneCPConfInitializer.initialize());
         } catch (SQLException e) {
             throw new DaoUncheckedException("BoneCP init error");
         }

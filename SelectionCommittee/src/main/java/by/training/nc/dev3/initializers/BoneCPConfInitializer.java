@@ -5,7 +5,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 /**
  * Created by Valera Yalov4uk on 4/11/2017.
  */
-public class BoneCPConf {
+public class BoneCPConfInitializer {
     private static final String URL_FIXED = "jdbc:mysql://localhost:3306/selection_committee?useSSL=false";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";

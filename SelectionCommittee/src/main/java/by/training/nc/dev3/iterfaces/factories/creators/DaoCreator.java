@@ -1,4 +1,4 @@
-package by.training.nc.dev3.iterfaces.factories;
+package by.training.nc.dev3.iterfaces.factories.creators;
 
 import by.training.nc.dev3.iterfaces.dao.BaseDao;
 import com.jolbox.bonecp.BoneCP;
