@@ -33,9 +33,8 @@ function checkName(name) {
 }
 
 function checkPassword(password) {
-    var regPas = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{5,}$/;
-    if (!regPas.test(password)) {
-        alert(" password < 5 or without a, A or 1");
+    if (password.length < 5) {
+        alert("password < 5");
         return false;
     }
     return true;

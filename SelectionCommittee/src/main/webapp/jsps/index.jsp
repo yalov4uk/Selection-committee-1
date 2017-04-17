@@ -1,18 +1,20 @@
+<%@ page import="by.training.nc.dev3.entities.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Selection committee</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 
 <body>
-
-
+    <c:out value="${user.name}">no name</c:out>
     <ul class="login_signup">
-        <li><a href="signup.html">Sign up</a></li>
-        <li><a href="login.html">Log in</a></li>
+        <li><a href="/jsps/signup.jsp">Sign up</a></li>
+        <li><a href="/jsps/login.jsp">Log in</a></li>
     </ul>
 
     <header>

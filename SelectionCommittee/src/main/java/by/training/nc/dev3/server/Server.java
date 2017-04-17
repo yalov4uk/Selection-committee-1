@@ -225,6 +225,6 @@ public class Server implements IServer, IServerSubMenu {
         registerManager = new RegisterManager();
         loginManager = new LoginManager();
 
-        daoFactory = new DaoFactoryImpl(pool);
+        daoFactory = DaoFactoryImpl.getInstance();
     }
 }

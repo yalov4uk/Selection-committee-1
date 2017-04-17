@@ -1,16 +1,18 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Sign up</title>
-    <link rel="stylesheet" href="signup.css">
-    <link rel="stylesheet" href="login_and_signup.css">
-    <script src="validator.js"></script>
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/login_and_signup.css">
+    <script src="/js/validator.js"></script>
 </head>
 
 <body>
-    <form id="signup" onsubmit="return signup();">
+    <form id="signup" action="controller" onsubmit="return signup();">
         <h1>Sign up</h1>
         <fieldset id="inputs">
             <input id="username" type="text" placeholder="login" autofocus required>
@@ -20,7 +22,7 @@
         </fieldset>
         <fieldset id="actions">
             <input type="submit" id="submit" value="Sign up">
-            <a href="login.html">You already sign up? Log in</a>
+            <a href="/jsps/login.jsp">You already sign up? Log in</a>
         </fieldset>
     </form>
 </body>
