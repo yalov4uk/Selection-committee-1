@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form id="login" action="controller" onsubmit="return login();">
+    <form id="login" action="/controller" onsubmit="return login();">
         <input type="hidden" name="command" value="login" />
         <h1>Log in</h1>
         <fieldset id="inputs">

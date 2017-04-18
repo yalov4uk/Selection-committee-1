@@ -9,29 +9,26 @@ import by.training.nc.dev3.iterfaces.factories.commands.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
- * Created by Valera Yalov4uk on 4/16/2017.
+ * Created by Valera Yalov4uk on 4/18/2017.
  */
-public class LoginCommand implements Command {
-
+public class ShowUsersCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page;
+        String page = "/jsps/users.jsp";
         DaoFactory daoFactory = DaoFactoryImpl.getInstance();
         UserDao userDao = (UserDaoImpl) daoFactory.getDao(User.class);
 
-        String login = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        User user = userDao.findByLogin(login);
-        if (user != null && user.getPassword().equals(password)) {
-            request.getSession().setAttribute("user", user);
-            page = "/jsps/index.jsp";
+        User curUser = (User) request.getSession().getAttribute("user");
+        if (curUser == null || userDao.find((curUser).getId()) == null) {
+            page = "/jsps/login.jsp";
         } else {
-            request.setAttribute("errorMessage", "Wrong login or password");
-            page = "/jsps/error.jsp";
+            List<User> users = userDao.getAll();
+            request.setAttribute("users", users);
         }
+
         userDao.close();
         return page;
     }

@@ -29,10 +29,14 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
 
+        String page = "/jsps/login.jsp";
+
         CommandFactory commandFactory = CommandFactoryImpl.getInstance();
         Command command = commandFactory.getCommand(request.getParameter("command"));
-        String page = command.execute(request, response);
-        System.out.println(request.getAttribute("user"));
+        if (command != null) {
+            page = command.execute(request, response);
+        }
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);
     }

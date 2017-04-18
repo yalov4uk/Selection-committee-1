@@ -29,12 +29,16 @@ public class EnrolleeManager implements IEnrolleeManager {
             return false;
         }
         for (RequiredSubject requiredSubject : requiredSubjectDao.findAllByFacultyId(faculty.getId())) {
+            boolean flag = false;
             for (Subject subject : subjectDao.findAllByUserId(enrollee.getId())) {
                 if (subject.getSubjectNameId() == requiredSubject.getSubjectNameId()) {
-                    continue;
+                    flag = true;
+                    break;
                 }
             }
-            addSubject(requiredSubject.getSubjectNameId(), inOutManager, subjectDao, subjectNameDao);
+            if (!flag) {
+                addSubject(requiredSubject.getSubjectNameId(), inOutManager, subjectDao, subjectNameDao);
+            }
         }
         registeredUserDao.persist(new RegisteredUser(faculty.getId(), enrollee.getId()));
         return true;

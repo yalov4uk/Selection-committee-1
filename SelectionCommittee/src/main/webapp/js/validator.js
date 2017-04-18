@@ -39,3 +39,12 @@ function checkPassword(password) {
     }
     return true;
 }
+
+function registerToFaculty() {
+    var value = parseInt(document.getElementById("value").value);
+    if (value < 0 || value > 100){
+        alert("Value must be in range (0, 100)");
+        return false;
+    }
+    return true;
+}

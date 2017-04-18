@@ -104,4 +104,20 @@ public class RegisteredUserDaoImpl extends BaseDaoImpl<RegisteredUser> implement
             throw new DaoUncheckedException("Delete error");
         }
     }
+
+    public List<RegisteredUser> findRegisteredUserByFacultyId(int facultyId){
+        List<RegisteredUser> list;
+        String sql = "select * from registered_users where facultyId = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, facultyId);
+            ResultSet rs = statement.executeQuery();
+            list = parseResultSet(rs);
+        } catch (SQLException e) {
+            throw new DaoUncheckedException("Registered users dao find by faculty id error");
+        }
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        return list;
+    }
 }
