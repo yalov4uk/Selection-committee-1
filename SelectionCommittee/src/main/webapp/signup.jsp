@@ -1,3 +1,5 @@
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="by.training.nc.dev3.localization.Bundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>

@@ -1,3 +1,5 @@
+<%@ page import="by.training.nc.dev3.localization.Bundle" %>
+<%@ page import="java.util.ResourceBundle" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -21,6 +23,7 @@
             <a href="/controller?command=logout">Log out</a>
         </c:when>
     </c:choose>
+    <a href="/controller?command=changeLanguage"><c:out value="change language"/></a>
 </ul>
 
 <header>

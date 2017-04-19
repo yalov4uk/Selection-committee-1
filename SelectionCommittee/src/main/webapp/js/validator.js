@@ -1,8 +1,8 @@
 function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-
-    if (!checkName(username) || !checkPassword(password)) {
+    var LEN = document.getElementById("LEN").value;
+    if (!checkName(username, LEN) || !checkPassword(password, LEN)) {
         return false;
     }
     return true;
@@ -18,23 +18,23 @@ function signup() {
         return false;
     }
     if (password1 != password2) {
-        alert("passwords don't match");
+        alert("Passwords don't match");
         return false;
     }
     return true;
 }
 
-function checkName(name) {
+function checkName(name, LEN) {
     if (name.length < 5) {
-        alert("name < 5");
+        alert(LEN);
         return false;
     }
     return true;
 }
 
-function checkPassword(password) {
+function checkPassword(password, LEN) {
     if (password.length < 5) {
-        alert("password < 5");
+        alert(LEN);
         return false;
     }
     return true;

@@ -26,7 +26,6 @@ public class Controller extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         CommandFactory commandFactory = CommandFactoryImpl.getInstance();
         Command command = commandFactory.getCommand(request.getParameter("command"));
         if (command != null) {

@@ -27,6 +27,7 @@ public class CommandFactoryInitializer {
         map.put("showRegisteredUsers", new ShowRegisteredUsersCommand());
         map.put("registerStatement", new RegisterStatementCommand());
         map.put("calculateEntrants", new CalculateEntrantsCommand());
+        map.put("changeLanguage", new ChangeLanguageCommand());
         return map;
     }
 }
