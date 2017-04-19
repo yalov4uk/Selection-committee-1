@@ -20,20 +20,13 @@ public class RegisterToFacultyCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/jsps/index.jsp";
         DaoFactory daoFactory = DaoFactoryImpl.getInstance();
-        UserDao userDao = (UserDaoImpl) daoFactory.getDao(User.class);
 
         User curUser = (User) request.getSession().getAttribute("user");
-        if (curUser == null || userDao.find((curUser).getId()) == null) {
-            page = "/jsps/login.jsp";
-        } else {
-            page = registerToFaculty(daoFactory, page, curUser, request);
-        }
-
-        userDao.close();
+        page = registerToFaculty(daoFactory, page, curUser, request);
         return page;
     }
 
-    private String registerToFaculty(DaoFactory daoFactory, String page, User curUser, HttpServletRequest request){
+    private String registerToFaculty(DaoFactory daoFactory, String page, User curUser, HttpServletRequest request) {
         FacultyDao facultyDao = (FacultyDaoImpl) daoFactory.getDao(Faculty.class);
         RequiredSubjectDao requiredSubjectDao = (RequiredSubjectDaoImpl) daoFactory.getDao(RequiredSubject.class);
         RegisteredUserDao registeredUserDao = (RegisteredUserDaoImpl) daoFactory.getDao(RegisteredUser.class);

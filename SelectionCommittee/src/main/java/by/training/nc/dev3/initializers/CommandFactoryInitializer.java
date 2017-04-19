@@ -1,6 +1,7 @@
 package by.training.nc.dev3.initializers;
 
 import by.training.nc.dev3.commands.*;
+import by.training.nc.dev3.commands.show_list.*;
 import by.training.nc.dev3.iterfaces.factories.commands.Command;
 
 import java.util.HashMap;
@@ -23,6 +24,9 @@ public class CommandFactoryInitializer {
         map.put("showUsers", new ShowUsersCommand());
         map.put("registerToFaculty", new RegisterToFacultyCommand());
         map.put("registerToFacultyPost", new RegisterToFacultyPostCommand());
+        map.put("showRegisteredUsers", new ShowRegisteredUsersCommand());
+        map.put("registerStatement", new RegisterStatementCommand());
+        map.put("calculateEntrants", new CalculateEntrantsCommand());
         return map;
     }
 }

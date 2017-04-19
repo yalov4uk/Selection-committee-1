@@ -10,8 +10,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Title</title>
+    <title>Register to faculty</title>
     <script type="text/javascript" src="/js/validator.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 <form action="/controller" method="post" onsubmit="return registerToFaculty();">

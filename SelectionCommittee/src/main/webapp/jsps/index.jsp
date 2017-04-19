@@ -13,8 +13,8 @@
 <ul class="login_signup">
     <c:choose>
         <c:when test="${user == null}">
-            <li><a href="/jsps/signup.jsp">Sign up</a></li>
-            <li><a href="/jsps/login.jsp">Log in</a></li>
+            <li><a href="/signup.jsp">Sign up</a></li>
+            <li><a href="/login.jsp">Log in</a></li>
         </c:when>
         <c:when test="${user != null}">
             Hello ${user.name}!
@@ -40,6 +40,8 @@
                         <li><a href="/controller?command=showStatements">Show statements</a></li>
                         <li><a href="/controller?command=showSubjects">Show subjects</a></li>
                         <li><a href="/controller?command=showUsers">Show users</a></li>
+                        <li><a href="/controller?command=showRegisteredUsers">Show registered to faculty users</a></li>
+                        <li><a href="/controller?command=calculateEntrants">Calculate and show pass entrants</a></li>
                     </c:if>
                 </ul>
             </c:if>

@@ -21,7 +21,7 @@
         </fieldset>
         <fieldset id="actions">
             <input type="submit" id="submit" value="Log in">
-            <a href="">Forget password?</a><a href="/jsps/signup.jsp">Sign up</a>
+            <a href="">Forget password?</a><a href="/signup.jsp">Sign up</a>
         </fieldset>
     </form>
 </body>

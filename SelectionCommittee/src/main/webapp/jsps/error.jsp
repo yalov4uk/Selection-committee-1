@@ -9,7 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Error</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 <c:out value="Something wrong"/>

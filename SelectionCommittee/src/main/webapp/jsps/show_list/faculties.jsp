@@ -9,7 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Faculties</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 <table>
@@ -17,9 +18,10 @@
         <tr>
             <td><c:out value="name"/>
                 <c:if test="${user.roleId == 1}">
-                <a href="/controller?command=registerToFaculty&name=${faculty.name}">
                         <c:out value="${faculty.name}"/>
-                </a>
+                    <a href="/controller?command=registerToFaculty&name=${faculty.name}">
+                        <c:out value="register to faculty"/>
+                    </a>
                 </c:if>
                 <c:if test="${user.roleId == 2}">
                     <c:out value="${faculty.name}"/>
@@ -37,12 +39,10 @@
         </tr>
         <tr>
             <td><c:forEach var="registeredUser" items="${faculty.registeredUsers}">
-                <c:out value="${registeredUser.name}"/>
                 <c:if test="${user.roleId == 2}">
-                    <c:out value="${registeredUser.login}"/>
-                    <c:out value="${registeredUser.password}"/>
-                    <c:out value="${registeredUser.roleId}"/>
+                    <c:out value="${registeredUser}"/>
                 </c:if>
+                <br>
             </c:forEach></td>
         </tr>
     </c:forEach>

@@ -9,17 +9,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Users</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 <table>
     <c:forEach var="user" items="${users}">
         <tr>
             <td>
-                <c:out value="${user.name}"/>
-                <c:out value="${user.login}"/>
-                <c:out value="${user.password}"/>
-                <c:out value="${user.roleId}"/>
+                <c:out value="${user}"/>
             </td>
         </tr>
     </c:forEach>

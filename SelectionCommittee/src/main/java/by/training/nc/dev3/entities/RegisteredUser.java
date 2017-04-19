@@ -9,6 +9,26 @@ public class RegisteredUser extends Entity {
 
     private int facultyId;
     private int userId;
+
+    private Faculty faculty;
+    private User user;
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     private static int count = 0;
 
     public RegisteredUser(int facultyId, int userId) {

@@ -23,7 +23,7 @@
         </fieldset>
         <fieldset id="actions">
             <input type="submit" id="submit" value="Sign up">
-            <a href="/jsps/login.jsp">You already sign up? Log in</a>
+            <a href="/login.jsp">You already sign up? Log in</a>
         </fieldset>
     </form>
 </body>

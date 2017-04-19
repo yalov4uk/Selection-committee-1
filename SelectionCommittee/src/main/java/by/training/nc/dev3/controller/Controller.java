@@ -26,18 +26,15 @@ public class Controller extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=utf-8");
-        request.setCharacterEncoding("utf-8");
-
-        String page = "/jsps/login.jsp";
 
         CommandFactory commandFactory = CommandFactoryImpl.getInstance();
         Command command = commandFactory.getCommand(request.getParameter("command"));
         if (command != null) {
-            page = command.execute(request, response);
+            String page = command.execute(request, response);
+            if (page != null) {
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+                dispatcher.forward(request, response);
+            }
         }
-
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-        dispatcher.forward(request, response);
     }
 }

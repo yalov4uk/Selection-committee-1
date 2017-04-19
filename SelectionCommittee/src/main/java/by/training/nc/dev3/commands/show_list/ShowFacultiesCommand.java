@@ -1,4 +1,4 @@
-package by.training.nc.dev3.commands;
+package by.training.nc.dev3.commands.show_list;
 
 import by.training.nc.dev3.dao.*;
 import by.training.nc.dev3.entities.*;
@@ -18,18 +18,12 @@ import java.util.List;
 public class ShowFacultiesCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/jsps/faculties.jsp";
+        String page = "/jsps/show_list/faculties.jsp";
         DaoFactory daoFactory = DaoFactoryImpl.getInstance();
         UserDao userDao = (UserDaoImpl) daoFactory.getDao(User.class);
 
-        User curUser = (User) request.getSession().getAttribute("user");
-        if (curUser == null || userDao.find((curUser).getId()) == null) {
-            page = "/jsps/login.jsp";
-        } else {
-            List<Faculty> faculties = loadReferences(daoFactory, userDao);
-            request.setAttribute("faculties", faculties);
-        }
-
+        List<Faculty> faculties = loadReferences(daoFactory, userDao);
+        request.setAttribute("faculties", faculties);
         userDao.close();
         return page;
     }
