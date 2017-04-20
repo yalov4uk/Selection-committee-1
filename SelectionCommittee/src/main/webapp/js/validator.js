@@ -13,12 +13,14 @@ function signup() {
     var name = document.getElementById("name").value;
     var password1 = document.getElementById("password").value;
     var password2 = document.getElementById("passwordverify").value;
+    var LEN = document.getElementById("LEN").value;
+    var PASSWORD_MATCH = document.getElementById("PASSWORD_MATCH").value;
 
-    if (!checkName(username) || !checkName(name) || !checkPassword(password1) || !checkPassword(password2)) {
+    if (!checkName(username, LEN) || !checkName(name, LEN) || !checkPassword(password1, LEN) || !checkPassword(password2, LEN)) {
         return false;
     }
     if (password1 != password2) {
-        alert("Passwords don't match");
+        alert(PASSWORD_MATCH);
         return false;
     }
     return true;
@@ -41,9 +43,11 @@ function checkPassword(password, LEN) {
 }
 
 function registerToFaculty() {
-    var value = parseInt(document.getElementById("value").value);
-    if (value < 0 || value > 100){
-        alert("Value must be in range (0, 100)");
+    var value = Number(document.getElementById("value").value);
+    var VALUE_REQ = document.getElementById("VALUE_REQ").value
+
+    if (isNaN(value) || value < 0 || value > 100) {
+        alert(VALUE_REQ);
         return false;
     }
     return true;

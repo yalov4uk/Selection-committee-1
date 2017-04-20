@@ -1,4 +1,4 @@
-package by.training.nc.dev3.commands;
+package by.training.nc.dev3.commands.admin_functions;
 
 import by.training.nc.dev3.comparators.StatementComparatorByAverageScore;
 import by.training.nc.dev3.dao.*;
@@ -36,8 +36,8 @@ public class CalculateEntrantsCommand implements Command {
             simpleMap.get(facultyName).add(statement);
         });
         simpleMap.values().forEach((list) -> {
-            //Collections.sort(list);  //comparable
-            list.sort(new StatementComparatorByAverageScore());  //comparator
+            //Collections.sort(list);                               //comparable
+            list.sort(new StatementComparatorByAverageScore());     //comparator
         });
 
         request.setAttribute("passEntrants", simpleMap);

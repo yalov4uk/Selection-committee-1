@@ -1,4 +1,4 @@
-package by.training.nc.dev3.localization;
+package by.training.nc.dev3.localisation;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
  * Created by Valera Yalov4uk on 4/19/2017.
  */
 public class Bundle {
-    private static ResourceBundle resourceBundle;
+    private static ResourceBundle resourceBundle = getInstance();
 
     public static ResourceBundle getInstance() {
         if (resourceBundle == null) {

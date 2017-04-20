@@ -1,6 +1,13 @@
 package by.training.nc.dev3.initializers;
 
-import by.training.nc.dev3.commands.*;
+import by.training.nc.dev3.commands.admin_functions.CalculateEntrantsCommand;
+import by.training.nc.dev3.commands.admin_functions.RegisterStatementCommand;
+import by.training.nc.dev3.commands.admin_functions.RegisterToFacultyPostCommand;
+import by.training.nc.dev3.commands.enrollee_functions.RegisterToFacultyCommand;
+import by.training.nc.dev3.commands.localisation.ChangeLanguageCommand;
+import by.training.nc.dev3.commands.login_signup.LoginCommand;
+import by.training.nc.dev3.commands.login_signup.LogoutCommand;
+import by.training.nc.dev3.commands.login_signup.RegisterCommand;
 import by.training.nc.dev3.commands.show_list.*;
 import by.training.nc.dev3.iterfaces.factories.commands.Command;
 

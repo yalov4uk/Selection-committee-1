@@ -1,4 +1,5 @@
-<%--
+<%@ page import="by.training.nc.dev3.localisation.Bundle" %>
+<%@ page import="java.util.ResourceBundle" %><%--
   Created by IntelliJ IDEA.
   User: Valera Yalov4uk
   Date: 4/18/2017
@@ -7,20 +8,30 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+    ResourceBundle resourceBundle = Bundle.getInstance();
+    String FACULTIES = resourceBundle.getString("FACULTIES");
+    String REG_TO_FAC = resourceBundle.getString("REG_TO_FAC");
+%>
+
 <html>
 <head>
-    <title>Faculties</title>
+    <title><%=FACULTIES%>
+    </title>
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
+<h2><%=FACULTIES%>
+</h2>
 <table>
     <c:forEach var="faculty" items="${faculties}">
         <tr>
-            <td><c:out value="name"/>
+            <td>
                 <c:if test="${user.roleId == 1}">
-                        <c:out value="${faculty.name}"/>
+                    <c:out value="${faculty.name}"/>
                     <a href="/controller?command=registerToFaculty&name=${faculty.name}">
-                        <c:out value="register to faculty"/>
+                        <c:out value="<%=REG_TO_FAC%>"/>
                     </a>
                 </c:if>
                 <c:if test="${user.roleId == 2}">
@@ -29,7 +40,7 @@
             </td>
         </tr>
         <tr>
-            <td><c:out value="size"/>
+            <td>
                 <c:out value="${faculty.maxSize}"/></td>
         </tr>
         <tr>

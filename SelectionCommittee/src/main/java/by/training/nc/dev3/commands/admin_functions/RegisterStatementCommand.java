@@ -1,4 +1,4 @@
-package by.training.nc.dev3.commands;
+package by.training.nc.dev3.commands.admin_functions;
 
 import by.training.nc.dev3.dao.RegisteredUserDaoImpl;
 import by.training.nc.dev3.dao.StatementDaoImpl;

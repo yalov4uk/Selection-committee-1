@@ -1,4 +1,4 @@
-package by.training.nc.dev3.commands;
+package by.training.nc.dev3.commands.admin_functions;
 
 import by.training.nc.dev3.dao.RegisteredUserDaoImpl;
 import by.training.nc.dev3.dao.SubjectDaoImpl;
@@ -35,10 +35,13 @@ public class RegisterToFacultyPostCommand implements Command {
             RegisteredUserDao registeredUserDao = (RegisteredUserDaoImpl) daoFactory.getDao(RegisteredUser.class);
             SubjectDao subjectDao = (SubjectDaoImpl) daoFactory.getDao(Subject.class);
 
-            int value = Integer.parseInt(request.getParameter("value"));
-            int subjectNameId = Integer.parseInt(request.getParameter("subjectNameId"));
+            String[] values = request.getParameterValues("value");
+            String[] subjectNameIds = request.getParameterValues("subjectNameId");
 
-            subjectDao.persist(new Subject(value, subjectNameId, curUser.getId()));
+            for (int i = 0; i < values.length && i < subjectNameIds.length; i++){
+                subjectDao.persist(
+                        new Subject(Integer.parseInt(values[i]), Integer.parseInt(subjectNameIds[i]), curUser.getId()));
+            }
 
             registeredUserDao.persist(new RegisteredUser(faculty.getId(), curUser.getId()));
             request.getSession().removeAttribute("faculty");

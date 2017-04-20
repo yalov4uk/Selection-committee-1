@@ -1,4 +1,4 @@
-package by.training.nc.dev3.commands;
+package by.training.nc.dev3.commands.enrollee_functions;
 
 import by.training.nc.dev3.dao.*;
 import by.training.nc.dev3.entities.*;
@@ -6,11 +6,13 @@ import by.training.nc.dev3.factories.DaoFactoryImpl;
 import by.training.nc.dev3.iterfaces.dao.*;
 import by.training.nc.dev3.iterfaces.factories.DaoFactory;
 import by.training.nc.dev3.iterfaces.factories.commands.Command;
+import by.training.nc.dev3.localisation.Bundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by Valera Yalov4uk on 4/18/2017.
@@ -37,11 +39,15 @@ public class RegisterToFacultyCommand implements Command {
 
         Faculty faculty = facultyDao.findByName(request.getParameter("name"));
         if (faculty == null) {
-            request.setAttribute("errorMessage", "Faculty == null");
+            ResourceBundle resourceBundle = Bundle.getInstance();
+            String FACULTY_NULL = resourceBundle.getString("FACULTY_NULL");
+            request.setAttribute("errorMessage", FACULTY_NULL);
             page = "/jsps/error.jsp";
         } else {
             if (registeredUserDao.findRegisteredUserByIds(curUser.getId(), faculty.getId()) != null) {
-                request.setAttribute("errorMessage", "You already registered");
+                ResourceBundle resourceBundle = Bundle.getInstance();
+                String YOU_ALREADY_REGISTERED = resourceBundle.getString("YOU_ALREADY_REGISTERED");
+                request.setAttribute("errorMessage", YOU_ALREADY_REGISTERED);
                 page = "/jsps/error.jsp";
             } else {
                 for (RequiredSubject requiredSubject : requiredSubjectDao.findAllByFacultyId(faculty.getId())) {

@@ -1,4 +1,4 @@
-package by.training.nc.dev3.localization;
+package by.training.nc.dev3.localisation;
 
 import java.io.IOException;
 import java.io.InputStream;
