@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LogoutCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/login.jsp";
+        String page = "/jsps/login_signup/login.jsp";
         request.getSession().invalidate();
         return page;
     }

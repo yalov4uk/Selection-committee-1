@@ -42,13 +42,13 @@ public class RegisterToFacultyCommand implements Command {
             ResourceBundle resourceBundle = Bundle.getInstance();
             String FACULTY_NULL = resourceBundle.getString("FACULTY_NULL");
             request.setAttribute("errorMessage", FACULTY_NULL);
-            page = "/jsps/error.jsp";
+            page = "/jsps/error/error.jsp";
         } else {
             if (registeredUserDao.findRegisteredUserByIds(curUser.getId(), faculty.getId()) != null) {
                 ResourceBundle resourceBundle = Bundle.getInstance();
                 String YOU_ALREADY_REGISTERED = resourceBundle.getString("YOU_ALREADY_REGISTERED");
                 request.setAttribute("errorMessage", YOU_ALREADY_REGISTERED);
-                page = "/jsps/error.jsp";
+                page = "/jsps/error/error.jsp";
             } else {
                 for (RequiredSubject requiredSubject : requiredSubjectDao.findAllByFacultyId(faculty.getId())) {
                     boolean flag = false;
@@ -62,7 +62,7 @@ public class RegisterToFacultyCommand implements Command {
                         subjectNames.add(subjectNameDao.find(requiredSubject.getSubjectNameId()));
                     }
                 }
-                page = "/jsps/registerToFaculty.jsp";
+                page = "/jsps/functions/registerToFaculty.jsp";
                 request.getSession().setAttribute("faculty", faculty);
                 request.setAttribute("subjectNames", subjectNames);
             }

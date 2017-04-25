@@ -34,7 +34,7 @@ public class LoginCommand implements Command {
             ResourceBundle resourceBundle = Bundle.getInstance();
             String WRONG_LOG_OR_PAS = resourceBundle.getString("WRONG_LOG_OR_PAS");
             request.setAttribute("errorMessage", WRONG_LOG_OR_PAS);
-            page = "/jsps/error.jsp";
+            page = "/jsps/error/error.jsp";
         }
         userDao.close();
         return page;

@@ -21,7 +21,7 @@ import java.util.Map;
 public class CalculateEntrantsCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/jsps/showPassEntrants.jsp";
+        String page = "/jsps/functions/showPassEntrants.jsp";
         DaoFactory daoFactory = DaoFactoryImpl.getInstance();
         StatementDao statementDao = (StatementDaoImpl) daoFactory.getDao(Statement.class);
 

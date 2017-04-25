@@ -34,7 +34,7 @@
         </fieldset>
         <fieldset id="actions">
             <input type="submit" id="submit" value="<%=LOG_IN%>">
-            <a href="/signup.jsp"><%=SIGN_UP%></a>
+            <a href="/jsps/login_signup/signup.jsp"><%=SIGN_UP%></a>
         </fieldset>
     </form>
 </body>

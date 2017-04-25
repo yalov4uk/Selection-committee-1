@@ -34,7 +34,7 @@ public class RegisterCommand implements Command {
             ResourceBundle resourceBundle = Bundle.getInstance();
             String LOGIN_UNAVAILABLE = resourceBundle.getString("LOGIN_UNAVAILABLE");
             request.setAttribute("errorMessage", LOGIN_UNAVAILABLE);
-            page = "/jsps/error.jsp";
+            page = "/jsps/error/error.jsp";
         }
         userDao.close();
         return page;

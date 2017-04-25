@@ -30,7 +30,7 @@ public class RegisterToFacultyPostCommand implements Command {
         User curUser = (User) request.getSession().getAttribute("user");
         Faculty faculty = (Faculty) request.getSession().getAttribute("faculty");
         if (faculty == null) {
-            page = "/login.jsp";
+            page = "/jsps/login_signup/login.jsp";
         } else {
             RegisteredUserDao registeredUserDao = (RegisteredUserDaoImpl) daoFactory.getDao(RegisteredUser.class);
             SubjectDao subjectDao = (SubjectDaoImpl) daoFactory.getDao(Subject.class);

@@ -17,7 +17,8 @@ import java.io.IOException;
 /**
  * Created by Valera Yalov4uk on 4/19/2017.
  */
-@WebFilter(urlPatterns = {"/jsps/*"}, initParams = { @WebInitParam(name = "INDEX_PATH", value = "/login.jsp") })
+@WebFilter(urlPatterns = {"/jsps/show_list/*", "/jsps/error/*", "/jsps/functions/*", "/jsps/index.jsp"},
+initParams = { @WebInitParam(name = "INDEX_PATH", value = "/jsps/login_signup/login.jsp") })
 public class AuthenticationFilter implements Filter {
     private String indexPath;
 
