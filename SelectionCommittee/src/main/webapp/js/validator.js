@@ -1,7 +1,7 @@
 function login() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var LEN = document.getElementById("LEN").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let LEN = document.getElementById("LEN").value;
     if (!checkName(username, LEN) || !checkPassword(password, LEN)) {
         return false;
     }
@@ -9,12 +9,12 @@ function login() {
 }
 
 function signup() {
-    var username = document.getElementById("username").value;
-    var name = document.getElementById("name").value;
-    var password1 = document.getElementById("password").value;
-    var password2 = document.getElementById("passwordverify").value;
-    var LEN = document.getElementById("LEN").value;
-    var PASSWORD_MATCH = document.getElementById("PASSWORD_MATCH").value;
+    let username = document.getElementById("username").value;
+    let name = document.getElementById("name").value;
+    let password1 = document.getElementById("password").value;
+    let password2 = document.getElementById("passwordverify").value;
+    let LEN = document.getElementById("LEN").value;
+    let PASSWORD_MATCH = document.getElementById("PASSWORD_MATCH").value;
 
     if (!checkName(username, LEN) || !checkName(name, LEN) || !checkPassword(password1, LEN) || !checkPassword(password2, LEN)) {
         return false;
@@ -43,12 +43,14 @@ function checkPassword(password, LEN) {
 }
 
 function registerToFaculty() {
-    var value = Number(document.getElementById("value").value);
-    var VALUE_REQ = document.getElementById("VALUE_REQ").value
-
-    if (isNaN(value) || value < 0 || value > 100) {
-        alert(VALUE_REQ);
-        return false;
+    let values = document.getElementsByClassName("value");
+    let VALUE_REQ = document.getElementById("VALUE_REQ").value;
+    for (let value of values){
+        let val = Number(value.value);
+        if (value.value.length == 0 || isNaN(val) || val < 0 || val > 100) {
+            alert(VALUE_REQ);
+            return false;
+        }
     }
     return true;
 }

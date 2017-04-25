@@ -36,7 +36,8 @@
 
 <html>
 <head>
-    <title><%=SUBJECTS%></title>
+    <title><%=SUBJECTS%>
+    </title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/show_list/table.css">
 </head>
@@ -104,12 +105,14 @@
     <caption><strong><%=SUBJECTS%>
     </strong></caption>
     <thead>
-    <th><%=VALUE%>
-    </th>
-    <th><%=USERS%> <%=ID%>
-    </th>
-    <th><%=SUBJECT_NAME_ID%>
-    </th>
+    <tr>
+        <th><%=VALUE%>
+        </th>
+        <th><%=USERS%> <%=ID%>
+        </th>
+        <th><%=SUBJECT_NAME_ID%>
+        </th>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="subject" items="${subjects}">

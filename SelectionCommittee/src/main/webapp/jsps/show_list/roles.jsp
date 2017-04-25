@@ -105,10 +105,12 @@
     <caption><strong><%=ROLES%>
     </strong></caption>
     <thead>
-    <th><%=ID%>
-    </th>
-    <th><%=NAME%>
-    </th>
+    <tr>
+        <th><%=ID%>
+        </th>
+        <th><%=NAME%>
+        </th>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="role" items="${roles}">

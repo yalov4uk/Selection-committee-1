@@ -109,17 +109,20 @@
     <caption><strong><%=REG_USERS%>
     </strong></caption>
     <thead>
-    <th><%=NAME%>
-    </th>
-    <th><%=LOGIN%>
-    </th>
-    <th><%=PASSWORD%>
-    </th>
-    <th><%=ROLE%>
-    </th>
-    <th><%=FACULTIES%>
-    </th>
-    <th><%=CREATE_STATEMENT%></th>
+    <tr>
+        <th><%=NAME%>
+        </th>
+        <th><%=LOGIN%>
+        </th>
+        <th><%=PASSWORD%>
+        </th>
+        <th><%=ROLE%>
+        </th>
+        <th><%=FACULTIES%>
+        </th>
+        <th><%=CREATE_STATEMENT%>
+        </th>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="registerUser" items="${registeredUsers}">

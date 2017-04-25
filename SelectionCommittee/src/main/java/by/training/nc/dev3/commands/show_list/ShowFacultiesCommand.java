@@ -38,12 +38,16 @@ public class ShowFacultiesCommand implements Command {
         faculties.forEach(faculty -> {
             List<RequiredSubject> requiredSubjects = requiredSubjectDao.findAllByFacultyId(faculty.getId());
             List<SubjectName> subjectNames = new LinkedList<>();
-            requiredSubjects.forEach(requiredSubject -> subjectNames.add(subjectNameDao.find(requiredSubject.getSubjectNameId())));
+            if (requiredSubjects != null) {
+                requiredSubjects.forEach(requiredSubject -> subjectNames.add(subjectNameDao.find(requiredSubject.getSubjectNameId())));
+            }
             faculty.setRequiredSubjects(subjectNames);
 
             List<User> users = new LinkedList<>();
             List<RegisteredUser> registeredUsers = registeredUserDao.findRegisteredUserByFacultyId(faculty.getId());
-            registeredUsers.forEach(registeredUser -> users.add(userDao.find(registeredUser.getUserId())));
+            if (registeredUsers != null) {
+                registeredUsers.forEach(registeredUser -> users.add(userDao.find(registeredUser.getUserId())));
+            }
             faculty.setRegisteredEntrants(users);
         });
 

@@ -15,7 +15,6 @@
     String SIGN_UP = resourceBundle.getString("SIGN_UP");
     String VALUE_REQ = resourceBundle.getString("VALUE_REQ");
     String FACULTIES = resourceBundle.getString("FACULTIES");
-    String REG_TO_FAC = resourceBundle.getString("REG_TO_FAC");
     String SELECTION_COMMITTEE = resourceBundle.getString("SELECTION_COMMITTEE");
     String HELLO = resourceBundle.getString("HELLO");
     String LOGOUT = resourceBundle.getString("LOGOUT");
@@ -32,17 +31,21 @@
     String SOMETHING_ELSE = resourceBundle.getString("SOMETHING_ELSE");
     String CONTACT = resourceBundle.getString("CONTACT");
     String LOG_IN = resourceBundle.getString("LOG_IN");
-    String SIGN_UP = resourceBundle.getString("SIGN_UP");
-    String NAME = resourceBundle.getString("NAME");
-    String CAPACITY = resourceBundle.getString("CAPACITY");
 %>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><%=REGISTER_TO_FACULTY%></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%=REGISTER_TO_FACULTY%>
+    </title>
     <script type="text/javascript" src="/js/validator.js"></script>
     <link rel="stylesheet" href="/css/index.css">
+    <style>
+        .tab {
+            padding-top: 5%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -104,22 +107,25 @@
     </ul>
 </nav>
 
-<h2><%=REGISTER_TO_FACULTY%></h2>
-<form action="/controller" method="post" onsubmit="return registerToFaculty();">
-    <input type="hidden" id="VALUE_REQ" value="<%=VALUE_REQ%>" />
-    <input type="hidden" name="command" value="registerToFacultyPost"/>
-    <table>
-        <c:forEach var="subjectName" items="${subjectNames}" >
-            <tr>
-                <td>
-                    <c:out value="${subjectName.name}"/>
-                    <input id="value" type="text" name="value" placeholder="0<x<100"/>
-                    <input type="hidden" name="subjectNameId" value="${subjectName.id}"/>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-    <input type="submit" id="submit" value="<%=SIGN_UP%>">
-</form>
+<div class="tab">
+    <h2><%=REGISTER_TO_FACULTY%>
+    </h2>
+    <form id="reg_form" action="/controller" method="post" onsubmit="return registerToFaculty();">
+        <input type="hidden" id="VALUE_REQ" value="<%=VALUE_REQ%>"/>
+        <input type="hidden" name="command" value="registerToFacultyPost"/>
+        <table>
+            <c:forEach var="subjectName" items="${subjectNames}">
+                <tr>
+                    <td>
+                        <c:out value="${subjectName.name}"/>
+                        <input class="value" type="text" name="value" placeholder="0<x<100"/>
+                        <input type="hidden" name="subjectNameId" value="${subjectName.id}"/>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+        <input type="submit" id="submit" value="<%=SIGN_UP%>">
+    </form>
+</div>
 </body>
 </html>

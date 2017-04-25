@@ -107,20 +107,22 @@
     <caption><strong><%=FACULTIES%>
     </strong></caption>
     <thead>
-    <th><%=NAME%>
-    </th>
-    <th><%=CAPACITY%>
-    </th>
-    <th><%=SUBJECTS%>
-    </th>
-    <c:if test="${user.roleId == 2}">
-        <th><%=REG_USERS%>
+    <tr>
+        <th><%=NAME%>
         </th>
-    </c:if>
-    <c:if test="${user.roleId == 1}">
-        <th><%=REG_TO_FAC%>
+        <th><%=CAPACITY%>
         </th>
-    </c:if>
+        <th><%=SUBJECTS%>
+        </th>
+        <c:if test="${user.roleId == 2}">
+            <th><%=REG_USERS%>
+            </th>
+        </c:if>
+        <c:if test="${user.roleId == 1}">
+            <th><%=REG_TO_FAC%>
+            </th>
+        </c:if>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="faculty" items="${faculties}">

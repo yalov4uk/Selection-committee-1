@@ -110,16 +110,18 @@
     <caption><strong><%=ENTRANTS%>
     </strong></caption>
     <thead>
-    <th>
-    </th>
-    <th><%=FACULTIES%> <%=NAME%>
-    </th>
-    <th><%=NAME%>
-    </th>
-    <th><%=POINTS%>
-    </th>
-    <th><%=STATUS%>
-    </th>
+    <tr>
+        <th>
+        </th>
+        <th><%=FACULTIES%> <%=NAME%>
+        </th>
+        <th><%=NAME%>
+        </th>
+        <th><%=POINTS%>
+        </th>
+        <th><%=STATUS%>
+        </th>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="list" items="${passEntrants.values()}">

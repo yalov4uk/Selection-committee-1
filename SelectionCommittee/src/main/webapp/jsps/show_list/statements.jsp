@@ -104,12 +104,14 @@
     <caption><strong><%=STATEMENTS%>
     </strong></caption>
     <thead>
-    <th><%=ID%>
-    </th>
-    <th><%=USERS%> <%=ID%>
-    </th>
-    <th><%=FACULTIES%> <%=ID%>
-    </th>
+    <tr>
+        <th><%=ID%>
+        </th>
+        <th><%=USERS%> <%=ID%>
+        </th>
+        <th><%=FACULTIES%> <%=ID%>
+        </th>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="statement" items="${statements}">

@@ -108,14 +108,16 @@
     <caption><strong><%=USERS%>
     </strong></caption>
     <thead>
-    <th><%=NAME%>
-    </th>
-    <th><%=LOGIN%>
-    </th>
-    <th><%=PASSWORD%>
-    </th>
-    <th><%=ROLE%>
-    </th>
+    <tr>
+        <th><%=NAME%>
+        </th>
+        <th><%=LOGIN%>
+        </th>
+        <th><%=PASSWORD%>
+        </th>
+        <th><%=ROLE%>
+        </th>
+    </tr>
     </thead>
     <tbody>
     <c:forEach var="user" items="${users}">
