@@ -1,48 +1,27 @@
-<%@ page import="by.training.nc.dev3.localisation.Bundle" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Valera Yalov4uk
-  Date: 4/19/2017
-  Time: 6:19 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="../includes/init.jsp" %>
 
-<%
-    ResourceBundle resourceBundle = Bundle.getInstance();
-    String REG_USERS = resourceBundle.getString("REG_USERS");
-    String CREATE_STATEMENT = resourceBundle.getString("CREATE_STATEMENT");
-    String FACULTIES = resourceBundle.getString("FACULTIES");
-    String LOGIN = resourceBundle.getString("LOGIN");
-    String PASSWORD = resourceBundle.getString("PASSWORD");
-    String NAME = resourceBundle.getString("NAME");
-    String ROLE = resourceBundle.getString("ROLE");
-%>
-
-<title><%=REG_USERS%>
+<title><fmt:message key="REG_USERS"/>
 </title>
 <link rel="stylesheet" href="/css/show_list/table.css">
 
 <jsp:include page="../includes/header.jsp"/>
 
 <table class="table">
-    <caption><strong><%=REG_USERS%>
+    <caption><strong><fmt:message key="REG_USERS"/>
     </strong></caption>
     <thead>
     <tr>
-        <th><%=NAME%>
+        <th><fmt:message key="NAME"/>
         </th>
-        <th><%=LOGIN%>
+        <th><fmt:message key="LOGIN"/>
         </th>
-        <th><%=PASSWORD%>
+        <th><fmt:message key="PASSWORD"/>
         </th>
-        <th><%=ROLE%>
+        <th><fmt:message key="ROLE"/>
         </th>
-        <th><%=FACULTIES%>
+        <th><fmt:message key="FACULTIES"/>
         </th>
-        <th><%=CREATE_STATEMENT%>
+        <th><fmt:message key="CREATE_STATEMENT"/>
         </th>
     </tr>
     </thead>
@@ -66,7 +45,7 @@
             </td>
             <td>
                 <a href="/controller?command=registerStatement&id=${registerUser.id}"
-                   class="button"><%=CREATE_STATEMENT%>
+                   class="button"><fmt:message key="CREATE_STATEMENT"/>
                 </a>
             </td>
         </tr>

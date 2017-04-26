@@ -6,7 +6,7 @@ import by.training.nc.dev3.factories.DaoFactoryImpl;
 import by.training.nc.dev3.iterfaces.dao.UserDao;
 import by.training.nc.dev3.iterfaces.factories.DaoFactory;
 import by.training.nc.dev3.iterfaces.factories.commands.Command;
-import by.training.nc.dev3.localisation.Bundle;
+import by.training.nc.dev3.localosation.Bundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +31,7 @@ public class RegisterCommand implements Command {
             request.getSession().setAttribute("user", user);
             page = "/jsps/index.jsp";
         } else {
-            ResourceBundle resourceBundle = Bundle.getInstance();
+            ResourceBundle resourceBundle = Bundle.getResourceBundle(request);
             String LOGIN_UNAVAILABLE = resourceBundle.getString("LOGIN_UNAVAILABLE");
             request.setAttribute("errorMessage", LOGIN_UNAVAILABLE);
             page = "/jsps/error/error.jsp";

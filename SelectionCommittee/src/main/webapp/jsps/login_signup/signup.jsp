@@ -1,25 +1,11 @@
-<%@ page import="by.training.nc.dev3.localisation.Bundle" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    ResourceBundle resourceBundle = Bundle.getInstance();
-    String LOGIN = resourceBundle.getString("LOGIN");
-    String LEN = resourceBundle.getString("LEN");
-    String NAME = resourceBundle.getString("NAME");
-    String PASSWORD = resourceBundle.getString("PASSWORD");
-    String REPEAT_PASSWORD = resourceBundle.getString("REPEAT_PASSWORD");
-    String SIGN_UP = resourceBundle.getString("SIGN_UP");
-    String YOU_SIGNUP_SO_LOGIN = resourceBundle.getString("YOU_SIGNUP_SO_LOGIN");
-    String PASSWORD_MATCH = resourceBundle.getString("PASSWORD_MATCH");
-%>
+<%@include file="../includes/init.jsp" %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><%=SIGN_UP%>
+    <title><fmt:message key="SIGN_UP"/>
     </title>
     <link rel="stylesheet" href="/css/signup.css">
     <link rel="stylesheet" href="/css/login_and_signup.css">
@@ -29,19 +15,26 @@
 <body>
 
 <form id="signup" action="/controller" method="post" onsubmit="return signup();">
-    <input type="hidden" id="LEN" value="<%=LEN%>"/>
-    <input type="hidden" id="PASSWORD_MATCH" value="<%=PASSWORD_MATCH%>"/>
+    <fmt:message key="LEN" var="LEN"/>
+    <input type="hidden" id="LEN" value="${LEN}"/>
+    <fmt:message key="PASSWORD_MATCH" var="PASSWORD_MATCH"/>
+    <input type="hidden" id="PASSWORD_MATCH" value="${PASSWORD_MATCH}"/>
     <input type="hidden" name="command" value="register"/>
-    <h1><%=SIGN_UP%></h1>
+    <h1><fmt:message key="SIGN_UP"/></h1>
     <fiedset id="inputs">
-        <input id="username" name="username" type="text" placeholder="<%=LOGIN%>" autofocus required>
-        <input id="name" name="name" type="text" placeholder="<%=NAME%>" required>
-        <input id="password" name="password" type="password" placeholder="<%=PASSWORD%>" required>
-        <input id="passwordverify" type="password" placeholder="<%=REPEAT_PASSWORD%>" required>
+        <fmt:message key="LOGIN" var="LOGIN"/>
+        <input id="username" name="username" type="text" placeholder="${LOGIN}" autofocus required>
+        <fmt:message key="NAME" var="NAME"/>
+        <input id="name" name="name" type="text" placeholder="${NAME}" required>
+        <fmt:message key="PASSWORD" var="PASSWORD"/>
+        <input id="password" name="password" type="password" placeholder="${PASSWORD}" required>
+        <fmt:message key="REPEAT_PASSWORD" var="REPEAT_PASSWORD"/>
+        <input id="passwordverify" type="password" placeholder="${REPEAT_PASSWORD}" required>
     </fiedset>
     <fieldset id="actions">
-        <input type="submit" id="submit" value="<%=SIGN_UP%>">
-        <a href="/jsps/login_signup/login.jsp"><%=YOU_SIGNUP_SO_LOGIN%></a>
+        <fmt:message key="SIGN_UP" var="SIGN_UP"/>
+        <input type="submit" id="submit" value="${SIGN_UP}">
+        <a href="/jsps/login_signup/login.jsp"><fmt:message key="YOU_SIGNUP_SO_LOGIN"/></a>
     </fieldset>
 </form>
 </body>

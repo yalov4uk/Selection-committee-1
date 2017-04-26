@@ -1,39 +1,21 @@
-<%@ page import="by.training.nc.dev3.localisation.Bundle" %>
-<%@ page import="java.util.ResourceBundle" %><%--
-  Created by IntelliJ IDEA.
-  User: Valera Yalov4uk
-  Date: 4/18/2017
-  Time: 7:24 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="../includes/init.jsp" %>
 
-<%
-    ResourceBundle resourceBundle = Bundle.getInstance();
-    String SUBJECTS = resourceBundle.getString("SUBJECTS");
-    String USERS = resourceBundle.getString("USERS");
-    String SUBJECT_NAME_ID = resourceBundle.getString("SUBJECT_NAME_ID");
-    String ID = resourceBundle.getString("ID");
-    String VALUE = resourceBundle.getString("VALUE");
-%>
-
-<title><%=SUBJECTS%>
+<title><fmt:message key="SUBJECTS"/>
 </title>
 <link rel="stylesheet" href="/css/show_list/table.css">
 
 <jsp:include page="../includes/header.jsp"/>
 
 <table class="table">
-    <caption><strong><%=SUBJECTS%>
+    <caption><strong><fmt:message key="SUBJECTS"/>
     </strong></caption>
     <thead>
     <tr>
-        <th><%=VALUE%>
+        <th><fmt:message key="VALUE"/>
         </th>
-        <th><%=USERS%> <%=ID%>
+        <th><fmt:message key="USERS"/> <fmt:message key="ID"/>
         </th>
-        <th><%=SUBJECT_NAME_ID%>
+        <th><fmt:message key="SUBJECT_NAME_ID"/>
         </th>
     </tr>
     </thead>

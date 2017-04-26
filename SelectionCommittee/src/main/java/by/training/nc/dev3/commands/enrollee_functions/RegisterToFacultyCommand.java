@@ -6,7 +6,7 @@ import by.training.nc.dev3.factories.DaoFactoryImpl;
 import by.training.nc.dev3.iterfaces.dao.*;
 import by.training.nc.dev3.iterfaces.factories.DaoFactory;
 import by.training.nc.dev3.iterfaces.factories.commands.Command;
-import by.training.nc.dev3.localisation.Bundle;
+import by.training.nc.dev3.localosation.Bundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,13 +39,13 @@ public class RegisterToFacultyCommand implements Command {
 
         Faculty faculty = facultyDao.findByName(request.getParameter("name"));
         if (faculty == null) {
-            ResourceBundle resourceBundle = Bundle.getInstance();
+            ResourceBundle resourceBundle = Bundle.getResourceBundle(request);
             String FACULTY_NULL = resourceBundle.getString("FACULTY_NULL");
             request.setAttribute("errorMessage", FACULTY_NULL);
             page = "/jsps/error/error.jsp";
         } else {
             if (registeredUserDao.findRegisteredUserByIds(curUser.getId(), faculty.getId()) != null) {
-                ResourceBundle resourceBundle = Bundle.getInstance();
+                ResourceBundle resourceBundle = Bundle.getResourceBundle(request);
                 String YOU_ALREADY_REGISTERED = resourceBundle.getString("YOU_ALREADY_REGISTERED");
                 request.setAttribute("errorMessage", YOU_ALREADY_REGISTERED);
                 page = "/jsps/error/error.jsp";

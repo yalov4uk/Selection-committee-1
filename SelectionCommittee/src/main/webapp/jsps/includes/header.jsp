@@ -1,36 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Valera Yalov4uk
-  Date: 4/25/2017
-  Time: 8:12 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page import="by.training.nc.dev3.localisation.Bundle" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    ResourceBundle resourceBundle = Bundle.getInstance();
-    String SELECTION_COMMITTEE = resourceBundle.getString("SELECTION_COMMITTEE");
-    String HELLO = resourceBundle.getString("HELLO");
-    String LOGOUT = resourceBundle.getString("LOGOUT");
-    String CHANGE_LANGUAGE = resourceBundle.getString("CHANGE_LANGUAGE");
-    String HOME = resourceBundle.getString("HOME");
-    String ABOUT = resourceBundle.getString("ABOUT");
-    String SOME_FUNCTIONS = resourceBundle.getString("SOME_FUNCTIONS");
-    String FACULTIES = resourceBundle.getString("FACULTIES");
-    String ROLES = resourceBundle.getString("ROLES");
-    String STATEMENTS = resourceBundle.getString("STATEMENTS");
-    String SUBJECTS = resourceBundle.getString("SUBJECTS");
-    String USERS = resourceBundle.getString("USERS");
-    String REG_USERS = resourceBundle.getString("REG_USERS");
-    String CALCULATE_AND_SHOW_ENTRANTS = resourceBundle.getString("CALCULATE_AND_SHOW_ENTRANTS");
-    String SOMETHING_ELSE = resourceBundle.getString("SOMETHING_ELSE");
-    String CONTACT = resourceBundle.getString("CONTACT");
-    String LOG_IN = resourceBundle.getString("LOG_IN");
-    String SIGN_UP = resourceBundle.getString("SIGN_UP");
-%>
+<%@include file="../includes/init.jsp" %>
 
 <html>
 <head>
@@ -41,57 +9,68 @@
 <ul class="login_signup">
     <c:choose>
         <c:when test="${user == null}">
-            <li><a href="/jsps/login_signup/signup.jsp"><%=SIGN_UP%>
+            <li><a href="/jsps/login_signup/signup.jsp"><fmt:message key="SIGN_UP"/>
             </a></li>
-            <li><a href="/jsps/login_signup/login.jsp"><%=LOG_IN%>
+            <li><a href="/jsps/login_signup/login.jsp"><fmt:message key="LOG_IN"/>
             </a></li>
         </c:when>
         <c:when test="${user != null}">
-            <%=HELLO%> ${user.name}!
-            <a href="/controller?command=logout"><%=LOGOUT%>
+            <fmt:message key="HELLO"/> ${user.name}!
+            <a href="/controller?command=logout"><fmt:message key="LOGOUT"/>
             </a>
         </c:when>
     </c:choose>
-    <a href="/controller?command=changeLanguage"><c:out value="<%=CHANGE_LANGUAGE%>"/></a>
+    <form id="langForm" action="/controller" style="display: inline">
+        <input type="hidden" name="command" value="changeLanguage"/>
+        <select id="language" name="language" onchange="submitLanguage()">
+            <option value="en US" ${language == 'en_US' ? 'selected' : ''}><fmt:message key="ENGLISH"/></option>
+            <option value="ru RU" ${language == 'ru_RU' ? 'selected' : ''}><fmt:message key="RUSSIAN"/></option>
+        </select>
+    </form>
 </ul>
 
 <header>
-    <h2 class="selection_comittee"><%=SELECTION_COMMITTEE%>
+    <h2 class="selection_comittee"><fmt:message key="SELECTION_COMMITTEE"/>
     </h2>
 </header>
 
 <nav>
     <ul class="Navigation">
-        <li><a href="/"><%=HOME%>
+        <li><a href="/"><fmt:message key="HOME"/>
         </a></li>
-        <li><a href="#"><%=ABOUT%>
+        <li><a href="#"><fmt:message key="ABOUT"/>
         </a></li>
-        <li><a href="#"><%=SOME_FUNCTIONS%>
+        <li><a href="#"><fmt:message key="SOME_FUNCTIONS"/>
         </a>
             <c:if test="${user != null}">
                 <ul>
-                    <li><a href="/controller?command=showFaculties"><%=FACULTIES%>
+                    <li><a href="/controller?command=showFaculties"><fmt:message key="FACULTIES"/>
                     </a></li>
                     <c:if test="${user.roleId == 2}">
-                        <li><a href="/controller?command=showRoles"><%=ROLES%>
+                        <li><a href="/controller?command=showRoles"><fmt:message key="ROLES"/>
                         </a></li>
-                        <li><a href="/controller?command=showStatements"><%=STATEMENTS%>
+                        <li><a href="/controller?command=showStatements"><fmt:message key="STATEMENTS"/>
                         </a></li>
-                        <li><a href="/controller?command=showSubjects"><%=SUBJECTS%>
+                        <li><a href="/controller?command=showSubjects"><fmt:message key="SUBJECTS"/>
                         </a></li>
-                        <li><a href="/controller?command=showUsers"><%=USERS%>
+                        <li><a href="/controller?command=showUsers"><fmt:message key="USERS"/>
                         </a></li>
-                        <li><a href="/controller?command=showRegisteredUsers"><%=REG_USERS%>
+                        <li><a href="/controller?command=showRegisteredUsers"><fmt:message key="REG_USERS"/>
                         </a></li>
-                        <li><a href="/controller?command=calculateEntrants"><%=CALCULATE_AND_SHOW_ENTRANTS%>
+                        <li><a href="/controller?command=calculateEntrants"><fmt:message
+                                key="CALCULATE_AND_SHOW_ENTRANTS"/>
                         </a></li>
                     </c:if>
                 </ul>
             </c:if>
         </li>
-        <li><a href="#"><%=SOMETHING_ELSE%>
+        <li><a href="#"><fmt:message key="SOMETHING_ELSE"/>
         </a></li>
-        <li><a href="#"><%=CONTACT%>
+        <li><a href="#"><fmt:message key="CONTACT"/>
         </a></li>
     </ul>
 </nav>
+
+<script>function submitLanguage() {
+    document.getElementById("langForm").submit();
+}</script>

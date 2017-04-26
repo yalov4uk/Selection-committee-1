@@ -1,22 +1,6 @@
-<%@ page import="by.training.nc.dev3.localisation.Bundle" %>
-<%@ page import="java.util.ResourceBundle" %><%--
-  Created by IntelliJ IDEA.
-  User: Valera Yalov4uk
-  Date: 4/18/2017
-  Time: 8:07 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="../includes/init.jsp" %>
 
-<%
-    ResourceBundle resourceBundle = Bundle.getInstance();
-    String REGISTER_TO_FACULTY = resourceBundle.getString("REGISTER_TO_FACULTY");
-    String SIGN_UP = resourceBundle.getString("SIGN_UP");
-    String VALUE_REQ = resourceBundle.getString("VALUE_REQ");
-%>
-
-<title><%=REGISTER_TO_FACULTY%>
+<title><fmt:message key="REGISTER_TO_FACULTY"/>
 </title>
 <script type="text/javascript" src="/js/validator.js"></script>
 <style>
@@ -29,10 +13,11 @@
 <jsp:include page="../includes/header.jsp"/>
 
 <div class="tab">
-    <h2><%=REGISTER_TO_FACULTY%>
+    <h2><fmt:message key="REGISTER_TO_FACULTY"/>
     </h2>
     <form id="reg_form" action="/controller" method="post" onsubmit="return registerToFaculty();">
-        <input type="hidden" id="VALUE_REQ" value="<%=VALUE_REQ%>"/>
+        <fmt:message key="VALUE_REQ" var="VALUE_REQ"/>
+        <input type="hidden" id="VALUE_REQ" value="${VALUE_REQ}"/>
         <input type="hidden" name="command" value="registerToFacultyPost"/>
         <table>
             <c:forEach var="subjectName" items="${subjectNames}">
@@ -45,7 +30,8 @@
                 </tr>
             </c:forEach>
         </table>
-        <input type="submit" id="submit" value="<%=SIGN_UP%>">
+        <fmt:message key="SIGN_UP" var="SIGN_UP"/>
+        <input type="submit" id="submit" value="${SIGN_UP}">
     </form>
 </div>
 
